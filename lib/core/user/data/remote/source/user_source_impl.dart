@@ -15,7 +15,6 @@ class UserSourceImpl implements UserSource {
 
   @override
   Future<void> forgotPassword(String email) {
-    // TODO: implement forgotPassword
     throw UnimplementedError();
   }
 
@@ -81,7 +80,6 @@ class UserSourceImpl implements UserSource {
 
   @override
   Future<void> googleAuth() {
-    // TODO: implement googleAuth
     throw UnimplementedError();
   }
 
