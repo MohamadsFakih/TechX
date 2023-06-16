@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:techx/core/utils/global_colors.dart';
 
 class SocialButton extends StatelessWidget {
-  const SocialButton({super.key});
+  const SocialButton({
+    super.key,
+    this.isLogin = true,
+  });
+
+  final bool isLogin;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +16,7 @@ class SocialButton extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           child: Text(
-            "Or sign in with",
+            isLogin ? "Or sign in with" : "Or sign up with",
             style: TextStyle(
               color: GlobalColors.textColor,
               fontWeight: FontWeight.w600,
