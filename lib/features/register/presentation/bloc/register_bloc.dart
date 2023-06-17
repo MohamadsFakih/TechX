@@ -13,8 +13,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   RegisterBloc(this._registerUseCase) : super(RegisterState.initial()) {
     on<RegisterEvent>((event, emit) async {
       await event.when(
-          signUp: (RegisterEntity registerEntity) =>
-              _signUp(registerEntity, emit));
+        signUp: (RegisterEntity registerEntity) => _signUp(
+          registerEntity,
+          emit,
+        ),
+      );
     });
   }
 
