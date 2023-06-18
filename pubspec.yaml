@@ -29,6 +29,9 @@ dependencies:
   flutter_animate: ^4.1.1+1
   dartz: ^0.10.1
 
+  #? For the splash screen
+  animated_splash_screen: ^1.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

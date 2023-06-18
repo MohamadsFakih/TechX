@@ -20,12 +20,4 @@ class UserModel with _$UserModel {
       uid: snapshotMap['uid'],
     );
   }
-
-  Map<String, dynamic> toDocument() {
-    return {
-      "name": name,
-      "email": email,
-      "uid": uid,
-    };
-  }
 }
