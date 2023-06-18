@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:techx/features/login/data/model/login_credentials.dart';
 import 'package:techx/features/login/data/remote/source/login_source.dart';
@@ -20,7 +21,12 @@ class LoginRepositoryImpl implements LoginRepository {
   }
 
   @override
-  Future<void> signIn(LoginCredentials loginCredentials) async {
-    await _loginSource.signIn(loginCredentials);
+  Future<Either<String, Unit>> signIn(LoginCredentials loginCredentials) async {
+    try {
+      await _loginSource.signIn(loginCredentials);
+      return right(unit);
+    } catch (e) {
+      return left(e.toString());
+    }
   }
 }

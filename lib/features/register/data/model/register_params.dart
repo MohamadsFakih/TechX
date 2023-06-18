@@ -18,12 +18,4 @@ class RegisterSavedParams with _$RegisterSavedParams {
     @Default('name') String name,
     @Default('name') String email,
   }) = _RegisterSavedParams;
-
-  Map<String, dynamic> toDocument() {
-    return {
-      "name": name,
-      "email": email,
-      "uid": uid,
-    };
-  }
 }
