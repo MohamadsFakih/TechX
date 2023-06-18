@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           return Text(settings.name ?? "no route");
         });
       },
-      home: const SignUpScreen(),
+      home: const LoginPage(),
     );
   }
 }
