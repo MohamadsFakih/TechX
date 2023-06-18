@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/utils/global_colors.dart';
 import 'package:techx/di/injection_container.dart';
+import 'package:techx/features/common/domain/entities/snackbar.dart';
 import 'package:techx/features/common/presentation/widget/global_button.dart';
 import 'package:techx/features/common/presentation/widget/login_text_field.dart';
 import 'package:techx/features/common/presentation/widget/social_button.dart';
+import 'package:techx/features/home/presentation/screen/home_page.dart';
 import 'package:techx/features/register/domain/entity/register_entity.dart';
 import 'package:techx/features/register/presentation/bloc/register_bloc.dart';
 
@@ -19,6 +22,8 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen>
     with TickerProviderStateMixin {
   final TextEditingController emailController = TextEditingController();
+
+  final TextEditingController nameController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
 
@@ -58,6 +63,21 @@ class _SignUpScreenState extends State<SignUpScreen>
           child: SingleChildScrollView(
             child: SafeArea(child: BlocBuilder<RegisterBloc, RegisterState>(
               builder: (context, state) {
+                if (state.error.isNotEmpty) {
+                  SchedulerBinding.instance.addPostFrameCallback((_) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      CustomSnackAlert.showErrorSnackBar(state.error),
+                    );
+                  });
+                }
+                if (state.signedIn) {
+                  SchedulerBinding.instance.addPostFrameCallback((_) {
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
+                        (route) => false);
+                  });
+                }
                 if (state.isLoading) {
                   animationController.repeat(
                       period: const Duration(milliseconds: 500));
@@ -93,6 +113,16 @@ class _SignUpScreenState extends State<SignUpScreen>
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          LoginTextField(
+                            controller: nameController,
+                            hint: "Name",
+                            inputType: TextInputType.text,
+                            obscure: false,
+                            enabled: !state.isLoading,
                           ),
                           const SizedBox(
                             height: 16,
@@ -158,10 +188,11 @@ class _SignUpScreenState extends State<SignUpScreen>
                           ),
                           GlobalButton(
                             text: "Sign Up",
-                            onTap: () async {
+                            onTap: () {
                               _registerBloc.add(
-                                await Register(
+                                Register(
                                   RegisterEntity(
+                                    name: nameController.text.trim(),
                                     email: emailController.text.trim(),
                                     password: passwordController.text.trim(),
                                     retryPassword:

@@ -33,13 +33,19 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     );
     try {
       if (registerEntity.password == registerEntity.retryPassword) {
-        await _registerUseCase.signUp(registerEntity).then(
-              (value) => emit(
-                state.copyWith(
-                  signedIn: true,
-                ),
-              ),
-            );
+        final result = await _registerUseCase.signUp(registerEntity);
+        result.fold(
+          (l) => emit(
+            state.copyWith(
+              error: l.toString(),
+            ),
+          ),
+          (r) => emit(
+            state.copyWith(
+              signedIn: true,
+            ),
+          ),
+        );
       } else {
         emit(
           state.copyWith(error: "Passwords do not match"),

@@ -16,11 +16,12 @@ class RegisterService {
     final uid = await _getCurrentUid();
     userCollection.doc(uid).get().then((userDoc) {
       if (!userDoc.exists) {
-        final newUser = registerSavedParams.toDocument();
-
-        userCollection.doc(uid).set(newUser);
+        userCollection.doc(uid).set({
+          "name": registerSavedParams.name,
+          "email": registerSavedParams.email,
+          "uid": uid,
+        });
       } else {
-        print("User already Exits!");
         return;
       }
     });

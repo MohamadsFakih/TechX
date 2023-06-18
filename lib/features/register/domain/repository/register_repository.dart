@@ -1,5 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:techx/features/register/domain/entity/register_entity.dart';
 
 abstract class RegisterRepository {
-  Future<void> signUp(RegisterEntity registerEntity);
+  Future<Either<String, Unit>> signUp(RegisterEntity registerEntity);
 }
