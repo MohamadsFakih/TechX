@@ -7,6 +7,7 @@ import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/home/presentation/screen/home_page.dart';
 import 'package:techx/features/login/presentation/screen/login_screen.dart';
 import 'package:techx/features/register/presentation/screen/sign_up_screen.dart';
+import 'package:techx/features/splash/presentation/screen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           return Text(settings.name ?? "no route");
         });
       },
-      home: const LoginPage(),
+      home: const SplashScreen(),
     );
   }
 }

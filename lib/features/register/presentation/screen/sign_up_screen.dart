@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/utils/global_colors.dart';
 import 'package:techx/di/injection_container.dart';
-import 'package:techx/features/common/domain/entities/snackbar.dart';
+import 'package:techx/features/common/domain/entity/snackbar.dart';
 import 'package:techx/features/common/presentation/widget/global_button.dart';
 import 'package:techx/features/common/presentation/widget/login_text_field.dart';
 import 'package:techx/features/common/presentation/widget/social_button.dart';
