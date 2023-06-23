@@ -6,7 +6,9 @@ import 'package:techx/features/home/data/remote/source/home_source.dart';
 @Injectable(as: HomeSource)
 class HomeSourceImpl implements HomeSource {
   HomeSourceImpl(this._homeService);
+
   final HomeService _homeService;
+
   @override
   Stream<List<ItemModel>> getFeatured() => _homeService.getFeatured();
 }
