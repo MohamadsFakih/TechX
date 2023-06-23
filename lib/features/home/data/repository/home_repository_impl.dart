@@ -9,5 +9,5 @@ class HomeRepositoryImpl implements HomeRepository {
 
   final HomeSource _homeSource;
   @override
-  Stream<List<ItemModel>> getFeatured() => _homeSource.getFeatured();
+  Future<List<ItemModel>> getFeatured() => _homeSource.getFeatured();
 }

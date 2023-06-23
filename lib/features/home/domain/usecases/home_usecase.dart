@@ -8,5 +8,5 @@ class HomeUseCase {
 
   final HomeRepository _homeRepository;
 
-  Stream<List<ItemModel>> getFeatured() => _homeRepository.getFeatured();
+  Future<List<ItemModel>> getFeatured() => _homeRepository.getFeatured();
 }

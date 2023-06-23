@@ -10,5 +10,5 @@ class HomeSourceImpl implements HomeSource {
   final HomeService _homeService;
 
   @override
-  Stream<List<ItemModel>> getFeatured() => _homeService.getFeatured();
+  Future<List<ItemModel>> getFeatured() => _homeService.getFeatured();
 }

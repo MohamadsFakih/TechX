@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:techx/features/home/data/model/item_model.dart';
@@ -23,13 +23,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       errorMessage: '',
     ));
     try {
-      final result = _homeUseCase.getFeatured();
-      emit(state.copyWith(featured: result));
+      await _homeUseCase
+          .getFeatured()
+          .then((value) => emit(state.copyWith(featured: value)));
     } catch (e) {
       emit(state.copyWith(
         errorMessage: e.toString(),
       ));
     }
+
     emit(state.copyWith(isLoading: false));
   }
 }

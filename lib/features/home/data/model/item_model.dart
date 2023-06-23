@@ -16,8 +16,9 @@ class ItemModel with _$ItemModel {
     var snapshotMap = snapshot.data() as Map<String, dynamic>;
     return ItemModel(
       name: snapshotMap['name'],
-      price: snapshotMap['email'],
+      price: snapshotMap['price'],
       image: snapshotMap['image'],
+      id: snapshotMap['id'],
     );
   }
 }

@@ -8,11 +8,14 @@ class HomeService {
 
   final FirebaseFirestore fireStore;
 
-  Stream<List<ItemModel>> getFeatured() {
+  Future<List<ItemModel>> getFeatured() async {
     final userCollection = fireStore.collection("featured");
 
-    return userCollection.snapshots().map((querySnapshot) {
-      return querySnapshot.docs.map((e) => ItemModel.fromSnapshot(e)).toList();
-    });
+    final querySnapshot = await userCollection.get();
+
+    final itemList =
+        querySnapshot.docs.map((e) => ItemModel.fromSnapshot(e)).toList();
+
+    return itemList;
   }
 }
