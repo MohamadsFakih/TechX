@@ -1,95 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:techx/di/injection_container.dart';
+import 'package:techx/features/home/data/model/item_model.dart';
+import 'package:techx/features/home/presentation/bloc/home_bloc.dart';
+import 'package:techx/features/home/presentation/widgets/list_featured.dart';
+import 'package:techx/features/home/presentation/widgets/search_bar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final HomeBloc _bloc = getIt<HomeBloc>();
+  List<ItemModel> featuredList = [];
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc.add(
+      const GetFeatured(),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: 400,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/home_main.jpg"), fit: BoxFit.cover),
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.bottomRight,
-                  colors: [
-                    Colors.black.withOpacity(.8),
-                    Colors.black.withOpacity(.2),
-                  ],
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 16),
+    return BlocProvider.value(
+      value: _bloc,
+      child: SafeArea(
+        child: Scaffold(
+          body: _buildHome(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHome() {
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return state.isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.favorite),
-                          color: Colors.white,
+                        SizedBox(
+                          width: 46,
+                          height: 46,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: const Image(
+                              image: AssetImage('assets/github.png'),
+                            ),
+                          ),
                         ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.shopping_cart),
-                          color: Colors.white,
+                        const SizedBox(
+                          width: 4,
                         ),
+                        const Text("Welcome,\nMohamad"),
                       ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(
-                        16,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Our New Products",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "VIEW MORE",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 2,
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.white,
-                                size: 16,
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    HomeSearchBar(searchController: _searchController),
+                    ListFeatured(state: state),
                   ],
                 ),
-              ),
-            ),
-          ),
-        ],
-      ),
+              );
+      },
     );
   }
 }
