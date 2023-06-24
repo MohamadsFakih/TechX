@@ -29,9 +29,10 @@ class SocialButton extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildSocialButton(const AssetImage("assets/google_icon.png")),
-            _buildSocialButton(const AssetImage("assets/facebook.png")),
-            _buildSocialButton(const AssetImage("assets/github.png")),
+            _buildSocialButton(
+                const AssetImage("assets/images/google_icon.png")),
+            _buildSocialButton(const AssetImage("assets/images/facebook.png")),
+            _buildSocialButton(const AssetImage("assets/images/github.png")),
           ],
         )
       ],
