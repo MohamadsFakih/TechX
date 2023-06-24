@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/home/data/model/item_model.dart';
 import 'package:techx/features/home/presentation/bloc/home_bloc.dart';
+import 'package:techx/features/home/presentation/widgets/list_brands.dart';
 import 'package:techx/features/home/presentation/widgets/list_featured.dart';
 import 'package:techx/features/home/presentation/widgets/search_bar.dart';
 
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: const Image(
-                              image: AssetImage('assets/github.png'),
+                              image: AssetImage('assets/images/github.png'),
                             ),
                           ),
                         ),
@@ -70,6 +71,13 @@ class _HomePageState extends State<HomePage> {
                       height: 16,
                     ),
                     HomeSearchBar(searchController: _searchController),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const ListBrands(),
+                    const SizedBox(
+                      height: 16,
+                    ),
                     ListFeatured(state: state),
                   ],
                 ),
