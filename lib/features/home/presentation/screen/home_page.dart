@@ -46,62 +46,69 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) {
         return state.isLoading
             ? const Center(child: CircularProgressIndicator())
-            : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 46,
-                          height: 46,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: const Image(
-                              image: AssetImage('assets/images/github.png'),
+            : RefreshIndicator(
+                onRefresh: _refresh,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListView(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 46,
+                            height: 46,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: const Image(
+                                image: AssetImage('assets/images/github.png'),
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        const Text("Welcome,\nMohamad"),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    HomeSearchBar(searchController: _searchController),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    ListBanners(
-                      pageController: _pageController,
-                      items: state.banners,
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    const ListBrands(),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    HomeListItems(
-                      items: state.featured,
-                      label: "Featured",
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    HomeListItems(
-                      items: state.featured,
-                      label: "New",
-                    ),
-                  ],
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          const Text("Welcome,\nMohamad"),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      HomeSearchBar(searchController: _searchController),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      ListBanners(
+                        pageController: _pageController,
+                        items: state.banners,
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      const ListBrands(),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      HomeListItems(
+                        items: state.featured,
+                        label: "Featured",
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      HomeListItems(
+                        items: state.featured,
+                        label: "New",
+                      ),
+                    ],
+                  ),
                 ),
               );
       },
     );
+  }
+
+  Future<void> _refresh() async {
+    _bloc.add(const Fetch());
   }
 }

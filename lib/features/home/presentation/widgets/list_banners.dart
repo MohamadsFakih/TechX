@@ -14,8 +14,8 @@ class ListBanners extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 200,
+        AspectRatio(
+          aspectRatio: 1.7,
           child: PageView.builder(
               scrollDirection: Axis.horizontal,
               controller: pageController,
@@ -29,7 +29,7 @@ class ListBanners extends StatelessWidget {
         ),
         SmoothPageIndicator(
           controller: pageController, // PageController
-          count: 2,
+          count: items.length,
           effect: const WormEffect(), // your preferred effect
         ),
       ],

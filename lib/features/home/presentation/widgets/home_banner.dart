@@ -18,7 +18,7 @@ class HomeBanner extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             child: Image(
               image: NetworkImage(image),
-              fit: BoxFit.contain,
+              fit: BoxFit.fill,
             ),
           ),
         ),
