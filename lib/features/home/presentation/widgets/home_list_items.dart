@@ -3,16 +3,17 @@ import 'package:techx/features/home/data/model/item_model.dart';
 import 'package:techx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:techx/features/home/presentation/widgets/featured_item.dart';
 
-class ListFeatured extends StatefulWidget {
-  const ListFeatured({super.key, required this.state});
+class HomeListItems extends StatefulWidget {
+  const HomeListItems({super.key, required this.state, required this.label});
 
   final HomeState state;
+  final String label;
 
   @override
-  State<ListFeatured> createState() => _ListFeaturedState();
+  State<HomeListItems> createState() => _HomeListItemsState();
 }
 
-class _ListFeaturedState extends State<ListFeatured> {
+class _HomeListItemsState extends State<HomeListItems> {
   List<ItemModel> items = [];
   @override
   void initState() {
@@ -26,17 +27,17 @@ class _ListFeaturedState extends State<ListFeatured> {
       height: 240,
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Featured",
-                style: TextStyle(
+                widget.label,
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 "See All",
                 style: TextStyle(
                   color: Colors.black,

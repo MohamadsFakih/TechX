@@ -5,7 +5,7 @@ import 'package:techx/features/home/data/model/item_model.dart';
 import 'package:techx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:techx/features/home/presentation/widgets/list_banners.dart';
 import 'package:techx/features/home/presentation/widgets/list_brands.dart';
-import 'package:techx/features/home/presentation/widgets/list_featured.dart';
+import 'package:techx/features/home/presentation/widgets/home_list_items.dart';
 import 'package:techx/features/home/presentation/widgets/search_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
             ? const Center(child: CircularProgressIndicator())
             : Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
+                child: ListView(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -84,7 +84,17 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 16,
                     ),
-                    ListFeatured(state: state),
+                    HomeListItems(
+                      state: state,
+                      label: "Featured",
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    HomeListItems(
+                      state: state,
+                      label: "New",
+                    ),
                   ],
                 ),
               );
