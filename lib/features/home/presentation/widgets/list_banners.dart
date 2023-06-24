@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:techx/features/home/data/model/item_model.dart';
 import 'package:techx/features/home/presentation/widgets/home_banner.dart';
 
 class ListBanners extends StatelessWidget {
-  const ListBanners({super.key, required this.pageController});
+  const ListBanners(
+      {super.key, required this.pageController, required this.items});
 
   final PageController pageController;
+  final List<BannerItem> items;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +19,9 @@ class ListBanners extends StatelessWidget {
           child: PageView.builder(
               scrollDirection: Axis.horizontal,
               controller: pageController,
-              itemCount: 2,
+              itemCount: items.length,
               itemBuilder: (context, pos) {
-                return const HomeBanner(
-                    label: " ", offer: "", image: "assets/images/banner.png");
+                return HomeBanner(image: items[pos].image);
               }),
         ),
         const SizedBox(

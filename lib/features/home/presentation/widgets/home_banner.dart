@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeBanner extends StatelessWidget {
-  const HomeBanner(
-      {super.key,
-      required this.label,
-      required this.offer,
-      required this.image});
+  const HomeBanner({super.key, required this.image});
 
-  final String label;
-  final String offer;
   final String image;
 
   @override
@@ -23,7 +17,7 @@ class HomeBanner extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(30),
             child: Image(
-              image: AssetImage(image),
+              image: NetworkImage(image),
               fit: BoxFit.contain,
             ),
           ),

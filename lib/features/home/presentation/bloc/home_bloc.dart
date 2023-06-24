@@ -12,16 +12,15 @@ part 'home_bloc.freezed.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this._homeUseCase) : super(HomeState.initial()) {
     on<HomeEvent>((event, emit) async {
-      await event.when(getFeatured: () => _getFeatured(emit));
+      await event.when(
+          getFeatured: () => _getFeatured(emit),
+          getBanners: () => _getBanners(emit),
+          fetch: () => _fetch(emit));
     });
   }
   final HomeUseCase _homeUseCase;
 
   Future<void> _getFeatured(Emitter<HomeState> emit) async {
-    emit(state.copyWith(
-      isLoading: true,
-      errorMessage: '',
-    ));
     try {
       await _homeUseCase
           .getFeatured()
@@ -31,7 +30,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         errorMessage: e.toString(),
       ));
     }
+  }
 
-    emit(state.copyWith(isLoading: false));
+  _getBanners(Emitter<HomeState> emit) async {
+    try {
+      await _homeUseCase
+          .getBanners()
+          .then((value) => emit(state.copyWith(banners: value)));
+    } catch (e) {
+      emit(
+        state.copyWith(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  _fetch(Emitter<HomeState> emit) async {
+    emit(state.copyWith(
+      isLoading: true,
+      errorMessage: '',
+    ));
+    await _getBanners(emit);
+    await _getFeatured(emit);
+
+    emit(
+      state.copyWith(isLoading: false),
+    );
   }
 }

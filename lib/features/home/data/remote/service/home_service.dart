@@ -18,4 +18,15 @@ class HomeService {
 
     return itemList;
   }
+
+  Future<List<BannerItem>> getBanners() async {
+    final userCollection = fireStore.collection("banners");
+
+    final querySnapshot = await userCollection.get();
+
+    final itemList =
+        querySnapshot.docs.map((e) => BannerItem.fromSnapshot(e)).toList();
+
+    return itemList;
+  }
 }

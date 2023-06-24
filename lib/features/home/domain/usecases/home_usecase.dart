@@ -9,4 +9,6 @@ class HomeUseCase {
   final HomeRepository _homeRepository;
 
   Future<List<ItemModel>> getFeatured() => _homeRepository.getFeatured();
+
+  Future<List<BannerItem>> getBanners() => _homeRepository.getBanners();
 }

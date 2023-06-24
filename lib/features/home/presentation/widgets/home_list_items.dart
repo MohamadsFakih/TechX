@@ -1,25 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:techx/features/home/data/model/item_model.dart';
-import 'package:techx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:techx/features/home/presentation/widgets/featured_item.dart';
 
-class HomeListItems extends StatefulWidget {
-  const HomeListItems({super.key, required this.state, required this.label});
+class HomeListItems extends StatelessWidget {
+  const HomeListItems({super.key, required this.label, required this.items});
 
-  final HomeState state;
+  final List<ItemModel> items;
   final String label;
-
-  @override
-  State<HomeListItems> createState() => _HomeListItemsState();
-}
-
-class _HomeListItemsState extends State<HomeListItems> {
-  List<ItemModel> items = [];
-  @override
-  void initState() {
-    super.initState();
-    items = widget.state.featured;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +18,7 @@ class _HomeListItemsState extends State<HomeListItems> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.label,
+                label,
                 style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

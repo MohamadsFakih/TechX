@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _bloc.add(
-      const GetFeatured(),
+      const Fetch(),
     );
   }
 
@@ -76,7 +76,10 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 16,
                     ),
-                    ListBanners(pageController: _pageController),
+                    ListBanners(
+                      pageController: _pageController,
+                      items: state.banners,
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
@@ -85,14 +88,14 @@ class _HomePageState extends State<HomePage> {
                       height: 16,
                     ),
                     HomeListItems(
-                      state: state,
+                      items: state.featured,
                       label: "Featured",
                     ),
                     const SizedBox(
                       height: 16,
                     ),
                     HomeListItems(
-                      state: state,
+                      items: state.featured,
                       label: "New",
                     ),
                   ],
