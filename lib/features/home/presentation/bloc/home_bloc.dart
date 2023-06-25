@@ -15,7 +15,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       await event.when(
           getFeatured: () => _getFeatured(emit),
           getBanners: () => _getBanners(emit),
-          fetch: () => _fetch(emit));
+          fetch: () => _fetch(emit),
+          getNew: () => _getNew(emit));
     });
   }
   final HomeUseCase _homeUseCase;
@@ -46,6 +47,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
+  _getNew(Emitter<HomeState> emit) async {
+    try {
+      await _homeUseCase
+          .getNew()
+          .then((value) => emit(state.copyWith(newList: value)));
+    } catch (e) {
+      emit(
+        state.copyWith(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
   _fetch(Emitter<HomeState> emit) async {
     emit(state.copyWith(
       isLoading: true,
@@ -53,6 +68,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ));
     await _getBanners(emit);
     await _getFeatured(emit);
+    await _getNew(emit);
 
     emit(
       state.copyWith(isLoading: false),

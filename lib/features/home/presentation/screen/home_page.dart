@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                         height: 16,
                       ),
                       HomeListItems(
-                        items: state.featured,
+                        items: state.newList,
                         label: "New",
                       ),
                     ],

@@ -29,4 +29,15 @@ class HomeService {
 
     return itemList;
   }
+
+  Future<List<ItemModel>> getNew() async {
+    final userCollection = fireStore.collection("new");
+
+    final querySnapshot = await userCollection.get();
+
+    final itemList =
+        querySnapshot.docs.map((e) => ItemModel.fromSnapshot(e)).toList();
+
+    return itemList;
+  }
 }
