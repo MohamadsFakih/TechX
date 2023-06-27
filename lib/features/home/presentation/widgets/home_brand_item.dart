@@ -11,15 +11,16 @@ class HomeBrandItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 80,
-      child: InkWell(
-        onTap: onTap,
-        child: Card(
-          elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(80),
-            side: const BorderSide(color: Colors.grey),
-          ),
-          color: GlobalColors.searchBarColor,
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(80),
+          side: const BorderSide(color: Colors.grey),
+        ),
+        color: GlobalColors.searchBarColor,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(80),
+          onTap: () {},
           child: Center(
             child: Container(
               padding: const EdgeInsets.all(8),
