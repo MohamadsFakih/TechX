@@ -22,3 +22,17 @@ class ItemModel with _$ItemModel {
     );
   }
 }
+
+@freezed
+class BannerItem with _$BannerItem {
+  const factory BannerItem({
+    @Default('') String image,
+  }) = _BannerItem;
+
+  factory BannerItem.fromSnapshot(DocumentSnapshot snapshot) {
+    var snapshotMap = snapshot.data() as Map<String, dynamic>;
+    return BannerItem(
+      image: snapshotMap['image'],
+    );
+  }
+}

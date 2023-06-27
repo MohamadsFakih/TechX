@@ -10,4 +10,10 @@ class HomeRepositoryImpl implements HomeRepository {
   final HomeSource _homeSource;
   @override
   Future<List<ItemModel>> getFeatured() => _homeSource.getFeatured();
+
+  @override
+  Future<List<BannerItem>> getBanners() => _homeSource.getBanners();
+
+  @override
+  Future<List<ItemModel>> getNew() => _homeSource.getNew();
 }

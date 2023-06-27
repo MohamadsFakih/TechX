@@ -11,4 +11,10 @@ class HomeSourceImpl implements HomeSource {
 
   @override
   Future<List<ItemModel>> getFeatured() => _homeService.getFeatured();
+
+  @override
+  Future<List<ItemModel>> getNew() => _homeService.getNew();
+
+  @override
+  Future<List<BannerItem>> getBanners() => _homeService.getBanners();
 }
