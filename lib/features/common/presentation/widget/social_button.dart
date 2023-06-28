@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techx/core/utils/global_colors.dart';
+import 'package:techx/core/utils/mds.dart';
 
 class SocialButton extends StatelessWidget {
   const SocialButton({
@@ -17,8 +17,8 @@ class SocialButton extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             isLogin ? "Or sign in with" : "Or sign up with",
-            style: TextStyle(
-              color: GlobalColors.textColor,
+            style: const TextStyle(
+              color: textColor,
               fontWeight: FontWeight.w600,
             ),
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techx/core/utils/global_colors.dart';
+import 'package:techx/core/utils/mds.dart';
 
 class HomeBrandItem extends StatelessWidget {
   const HomeBrandItem(this.image, this.onTap, {super.key});
@@ -17,7 +17,7 @@ class HomeBrandItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(80),
           side: const BorderSide(color: Colors.grey),
         ),
-        color: GlobalColors.searchBarColor,
+        color: searchBarColor,
         child: InkWell(
           borderRadius: BorderRadius.circular(80),
           onTap: () {},
