@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techx/core/utils/global_colors.dart';
+import 'package:techx/core/utils/mds.dart';
 
 class GlobalButton extends StatelessWidget {
   const GlobalButton({super.key, this.onTap, required this.text});
@@ -15,7 +15,7 @@ class GlobalButton extends StatelessWidget {
         alignment: Alignment.center,
         height: 55,
         decoration: BoxDecoration(
-            color: GlobalColors.mainColor,
+            color: mainColor,
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10),

@@ -2,7 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:techx/core/utils/global_colors.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/presentation/bloc/user/user_bloc.dart';
 import 'package:techx/features/default/presentation/screen/default_screen.dart';
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
             fontSize: 32,
           ),
         ),
-        backgroundColor: GlobalColors.mainColor,
+        backgroundColor: mainColor,
         nextScreen: const DefaultScreen(),
         duration: 2000,
       ),

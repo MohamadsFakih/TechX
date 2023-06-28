@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/home/data/model/item_model.dart';
 import 'package:techx/features/home/presentation/bloc/home_bloc.dart';
@@ -54,6 +55,7 @@ class _HomePageState extends State<HomePage>
         return state.isLoading
             ? const Center(child: CircularProgressIndicator())
             : Scaffold(
+                backgroundColor: homeColor,
                 body: RefreshIndicator(
                   onRefresh: _refresh,
                   child: Padding(

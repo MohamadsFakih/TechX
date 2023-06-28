@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:techx/core/utils/global_colors.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/domain/entity/snackbar.dart';
 import 'package:techx/features/common/presentation/widget/global_button.dart';
@@ -85,22 +85,22 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       padding: const EdgeInsets.all(16),
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             "TechX",
                             style: TextStyle(
-                                color: GlobalColors.mainColor,
+                                color: mainColor,
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(
                             height: 32,
                           ),
-                          Align(
+                          const Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Login to your account",
                               style: TextStyle(
-                                color: GlobalColors.textColor,
+                                color: textColor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -140,10 +140,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                         Navigator.of(context)
                                             .pushNamed('signUp');
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         "Don't have an account?",
-                                        style: TextStyle(
-                                            color: GlobalColors.mainColor),
+                                        style: TextStyle(color: mainColor),
                                       ),
                                     ),
                                     const Spacer(),
@@ -153,10 +152,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                         isChecked.value = b!;
                                       },
                                     ),
-                                    Text(
+                                    const Text(
                                       "Remember me",
-                                      style: TextStyle(
-                                          color: GlobalColors.mainColor),
+                                      style: TextStyle(color: mainColor),
                                     )
                                   ],
                                 );

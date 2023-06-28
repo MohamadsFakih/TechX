@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:techx/core/utils/global_colors.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/presentation/categories_screen.dart';
 import 'package:techx/features/favorite/presentation/favorite_screen.dart';
 import 'package:techx/features/home/presentation/screen/home_page.dart';
@@ -70,7 +70,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
             showUnselectedLabels: false,
             backgroundColor: Colors.transparent,
             type: BottomNavigationBarType.fixed,
-            unselectedItemColor: GlobalColors.bottomBarItemColor,
+            unselectedItemColor: bottomBarItemColor,
             selectedItemColor: Colors.white,
             currentIndex: _currentIndex.value,
             selectedFontSize: 0,
@@ -116,7 +116,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
       padding: const EdgeInsets.all(8.0),
       child: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: GlobalColors.redColor,
+        backgroundColor: redColor,
         child: Icon(
           icon,
           color: Colors.white,

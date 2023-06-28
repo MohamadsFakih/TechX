@@ -57,6 +57,10 @@ class ListBrands extends StatelessWidget {
                 "assets/images/alien.png",
                 () {},
               ),
+              HomeBrandItem(
+                "assets/images/playstation.png",
+                () {},
+              ),
             ],
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techx/core/utils/global_colors.dart';
+import 'package:techx/core/utils/mds.dart';
 
 class FeaturedItem extends StatelessWidget {
   const FeaturedItem(
@@ -20,7 +20,7 @@ class FeaturedItem extends StatelessWidget {
         children: [
           Card(
             elevation: 2,
-            color: GlobalColors.cardColor,
+            color: cardColor,
             child: InkWell(
               borderRadius: BorderRadius.circular(15),
               onTap: () {},
@@ -51,14 +51,14 @@ class FeaturedItem extends StatelessWidget {
                       children: [
                         Text(
                           "\$$price",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: GlobalColors.priceColor,
+                              color: priceColor,
                               fontSize: 26),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.shopping_cart,
-                          color: GlobalColors.priceColor,
+                          color: priceColor,
                         )
                       ],
                     ),
@@ -67,13 +67,13 @@ class FeaturedItem extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
             child: Align(
               alignment: Alignment.topRight,
               child: Icon(
                 Icons.favorite_border,
-                color: GlobalColors.priceColor,
+                color: priceColor,
               ),
             ),
           ),
