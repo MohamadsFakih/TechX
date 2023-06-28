@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/utils/global_colors.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/presentation/bloc/user/user_bloc.dart';
-import 'package:techx/features/home/presentation/screen/home_page.dart';
+import 'package:techx/features/default/presentation/screen/default_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
         backgroundColor: GlobalColors.mainColor,
-        nextScreen: const HomePage(),
+        nextScreen: const DefaultScreen(),
         duration: 2000,
       ),
     );
@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _navigateToHome() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          MaterialPageRoute(builder: (context) => const DefaultScreen()),
           (route) => false);
     });
   }
