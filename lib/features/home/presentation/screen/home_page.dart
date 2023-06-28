@@ -9,7 +9,6 @@ import 'package:techx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:techx/features/home/presentation/widgets/list_banners.dart';
 import 'package:techx/features/home/presentation/widgets/list_brands.dart';
 import 'package:techx/features/home/presentation/widgets/home_list_items.dart';
-import 'package:techx/features/home/presentation/widgets/search_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,7 +24,6 @@ class _HomePageState extends State<HomePage>
 
   final HomeBloc _bloc = getIt<HomeBloc>();
   List<ItemModel> featuredList = [];
-  final TextEditingController _searchController = TextEditingController();
   final PageController _pageController = PageController(initialPage: 0);
 
   @override
@@ -81,10 +79,6 @@ class _HomePageState extends State<HomePage>
                             const Text("Welcome,\nMohamad"),
                           ],
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        HomeSearchBar(searchController: _searchController),
                         const SizedBox(
                           height: 16,
                         ),
