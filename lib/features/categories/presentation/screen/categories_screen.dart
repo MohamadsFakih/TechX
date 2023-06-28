@@ -63,6 +63,11 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                           "assets/images/category/accessories_category.jpg",
                       name: "Accessories",
                     ),
+                    CategoryItem(
+                      coverImage:
+                          "assets/images/category/accessories_category.jpg",
+                      name: "Accessories",
+                    ),
                   ]
                       .animate(
                         interval: const Duration(milliseconds: 400),
