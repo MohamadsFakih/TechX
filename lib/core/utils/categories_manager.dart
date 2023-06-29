@@ -69,11 +69,6 @@ const List<Widget> laptopsSubCategories = [
     coverImage: "assets/images/subCategory/business_laptop_sub.jpg",
     name: "Business Laptops",
   ),
-  CategoryItem(
-    coverImage: "assets/images/subCategory/back_sub.jpg",
-    name: "Back",
-    type: CategoryType.back,
-  ),
 ];
 const List<Widget> tabletsSubCategories = [
   CategoryItem(
@@ -83,11 +78,6 @@ const List<Widget> tabletsSubCategories = [
   CategoryItem(
     coverImage: "assets/images/subCategory/samsung_tab_sub.jpg",
     name: "Samsung Tablets",
-  ),
-  CategoryItem(
-    coverImage: "assets/images/subCategory/back_sub.jpg",
-    name: "Back",
-    type: CategoryType.back,
   ),
 ];
 const List<Widget> wearablesSubCategories = [
@@ -110,10 +100,5 @@ const List<Widget> wearablesSubCategories = [
   CategoryItem(
     coverImage: "assets/images/subCategory/headphones_buds_sub.jpg",
     name: "Headphones",
-  ),
-  CategoryItem(
-    coverImage: "assets/images/subCategory/back_sub.jpg",
-    name: "Back",
-    type: CategoryType.back,
   ),
 ];

@@ -6,7 +6,7 @@ import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/categories/presentation/bloc/category_bloc.dart';
 import 'package:techx/core/utils/categories_manager.dart';
-import 'package:techx/features/categories/presentation/widget/search_bar.dart';
+import 'package:techx/features/common/presentation/widget/techx_logo.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -20,7 +20,6 @@ class _CategoriesScreenState extends State<CategoriesScreen>
   @override
   bool get wantKeepAlive => true;
   final CategoryBloc _categoryBloc = getIt<CategoryBloc>();
-  final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -49,9 +48,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
               builder: (context, state) {
                 return Column(
                   children: [
-                    HomeSearchBar(
-                      searchController: _searchController,
-                    ),
+                    const TechXLogo(),
                     Expanded(
                       child: state.showSubCategory
                           ? _subView(state.selectedList)
