@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:techx/features/items/domain/entity/item_entity.dart';
-import 'package:techx/features/items/domain/repository/item_repository.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
+import 'package:techx/features/categories/domain/repository/item_repository.dart';
 
 import '../../../../core/data/model/enums.dart';
 

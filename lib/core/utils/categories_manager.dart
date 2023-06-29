@@ -45,10 +45,14 @@ const List<Widget> phoneSubCategories = [
   CategoryItem(
     coverImage: "assets/images/subCategory/iphone_sub.jpg",
     name: "Apple Phones",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.applePhones,
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/samsung_sub.jpg",
     name: "Samsung Phones",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.samsungPhone,
   ),
 ];
 const List<Widget> laptopsSubCategories = [

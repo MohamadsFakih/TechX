@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:techx/core/data/model/enums.dart';
-import 'package:techx/features/items/data/model/item_model.dart';
-import 'package:techx/features/items/data/remote/service/item_service.dart';
+import 'package:techx/features/categories/data/model/item_model.dart';
+import 'package:techx/features/categories/data/remote/service/item_service.dart';
 
 import 'item_source.dart';
 

@@ -1,6 +1,7 @@
 /// Represent the file size.
 enum CategoryType {
   category,
+  subCategory,
   back,
   none,
 }
