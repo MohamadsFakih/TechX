@@ -55,7 +55,10 @@ class _ListBannersState extends State<ListBanners> {
         SmoothPageIndicator(
           controller: widget.pageController, // PageController
           count: widget.items.length,
-          effect: const WormEffect(), // your preferred effect
+          effect: const WormEffect(
+            dotHeight: 10,
+            dotWidth: 10,
+          ), // your preferred effect
         ),
       ],
     );

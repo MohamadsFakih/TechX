@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:techx/core/utils/mds.dart';
-import 'package:techx/features/categories/presentation/categories_screen.dart';
+import 'package:techx/features/categories/presentation/screen/categories_screen.dart';
 import 'package:techx/features/favorite/presentation/favorite_screen.dart';
 import 'package:techx/features/home/presentation/screen/home_page.dart';
 import 'package:techx/features/settings/presentation/screen/settings_screen.dart';
@@ -14,14 +14,14 @@ class DefaultScreen extends StatefulWidget {
 }
 
 class _DefaultScreenState extends State<DefaultScreen> {
-  final ValueNotifier<int> _currentIndex = ValueNotifier(0);
+  final ValueNotifier<int> _currentIndex = ValueNotifier(2);
   late final PageController _controller;
 
   late final List<Widget> screens = [
-    const HomePage(),
     const Center(child: Text("placeholder")),
-    const CategoriesScreen(),
     const FavoriteScreen(),
+    const HomePage(),
+    const CategoriesScreen(),
     const SettingsScreen(),
   ];
 
@@ -78,27 +78,27 @@ class _DefaultScreenState extends State<DefaultScreen> {
             items: [
               BottomNavigationBarItem(
                   icon: const Icon(
-                    Icons.home_outlined,
-                  ),
-                  activeIcon: _buildSelectedIcon(Icons.home),
-                  label: ""),
-              BottomNavigationBarItem(
-                  icon: const Icon(
                     Icons.shopping_cart,
                   ),
                   activeIcon: _buildSelectedIcon(Icons.shopping_cart),
                   label: ""),
               BottomNavigationBarItem(
                   icon: const Icon(
-                    Icons.search,
-                  ),
-                  activeIcon: _buildSelectedIcon(Icons.search),
-                  label: ""),
-              BottomNavigationBarItem(
-                  icon: const Icon(
                     Icons.favorite_border,
                   ),
                   activeIcon: _buildSelectedIcon(Icons.favorite),
+                  label: ""),
+              BottomNavigationBarItem(
+                  icon: const Icon(
+                    Icons.home_outlined,
+                  ),
+                  activeIcon: _buildSelectedIcon(Icons.home),
+                  label: ""),
+              BottomNavigationBarItem(
+                  icon: const Icon(
+                    Icons.search,
+                  ),
+                  activeIcon: _buildSelectedIcon(Icons.search),
                   label: ""),
               BottomNavigationBarItem(
                   icon: const Icon(
