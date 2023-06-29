@@ -15,3 +15,14 @@ enum SubCategoryType {
   accessories,
   none,
 }
+
+enum MiniSubCategoryType {
+  applePhones,
+  samsungPhone,
+  appleTablets,
+  samsungTablets,
+  gadgets,
+  gaming,
+  accessories,
+  none,
+}

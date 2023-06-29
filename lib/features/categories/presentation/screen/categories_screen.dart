@@ -48,7 +48,25 @@ class _CategoriesScreenState extends State<CategoriesScreen>
               builder: (context, state) {
                 return Column(
                   children: [
-                    const TechXLogo(),
+                    Row(
+                      children: [
+                        if (_categoryBloc.state.showSubCategory)
+                          GestureDetector(
+                            onTap: () {
+                              _categoryBloc.add(
+                                const ShowMainCategory(),
+                              );
+                            },
+                            child: const Icon(
+                              Icons.arrow_back,
+                              color: mainColor,
+                            ),
+                          ),
+                        const Spacer(),
+                        const TechXLogo(),
+                        const Spacer(),
+                      ],
+                    ),
                     Expanded(
                       child: state.showSubCategory
                           ? _subView(state.selectedList)

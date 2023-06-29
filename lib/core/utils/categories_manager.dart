@@ -50,11 +50,6 @@ const List<Widget> phoneSubCategories = [
     coverImage: "assets/images/subCategory/samsung_sub.jpg",
     name: "Samsung Phones",
   ),
-  CategoryItem(
-    coverImage: "assets/images/subCategory/back_sub.jpg",
-    name: "Back",
-    type: CategoryType.back,
-  ),
 ];
 const List<Widget> laptopsSubCategories = [
   CategoryItem(
