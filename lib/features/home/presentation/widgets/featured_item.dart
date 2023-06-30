@@ -53,12 +53,12 @@ class FeaturedItem extends StatelessWidget {
                           "\$$price",
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: priceColor,
+                              color: redTypeColor,
                               fontSize: 26),
                         ),
                         const Icon(
                           Icons.shopping_cart,
-                          color: priceColor,
+                          color: redTypeColor,
                         )
                       ],
                     ),
@@ -73,7 +73,7 @@ class FeaturedItem extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Icon(
                 Icons.favorite_border,
-                color: priceColor,
+                color: redTypeColor,
               ),
             ),
           ),

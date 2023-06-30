@@ -79,6 +79,8 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                       child: state.showMiniItems
                           ? MiniItemView(
                               itemType: state.miniSubCategoryType,
+                              itemList: state.items,
+                              isLoading: state.isLoading,
                             )
                           : state.showSubCategory
                               ? _subView(state.selectedList)

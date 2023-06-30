@@ -3,10 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:techx/core/data/model/enums.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/home/presentation/screen/home_page.dart';
-import 'package:techx/features/categories/presentation/widget/mini_item_view.dart';
 import 'package:techx/features/login/presentation/screen/login_screen.dart';
 import 'package:techx/features/register/presentation/screen/sign_up_screen.dart';
 import 'package:techx/features/splash/presentation/screen/splash_screen.dart';
@@ -46,13 +44,6 @@ class MyApp extends StatelessWidget {
           case "home":
             return MaterialPageRoute(builder: (context) {
               return const HomePage();
-            });
-          case "miniItem":
-            final args = settings.arguments as MiniSubCategoryType;
-            return MaterialPageRoute(builder: (context) {
-              return MiniItemView(
-                itemType: args,
-              );
             });
         }
         return MaterialPageRoute(builder: (BuildContext context) {
