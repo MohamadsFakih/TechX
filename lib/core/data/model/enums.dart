@@ -1,6 +1,7 @@
 /// Represent the file size.
 enum CategoryType {
   category,
+  subCategory,
   back,
   none,
 }
@@ -13,5 +14,16 @@ enum SubCategoryType {
   gadgets,
   gaming,
   accessories,
+  none,
+}
+
+enum MiniSubCategoryType {
+  applePhones,
+  samsungPhone,
+  appleTablets,
+  samsungTablets,
+  macbook,
+  laptopAccessories,
+  businessLaptop,
   none,
 }

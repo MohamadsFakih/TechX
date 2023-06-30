@@ -6,6 +6,7 @@ import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/categories/presentation/bloc/category_bloc.dart';
 import 'package:techx/core/utils/categories_manager.dart';
+import 'package:techx/features/categories/presentation/widget/mini_item_view.dart';
 import 'package:techx/features/common/presentation/widget/techx_logo.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -33,7 +34,13 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     return WillPopScope(
       onWillPop: () async {
         if (_categoryBloc.state.showSubCategory) {
-          _categoryBloc.add(const ShowMainCategory());
+          _categoryBloc.add(
+            const ShowMainCategory(),
+          );
+        } else if (_categoryBloc.state.showMiniItems) {
+          _categoryBloc.add(
+            ShowSubCategory(_categoryBloc.state.category),
+          );
         } else {
           SystemNavigator.pop();
         }
@@ -48,11 +55,42 @@ class _CategoriesScreenState extends State<CategoriesScreen>
               builder: (context, state) {
                 return Column(
                   children: [
-                    const TechXLogo(),
+                    Row(
+                      children: [
+                        if (_categoryBloc.state.showSubCategory ||
+                            _categoryBloc.state.showMiniItems)
+                          GestureDetector(
+                            onTap: () {
+                              if (state.showSubCategory) {
+                                _categoryBloc.add(
+                                  const ShowMainCategory(),
+                                );
+                              } else if (state.showMiniItems) {
+                                _categoryBloc.add(
+                                  ShowSubCategory(state.category),
+                                );
+                              }
+                            },
+                            child: const Icon(
+                              Icons.arrow_back,
+                              color: mainColor,
+                            ),
+                          ),
+                        const Spacer(),
+                        const TechXLogo(),
+                        const Spacer(),
+                      ],
+                    ),
                     Expanded(
-                      child: state.showSubCategory
-                          ? _subView(state.selectedList)
-                          : _buildListView(),
+                      child: state.showMiniItems
+                          ? MiniItemView(
+                              itemType: state.miniSubCategoryType,
+                              itemList: state.items,
+                              isLoading: state.isLoading,
+                            )
+                          : state.showSubCategory
+                              ? _subView(state.selectedList)
+                              : _buildListView(),
                     ),
                   ],
                 );

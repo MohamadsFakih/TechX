@@ -10,12 +10,14 @@ class CategoryItem extends StatefulWidget {
     required this.name,
     this.type = CategoryType.none,
     this.subCategory = SubCategoryType.none,
+    this.miniSubCategoryType = MiniSubCategoryType.none,
   });
 
   final String coverImage;
   final String name;
   final CategoryType type;
   final SubCategoryType subCategory;
+  final MiniSubCategoryType miniSubCategoryType;
 
   @override
   State<CategoryItem> createState() => _CategoryItemState();
@@ -41,9 +43,9 @@ class _CategoryItemState extends State<CategoryItem> {
             categoryBloc.add(
               ShowSubCategory(widget.subCategory),
             );
-          } else if (widget.type == CategoryType.back) {
+          } else if (widget.type == CategoryType.subCategory) {
             categoryBloc.add(
-              const ShowMainCategory(),
+              GetItems(widget.miniSubCategoryType),
             );
           }
         },

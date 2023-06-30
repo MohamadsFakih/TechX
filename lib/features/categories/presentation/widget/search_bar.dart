@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:techx/core/utils/mds.dart';
 
 class HomeSearchBar extends StatefulWidget {
   const HomeSearchBar({super.key, required this.searchController});
@@ -17,7 +16,7 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
       padding: const EdgeInsets.all(4),
       width: double.infinity,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14), color: searchBarColor),
+          borderRadius: BorderRadius.circular(14), color: Colors.white),
       child: TextField(
         controller: widget.searchController,
         textInputAction: TextInputAction.done,

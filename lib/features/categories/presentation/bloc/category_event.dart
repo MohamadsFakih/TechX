@@ -5,4 +5,6 @@ class CategoryEvent with _$CategoryEvent {
   const factory CategoryEvent.showSub(SubCategoryType category) =
       ShowSubCategory;
   const factory CategoryEvent.showMainCategory() = ShowMainCategory;
+  const factory CategoryEvent.getItems(
+      MiniSubCategoryType miniSubCategoryType) = GetItems;
 }
