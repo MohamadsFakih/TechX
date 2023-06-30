@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:techx/core/utils/mds.dart';
+import 'package:techx/features/detailed/presentation/screen/detailed_screen.dart';
 
 class MiniItem extends StatelessWidget {
   const MiniItem({
@@ -9,19 +10,28 @@ class MiniItem extends StatelessWidget {
     required this.name,
     required this.price,
     required this.description,
+    required this.imageLinks,
   });
 
   final String image;
   final String name;
   final String price;
   final String description;
+  final List<String> imageLinks;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailedScreen(imageUrls: imageLinks),
+            ),
+          );
+        },
         borderRadius: BorderRadius.circular(12),
         child: Column(
           children: [

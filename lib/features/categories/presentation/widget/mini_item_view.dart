@@ -82,6 +82,7 @@ class _MiniItemViewState extends State<MiniItemView> {
                             name: widget.itemList[pos].name,
                             price: widget.itemList[pos].price,
                             description: widget.itemList[pos].description,
+                            imageLinks: widget.itemList[pos].imageLinks,
                           );
                         },
                       ).animate().scale(),
