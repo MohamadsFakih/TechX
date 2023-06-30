@@ -59,14 +59,20 @@ const List<Widget> laptopsSubCategories = [
   CategoryItem(
     coverImage: "assets/images/subCategory/apple_laptop_sub.jpg",
     name: "MacBook",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.macbook,
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/used_laptop_sub.jpg",
-    name: "Used Laptops",
+    name: "LaptopAccessories",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.laptopAccessories,
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/business_laptop_sub.jpg",
     name: "Business Laptops",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.businessLaptop,
   ),
 ];
 const List<Widget> tabletsSubCategories = [
@@ -82,19 +88,11 @@ const List<Widget> tabletsSubCategories = [
 const List<Widget> wearablesSubCategories = [
   CategoryItem(
     coverImage: "assets/images/subCategory/samsung_buds_sub.jpg",
-    name: "Galaxy Buds",
-  ),
-  CategoryItem(
-    coverImage: "assets/images/subCategory/apple_buds_sub.png",
-    name: "Apple Airpods",
+    name: "Earbuds",
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/samsung_watch_sub.jpg",
-    name: "Galaxy Watches",
-  ),
-  CategoryItem(
-    coverImage: "assets/images/subCategory/apple_watch_sub.jpg",
-    name: "Apple Watches",
+    name: "Smart Watches",
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/headphones_buds_sub.jpg",

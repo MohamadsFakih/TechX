@@ -37,7 +37,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       ),
     );
     try {
-      final result = await _miniItemUseCase.getApplePhones(miniSubCategoryType);
+      final result = await _miniItemUseCase.getItems(miniSubCategoryType);
       emit(
         state.copyWith(
           miniSubCategoryType: miniSubCategoryType,

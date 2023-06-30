@@ -11,10 +11,10 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
   MiniItemRepositoryImpl(this._miniItemSource);
   final MiniItemSource _miniItemSource;
   @override
-  Future<List<MiniItemEntity>> getApplePhones(
+  Future<List<MiniItemEntity>> getItems(
       MiniSubCategoryType miniSubCategoryType) async {
     final List<MiniItemModel> miniItemModels =
-        await _miniItemSource.getApplePhones(miniSubCategoryType);
+        await _miniItemSource.getItems(miniSubCategoryType);
     final List<MiniItemEntity> miniItemEntities = miniItemModels.map((model) {
       return MiniItemEntity(
         name: model.name,

@@ -22,8 +22,8 @@ enum MiniSubCategoryType {
   samsungPhone,
   appleTablets,
   samsungTablets,
-  gadgets,
-  gaming,
-  accessories,
+  macbook,
+  laptopAccessories,
+  businessLaptop,
   none,
 }

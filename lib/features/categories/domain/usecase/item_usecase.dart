@@ -9,7 +9,7 @@ class MiniItemUseCase {
   MiniItemUseCase(this._itemRepository);
   final MiniItemRepository _itemRepository;
 
-  Future<List<MiniItemEntity>> getApplePhones(
+  Future<List<MiniItemEntity>> getItems(
           MiniSubCategoryType miniSubCategoryType) =>
-      _itemRepository.getApplePhones(miniSubCategoryType);
+      _itemRepository.getItems(miniSubCategoryType);
 }

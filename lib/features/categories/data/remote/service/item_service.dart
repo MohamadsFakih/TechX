@@ -9,7 +9,7 @@ class MiniItemService {
 
   final FirebaseFirestore fireStore;
 
-  Future<List<MiniItemModel>> getApplePhones(
+  Future<List<MiniItemModel>> getItems(
       MiniSubCategoryType miniSubCategoryType) async {
     var userCollection = fireStore.collection("applePhones");
 
@@ -22,6 +22,12 @@ class MiniItemService {
         break;
       case MiniSubCategoryType.appleTablets:
         userCollection = fireStore.collection("appleTablets");
+        break;
+      case MiniSubCategoryType.macbook:
+        userCollection = fireStore.collection("macbook");
+        break;
+      case MiniSubCategoryType.laptopAccessories:
+        userCollection = fireStore.collection("laptopAccessories");
         break;
       default:
         break;

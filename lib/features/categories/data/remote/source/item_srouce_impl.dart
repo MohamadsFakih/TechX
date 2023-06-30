@@ -10,7 +10,7 @@ class MiniItemSourceImp implements MiniItemSource {
   MiniItemSourceImp(this._miniItemService);
   final MiniItemService _miniItemService;
   @override
-  Future<List<MiniItemModel>> getApplePhones(
+  Future<List<MiniItemModel>> getItems(
           MiniSubCategoryType miniSubCategoryType) =>
-      _miniItemService.getApplePhones(miniSubCategoryType);
+      _miniItemService.getItems(miniSubCategoryType);
 }
