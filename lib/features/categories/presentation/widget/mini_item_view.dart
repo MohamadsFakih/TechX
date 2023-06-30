@@ -64,23 +64,27 @@ class _MiniItemViewState extends State<MiniItemView> {
           Expanded(
             child: widget.isLoading
                 ? const Center(child: CircularProgressIndicator())
-                : GridView.builder(
-                    itemCount: widget.itemList.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
-                            childAspectRatio: 0.6,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 20),
-                    itemBuilder: (context, pos) {
-                      return MiniItem(
-                        image: widget.itemList[pos].image,
-                        name: widget.itemList[pos].name,
-                        price: widget.itemList[pos].price,
-                        description: widget.itemList[pos].description,
-                      );
-                    },
-                  ).animate().scale(),
+                : widget.itemList.isEmpty
+                    ? const Center(
+                        child: Text("No Items Found!"),
+                      )
+                    : GridView.builder(
+                        itemCount: widget.itemList.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 200,
+                                childAspectRatio: 0.6,
+                                crossAxisSpacing: 20,
+                                mainAxisSpacing: 20),
+                        itemBuilder: (context, pos) {
+                          return MiniItem(
+                            image: widget.itemList[pos].image,
+                            name: widget.itemList[pos].name,
+                            price: widget.itemList[pos].price,
+                            description: widget.itemList[pos].description,
+                          );
+                        },
+                      ).animate().scale(),
           ),
         ],
       ),

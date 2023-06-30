@@ -66,6 +66,9 @@ class MiniItem extends StatelessWidget {
                       ),
                       maxLines: 2,
                     ),
+                    const SizedBox(
+                      height: 4,
+                    ),
                     Text(
                       "\$$price",
                       style: const TextStyle(

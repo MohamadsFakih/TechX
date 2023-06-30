@@ -34,7 +34,13 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     return WillPopScope(
       onWillPop: () async {
         if (_categoryBloc.state.showSubCategory) {
-          _categoryBloc.add(const ShowMainCategory());
+          _categoryBloc.add(
+            const ShowMainCategory(),
+          );
+        } else if (_categoryBloc.state.showMiniItems) {
+          _categoryBloc.add(
+            ShowSubCategory(_categoryBloc.state.category),
+          );
         } else {
           SystemNavigator.pop();
         }
