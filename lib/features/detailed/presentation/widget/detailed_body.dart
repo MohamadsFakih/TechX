@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
-class DetailedBody extends StatelessWidget {
+class DetailedBody extends StatefulWidget {
   const DetailedBody({super.key, required this.itemEntity});
 
   final MiniItemEntity itemEntity;
 
+  @override
+  State<DetailedBody> createState() => _DetailedBodyState();
+}
+
+class _DetailedBodyState extends State<DetailedBody> {
+  final ValueNotifier<int> _currentModelIndex = ValueNotifier(0);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -29,7 +35,7 @@ class DetailedBody extends StatelessWidget {
                 height: 16,
               ),
               Text(
-                itemEntity.name,
+                widget.itemEntity.name,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -47,7 +53,7 @@ class DetailedBody extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Text(
-                    "\$${itemEntity.price}",
+                    "\$${widget.itemEntity.price}",
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 16),
                   ),
@@ -63,15 +69,23 @@ class DetailedBody extends StatelessWidget {
               const SizedBox(
                 height: 4,
               ),
-              SizedBox(
-                height: 80,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    _buildModel("MPHF3\n(1TB)"),
-                    _buildModel("MPHF3\n(1TB)"),
-                  ],
-                ),
+              ValueListenableBuilder(
+                valueListenable: _currentModelIndex,
+                builder: (context, value, e) {
+                  return SizedBox(
+                      height: 80,
+                      child: ListView.builder(
+                        itemCount: widget.itemEntity.models.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (
+                          context,
+                          pos,
+                        ) {
+                          return _buildModel(
+                              widget.itemEntity.models[pos], pos);
+                        },
+                      ));
+                },
               ),
               const SizedBox(
                 height: 16,
@@ -104,27 +118,27 @@ class DetailedBody extends StatelessWidget {
                 height: 4,
               ),
               Text(
-                itemEntity.description,
+                widget.itemEntity.description,
                 style: const TextStyle(fontSize: 14),
               ),
               Text(
-                itemEntity.description,
+                widget.itemEntity.description,
                 style: const TextStyle(fontSize: 14),
               ),
               Text(
-                itemEntity.description,
+                widget.itemEntity.description,
                 style: const TextStyle(fontSize: 14),
               ),
               Text(
-                itemEntity.description,
+                widget.itemEntity.description,
                 style: const TextStyle(fontSize: 14),
               ),
               Text(
-                itemEntity.description,
+                widget.itemEntity.description,
                 style: const TextStyle(fontSize: 14),
               ),
               Text(
-                itemEntity.description,
+                widget.itemEntity.description,
                 style: const TextStyle(fontSize: 14),
               ),
             ],
@@ -134,22 +148,30 @@ class DetailedBody extends StatelessWidget {
     );
   }
 
-  Widget _buildModel(String name) {
+  Widget _buildModel(String name, int index) {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          _currentModelIndex.value = index;
+        },
         borderRadius: BorderRadius.circular(16),
         child: Container(
           width: 80,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: miniItemImageColor,
+            color: index == _currentModelIndex.value
+                ? Colors.black
+                : miniItemImageColor,
           ),
           child: Center(
             child: Text(
               name,
+              style: TextStyle(
+                  color: index == _currentModelIndex.value
+                      ? Colors.white
+                      : Colors.black),
             ),
           ),
         ),

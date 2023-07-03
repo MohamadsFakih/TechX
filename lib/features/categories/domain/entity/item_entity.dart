@@ -10,5 +10,7 @@ class MiniItemEntity with _$MiniItemEntity {
     @Default('') String price,
     @Default('') String description,
     @Default([]) List<String> imageLinks,
+    @Default([]) List<String> models,
+    @Default([]) List<String> colors,
   }) = _MiniItemEntity;
 }
