@@ -12,5 +12,6 @@ class MiniItemEntity with _$MiniItemEntity {
     @Default([]) List<String> imageLinks,
     @Default([]) List<String> models,
     @Default([]) List<String> colors,
+    @Default([]) List<String> specifications,
   }) = _MiniItemEntity;
 }

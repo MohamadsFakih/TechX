@@ -13,6 +13,7 @@ class MiniItemModel with _$MiniItemModel {
     @Default([]) List<dynamic> imageLinks,
     @Default([]) List<dynamic> models,
     @Default([]) List<dynamic> colors,
+    @Default([]) List<dynamic> specifications,
   }) = _MiniItemModel;
 
   factory MiniItemModel.fromSnapshot(DocumentSnapshot snapshot) {
@@ -25,6 +26,7 @@ class MiniItemModel with _$MiniItemModel {
       imageLinks: snapshotMap['imageLinks'],
       models: snapshotMap['models'],
       colors: snapshotMap['colors'],
+      specifications: snapshotMap['specifications'],
     );
   }
 }

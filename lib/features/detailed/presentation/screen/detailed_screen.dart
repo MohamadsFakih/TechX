@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/detailed/presentation/widget/detailed_body.dart';
 import 'package:techx/features/detailed/presentation/widget/sliver_header.dart';
@@ -42,14 +43,14 @@ class _DetailedScreenState extends State<DetailedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: miniItemImageColor,
       body: SafeArea(
         child: ValueListenableBuilder<bool>(
           valueListenable: _showHeaderNotifier,
           builder: (BuildContext context, bool showHeader, Widget? child) {
-            return NestedScrollView(
+            return CustomScrollView(
               controller: _controller,
-              headerSliverBuilder:
-                  (BuildContext context, bool innerBoxIsScrolled) => [
+              slivers: <Widget>[
                 SliverAppBar(
                   pinned: true,
                   floating: false,
@@ -61,18 +62,57 @@ class _DetailedScreenState extends State<DetailedScreen> {
                     ),
                   ),
                 ),
+                SliverList(
+                  delegate: SliverChildListDelegate(
+                    [
+                      DetailedBody(
+                        itemEntity: widget.miniItemEntity,
+                      ),
+                    ],
+                  ),
+                ),
               ],
-              body: ListView.builder(
-                itemCount: 1,
-                itemBuilder: (BuildContext context, int index) {
-                  return DetailedBody(
-                    itemEntity: widget.miniItemEntity,
-                  );
-                },
-              ),
             );
           },
         ),
+      ),
+      bottomNavigationBar: Row(
+        children: [
+          Expanded(
+            child: InkWell(
+              onTap: () {},
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.add_shopping_cart_outlined,
+                    ),
+                    Text("Add to Cart")
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: InkWell(
+              onTap: () {},
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.favorite_border,
+                    ),
+                    Text("Add to Favorites")
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
