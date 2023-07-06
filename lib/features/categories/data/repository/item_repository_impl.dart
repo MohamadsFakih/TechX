@@ -16,11 +16,27 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
     final List<MiniItemModel> miniItemModels =
         await _miniItemSource.getItems(miniSubCategoryType);
     final List<MiniItemEntity> miniItemEntities = miniItemModels.map((model) {
+      List<String> stringImageList =
+          model.imageLinks.map((item) => item.toString()).toList();
+
+      List<String> stringColorList =
+          model.colors.map((item) => item.toString()).toList();
+
+      List<String> stringModelList =
+          model.models.map((item) => item.toString()).toList();
+
+      List<String> stringSpecificationsList =
+          model.specifications.map((item) => item.toString()).toList();
+
       return MiniItemEntity(
         name: model.name,
         description: model.description,
         image: model.image,
         price: model.price,
+        imageLinks: stringImageList,
+        models: stringModelList,
+        colors: stringColorList,
+        specifications: stringSpecificationsList,
       );
     }).toList();
 

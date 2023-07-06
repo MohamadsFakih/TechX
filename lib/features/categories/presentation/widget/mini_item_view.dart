@@ -78,10 +78,7 @@ class _MiniItemViewState extends State<MiniItemView> {
                                 mainAxisSpacing: 20),
                         itemBuilder: (context, pos) {
                           return MiniItem(
-                            image: widget.itemList[pos].image,
-                            name: widget.itemList[pos].name,
-                            price: widget.itemList[pos].price,
-                            description: widget.itemList[pos].description,
+                            itemEntity: widget.itemList[pos],
                           );
                         },
                       ).animate().scale(),

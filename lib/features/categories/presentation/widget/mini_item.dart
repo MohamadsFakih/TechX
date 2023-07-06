@@ -1,27 +1,32 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:techx/core/utils/mds.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
+import 'package:techx/features/detailed/presentation/screen/detailed_screen.dart';
 
 class MiniItem extends StatelessWidget {
   const MiniItem({
     super.key,
-    required this.image,
-    required this.name,
-    required this.price,
-    required this.description,
+    required this.itemEntity,
   });
 
-  final String image;
-  final String name;
-  final String price;
-  final String description;
+  final MiniItemEntity itemEntity;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailedScreen(
+                miniItemEntity: itemEntity,
+              ),
+            ),
+          );
+        },
         borderRadius: BorderRadius.circular(12),
         child: Column(
           children: [
@@ -43,7 +48,7 @@ class MiniItem extends StatelessWidget {
                     ),
                   ),
                   CachedNetworkImage(
-                    imageUrl: image,
+                    imageUrl: itemEntity.image,
                     fit: BoxFit.fill,
                     placeholder: (context, url) => const Image(
                         image: AssetImage("assets/images/placeholder.jpg")),
@@ -59,7 +64,7 @@ class MiniItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      name,
+                      itemEntity.name,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
@@ -70,7 +75,7 @@ class MiniItem extends StatelessWidget {
                       height: 4,
                     ),
                     Text(
-                      "\$$price",
+                      "\$${itemEntity.price}",
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
