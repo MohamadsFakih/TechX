@@ -76,43 +76,54 @@ class _DetailedScreenState extends State<DetailedScreen> {
           },
         ),
       ),
-      bottomNavigationBar: Row(
-        children: [
-          Expanded(
-            child: InkWell(
-              onTap: () {},
-              child: const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.add_shopping_cart_outlined,
-                    ),
-                    Text("Add to Cart")
-                  ],
+      bottomNavigationBar: Card(
+        margin: const EdgeInsets.all(0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+        elevation: 10,
+        child: Row(
+          children: [
+            Expanded(
+              child: InkWell(
+                onTap: () {},
+                child: const Padding(
+                  padding: EdgeInsets.all(24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.add_shopping_cart_outlined,
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text("Add to Cart")
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: InkWell(
-              onTap: () {},
-              child: const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.favorite_border,
-                    ),
-                    Text("Add to Favorites")
-                  ],
+            Expanded(
+              child: InkWell(
+                onTap: () {},
+                child: const Padding(
+                  padding: EdgeInsets.all(24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.favorite_border,
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text("Add to Favorites")
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

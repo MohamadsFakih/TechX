@@ -14,8 +14,9 @@ class DetailedBody extends StatefulWidget {
 
 class _DetailedBodyState extends State<DetailedBody> {
   final ValueNotifier<int> _currentModelIndex = ValueNotifier(0);
-
   final ValueNotifier<int> _currentColorIndex = ValueNotifier(0);
+  final ValueNotifier<int> _nbOfItems = ValueNotifier<int>(1);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -34,6 +35,16 @@ class _DetailedBodyState extends State<DetailedBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: 50,
+                  child: Divider(
+                    color: Colors.black,
+                    thickness: 3,
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 16,
               ),
@@ -48,21 +59,73 @@ class _DetailedBodyState extends State<DetailedBody> {
               const SizedBox(
                 height: 16,
               ),
-              Text(
-                "\$${widget.itemEntity.price}",
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+              Row(
+                children: [
+                  Text(
+                    "\$${widget.itemEntity.price}",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 24),
+                  ),
+                  const Spacer(),
+                  InkWell(
+                    onTap: () {
+                      if (_nbOfItems.value > 1) {
+                        _nbOfItems.value -= 1;
+                      }
+                    },
+                    child: const Card(
+                      margin: EdgeInsets.all(16),
+                      child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text("-"),
+                      ),
+                    ),
+                  ),
+                  ValueListenableBuilder(
+                    valueListenable: _nbOfItems,
+                    builder: (context, child, e) {
+                      return Text(
+                        _nbOfItems.value.toString(),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
+                  ),
+                  InkWell(
+                    onTap: () {
+                      _nbOfItems.value += 1;
+                    },
+                    child: const Card(
+                      margin: EdgeInsets.all(16),
+                      child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text("+"),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 16,
               ),
-              if (widget.itemEntity.models.isNotEmpty)
+              Text(
+                widget.itemEntity.description,
+                style: const TextStyle(fontSize: 14),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              if (widget.itemEntity.models[0] != '')
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Model :",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16)),
+                    const Text(
+                      "Model :",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
                     const SizedBox(
                       height: 4,
                     ),
@@ -89,47 +152,51 @@ class _DetailedBodyState extends State<DetailedBody> {
                     ),
                   ],
                 ),
-              const Text(
-                "Color :",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              ValueListenableBuilder(
-                valueListenable: _currentColorIndex,
-                builder: (context, value, e) {
-                  return SizedBox(
-                      height: 80,
-                      child: ListView.builder(
-                        itemCount: widget.itemEntity.colors.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (
-                          context,
-                          pos,
-                        ) {
-                          return _buildColorItem(
-                              widget.itemEntity.colors[pos], pos);
-                        },
-                      ));
-                },
-              ),
+              if (widget.itemEntity.colors[0] != '')
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Color :",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    ValueListenableBuilder(
+                      valueListenable: _currentColorIndex,
+                      builder: (context, value, e) {
+                        return SizedBox(
+                            height: 80,
+                            child: ListView.builder(
+                              itemCount: widget.itemEntity.colors.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (
+                                context,
+                                pos,
+                              ) {
+                                return _buildColorItem(
+                                    widget.itemEntity.colors[pos], pos);
+                              },
+                            ));
+                      },
+                    ),
+                  ],
+                ),
               const SizedBox(
                 height: 4,
               ),
               const Text(
-                "Description :",
+                "Specifications :",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               const SizedBox(
-                height: 4,
-              ),
-              Text(
-                widget.itemEntity.description,
-                style: const TextStyle(fontSize: 14),
+                height: 8,
               ),
               Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(20.0),
                 child: _buildTable(),
-              )
+              ),
+              const SizedBox(
+                height: 8,
+              ),
             ],
           ),
         ),
