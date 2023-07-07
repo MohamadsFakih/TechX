@@ -14,13 +14,13 @@ class UserSourceImpl implements UserSource {
   Future<String> getCurrentUid() => _userService.getCurrentUid();
 
   @override
-  Stream<List<UserModel>> getAllUsers(UserModel userModel) =>
-      _userService.getAllUsers(userModel);
-
-  @override
   Stream<List<UserModel>> getSingleUser(UserModel userModel) =>
       _userService.getSingleUser(userModel);
 
   @override
   Future<bool> isSignedIn() => _userService.isSignedIn();
+
+  @override
+  Future<void> addLike(String id, String collection) =>
+      _userService.addLike(id, collection);
 }

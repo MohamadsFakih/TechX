@@ -11,17 +11,6 @@ class UserService {
 
   Future<String> getCurrentUid() async => auth.currentUser!.uid;
 
-  Stream<List<UserModel>> getAllUsers(UserModel userModel) {
-    final userCollection = fireStore.collection("users");
-
-    return userCollection
-        .where('uid', isNotEqualTo: userModel.uid)
-        .snapshots()
-        .map((querySnapshot) {
-      return querySnapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
-    });
-  }
-
   Future<bool> isSignedIn() async {
     return auth.currentUser?.uid != null;
   }
@@ -39,6 +28,18 @@ class UserService {
         .snapshots()
         .map((querySnapshot) {
       return querySnapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
+    });
+  }
+
+  Future<void> addLike(
+    String id,
+    String collection,
+  ) async {
+    final itemToLike = fireStore.collection(collection).doc(id);
+
+    final myList = [auth.currentUser!.uid];
+    await itemToLike.update({
+      "likes": FieldValue.arrayUnion(myList),
     });
   }
 }

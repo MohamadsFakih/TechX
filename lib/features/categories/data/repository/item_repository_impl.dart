@@ -28,6 +28,9 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
       List<String> stringSpecificationsList =
           model.specifications.map((item) => item.toString()).toList();
 
+      List<String> stringLikesList =
+          model.likes.map((item) => item.toString()).toList();
+
       return MiniItemEntity(
         name: model.name,
         description: model.description,
@@ -37,6 +40,7 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
         models: stringModelList,
         colors: stringColorList,
         specifications: stringSpecificationsList,
+        likes: stringLikesList,
       );
     }).toList();
 
