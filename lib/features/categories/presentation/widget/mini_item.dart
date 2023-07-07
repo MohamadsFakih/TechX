@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
@@ -86,7 +87,24 @@ class _MiniItemState extends State<MiniItem> {
                                 ? Icons.favorite_border
                                 : Icons.favorite,
                             color: redTypeColor,
-                          );
+                          )
+                              .animate(
+                                target: _liked.value ? 0 : 1,
+                              )
+                              .shake()
+                              .scale(
+                                begin: const Offset(0.9, 0.9),
+                                end: const Offset(1.2, 1.2),
+                              )
+                              .then()
+                              .scale(
+                                begin: const Offset(1.2, 1.2),
+                                end: const Offset(0.9, 0.9),
+                              )
+                              .shimmer()
+                              .toggle(
+                                builder: (context, value, child) => child,
+                              );
                         },
                       ),
                     ),
