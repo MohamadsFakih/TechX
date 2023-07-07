@@ -32,6 +32,7 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
           model.likes.map((item) => item.toString()).toList();
 
       return MiniItemEntity(
+        id: model.id.trim(),
         name: model.name,
         description: model.description,
         image: model.image,

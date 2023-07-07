@@ -5,6 +5,7 @@ part 'item_entity.freezed.dart';
 @freezed
 class MiniItemEntity with _$MiniItemEntity {
   const factory MiniItemEntity({
+    @Default('') String id,
     @Default('') String name,
     @Default('') String image,
     @Default('') String price,

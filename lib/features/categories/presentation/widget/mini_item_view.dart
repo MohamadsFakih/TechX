@@ -6,15 +6,18 @@ import 'package:techx/features/categories/presentation/widget/mini_item.dart';
 import 'package:techx/features/categories/presentation/widget/search_bar.dart';
 
 class MiniItemView extends StatefulWidget {
-  const MiniItemView(
-      {super.key,
-      required this.itemList,
-      required this.itemType,
-      required this.isLoading});
+  const MiniItemView({
+    Key? key,
+    required this.itemList,
+    required this.itemType,
+    required this.isLoading,
+    required this.userId,
+  }) : super(key: key);
 
   final List<MiniItemEntity> itemList;
   final MiniSubCategoryType itemType;
   final bool isLoading;
+  final String userId;
 
   @override
   State<MiniItemView> createState() => _MiniItemViewState();
@@ -22,8 +25,13 @@ class MiniItemView extends StatefulWidget {
 
 class _MiniItemViewState extends State<MiniItemView> {
   final TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    return _buildPadding();
+  }
+
+  Widget _buildPadding() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -44,8 +52,9 @@ class _MiniItemViewState extends State<MiniItemView> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white),
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                ),
                 child: Row(
                   children: [
                     Text(
@@ -72,13 +81,20 @@ class _MiniItemViewState extends State<MiniItemView> {
                         itemCount: widget.itemList.length,
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 200,
-                                childAspectRatio: 0.6,
-                                crossAxisSpacing: 20,
-                                mainAxisSpacing: 20),
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 0.6,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 20,
+                        ),
                         itemBuilder: (context, pos) {
+                          final MiniItemEntity itemEntity =
+                              widget.itemList[pos];
+                          final bool isLiked =
+                              itemEntity.likes.contains(widget.userId);
                           return MiniItem(
-                            itemEntity: widget.itemList[pos],
+                            itemEntity: itemEntity,
+                            type: widget.itemType.name,
+                            liked: isLiked,
                           );
                         },
                       ).animate().scale(),

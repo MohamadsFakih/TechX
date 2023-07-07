@@ -6,6 +6,7 @@ part 'item_model.freezed.dart';
 @freezed
 class MiniItemModel with _$MiniItemModel {
   const factory MiniItemModel({
+    @Default('') String id,
     @Default('') String name,
     @Default('') String image,
     @Default('') String price,
@@ -14,12 +15,13 @@ class MiniItemModel with _$MiniItemModel {
     @Default([]) List<dynamic> models,
     @Default([]) List<dynamic> colors,
     @Default([]) List<dynamic> specifications,
-    @Default([]) List<String> likes,
+    @Default([]) List<dynamic> likes,
   }) = _MiniItemModel;
 
   factory MiniItemModel.fromSnapshot(DocumentSnapshot snapshot) {
     var snapshotMap = snapshot.data() as Map<String, dynamic>;
     return MiniItemModel(
+      id: snapshotMap['id'],
       name: snapshotMap['name'],
       description: snapshotMap['description'],
       price: snapshotMap['price'],

@@ -10,8 +10,9 @@ import 'package:techx/features/categories/presentation/widget/mini_item_view.dar
 import 'package:techx/features/common/presentation/widget/techx_logo.dart';
 
 class CategoriesScreen extends StatefulWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({super.key, required this.userId});
 
+  final String userId;
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
@@ -87,6 +88,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                               itemType: state.miniSubCategoryType,
                               itemList: state.items,
                               isLoading: state.isLoading,
+                              userId: widget.userId,
                             )
                           : state.showSubCategory
                               ? _subView(state.selectedList)
