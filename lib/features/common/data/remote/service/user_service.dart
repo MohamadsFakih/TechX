@@ -6,6 +6,7 @@ import 'package:techx/features/common/data/model/user_model.dart';
 @injectable
 class UserService {
   UserService(this.auth, this.fireStore);
+
   final FirebaseAuth auth;
   final FirebaseFirestore fireStore;
 
@@ -31,15 +32,21 @@ class UserService {
     });
   }
 
-  Future<void> addLike(
-    String id,
-    String collection,
-  ) async {
+  Future<void> addLike(String id, String collection) async {
     final itemToLike = fireStore.collection(collection).doc(id);
-
     final myList = [auth.currentUser!.uid];
-    await itemToLike.update({
-      "likes": FieldValue.arrayUnion(myList),
-    });
+
+    final snapshot = await itemToLike.get();
+    final likesList = snapshot.data()?['likes'] ?? [];
+
+    if (likesList.contains(auth.currentUser!.uid)) {
+      await itemToLike.update({
+        "likes": FieldValue.arrayRemove(myList),
+      });
+    } else {
+      await itemToLike.update({
+        "likes": FieldValue.arrayUnion(myList),
+      });
+    }
   }
 }

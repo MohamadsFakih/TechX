@@ -13,6 +13,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserEvent>((event, emit) async {
       await event.when(
         checkSignedIn: () => _checkSignedIn(emit),
+        addLike: (String id, String type) => _addAlike(id, type, emit),
+        getUid: () => _getUid(emit),
       );
     });
   }
@@ -27,5 +29,44 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       isSignedIn: result,
       isLoading: false,
     ));
+  }
+
+  Future _addAlike(String id, String type, Emitter<UserState> emit) async {
+    final result = await _useCase.addLike(id, type);
+    result.fold(
+      (l) {
+        emit(
+          state.copyWith(error: l),
+        );
+      },
+      (r) {
+        emit(
+          state.copyWith(error: ''),
+        );
+      },
+    );
+  }
+
+  Future _getUid(Emitter<UserState> emit) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+      ),
+    );
+    try {
+      final result = await _useCase.getCurrentUid();
+      emit(
+        state.copyWith(id: result),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(error: e.toString()),
+      );
+    }
+    emit(
+      state.copyWith(
+        isLoading: false,
+      ),
+    );
   }
 }
