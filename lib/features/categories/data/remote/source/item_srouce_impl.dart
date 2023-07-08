@@ -13,4 +13,8 @@ class MiniItemSourceImp implements MiniItemSource {
   Future<List<MiniItemModel>> getItems(
           MiniSubCategoryType miniSubCategoryType) =>
       _miniItemService.getItems(miniSubCategoryType);
+
+  @override
+  Future<List<MiniItemModel>> getFavorites(String uid) =>
+      _miniItemService.getFavorites(uid);
 }

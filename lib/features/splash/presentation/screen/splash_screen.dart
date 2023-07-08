@@ -5,6 +5,7 @@ import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/presentation/bloc/user/user_bloc.dart';
 import 'package:techx/features/default/presentation/screen/default_screen.dart';
+import 'package:techx/features/login/presentation/screen/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -28,7 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
       value: _userBloc,
       child: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
-          if (state.id.isNotEmpty) {
+          if (state.id.isEmpty) {
+            _navigateToLogin();
+          } else {
             _navigateToHome();
           }
         },
@@ -59,6 +62,21 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         (route) => false,
       );
+    });
+  }
+
+  void _navigateToLogin() {
+    const delayDuration =
+        Duration(seconds: 2); // Adjust the delay duration as needed
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(delayDuration, () {
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const LoginPage(),
+          ),
+          (route) => false,
+        );
+      });
     });
   }
 }

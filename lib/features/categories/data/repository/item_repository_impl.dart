@@ -47,4 +47,41 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
 
     return miniItemEntities;
   }
+
+  @override
+  Future<List<MiniItemEntity>> getFavorites(String uid) async {
+    final List<MiniItemModel> miniItemModels =
+        await _miniItemSource.getFavorites(uid);
+    final List<MiniItemEntity> miniItemEntities = miniItemModels.map((model) {
+      List<String> stringImageList =
+          model.imageLinks.map((item) => item.toString()).toList();
+
+      List<String> stringColorList =
+          model.colors.map((item) => item.toString()).toList();
+
+      List<String> stringModelList =
+          model.models.map((item) => item.toString()).toList();
+
+      List<String> stringSpecificationsList =
+          model.specifications.map((item) => item.toString()).toList();
+
+      List<String> stringLikesList =
+          model.likes.map((item) => item.toString()).toList();
+
+      return MiniItemEntity(
+        id: model.id.trim(),
+        name: model.name,
+        description: model.description,
+        image: model.image,
+        price: model.price,
+        imageLinks: stringImageList,
+        models: stringModelList,
+        colors: stringColorList,
+        specifications: stringSpecificationsList,
+        likes: stringLikesList,
+      );
+    }).toList();
+
+    return miniItemEntities;
+  }
 }

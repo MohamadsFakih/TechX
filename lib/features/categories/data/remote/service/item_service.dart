@@ -11,27 +11,39 @@ class MiniItemService {
 
   Future<List<MiniItemModel>> getItems(
       MiniSubCategoryType miniSubCategoryType) async {
-    var userCollection = fireStore.collection("applePhones");
+    var itemCollection = fireStore.collection("applePhones");
 
     switch (miniSubCategoryType) {
       case MiniSubCategoryType.applePhones:
-        userCollection = fireStore.collection("applePhones");
+        itemCollection = fireStore.collection("applePhones");
         break;
       case MiniSubCategoryType.samsungPhone:
-        userCollection = fireStore.collection("samsungPhones");
+        itemCollection = fireStore.collection("samsungPhones");
         break;
       case MiniSubCategoryType.appleTablets:
-        userCollection = fireStore.collection("appleTablets");
+        itemCollection = fireStore.collection("appleTablets");
         break;
       case MiniSubCategoryType.macbook:
-        userCollection = fireStore.collection("macbook");
+        itemCollection = fireStore.collection("macbook");
         break;
       case MiniSubCategoryType.laptopAccessories:
-        userCollection = fireStore.collection("laptopAccessories");
+        itemCollection = fireStore.collection("laptopAccessories");
         break;
       default:
         break;
     }
+
+    final querySnapshot = await itemCollection.get();
+
+    final itemList =
+        querySnapshot.docs.map((e) => MiniItemModel.fromSnapshot(e)).toList();
+
+    return itemList;
+  }
+
+  Future<List<MiniItemModel>> getFavorites(String uid) async {
+    var userCollection =
+        fireStore.collection("users").doc(uid).collection("favorites");
 
     final querySnapshot = await userCollection.get();
 

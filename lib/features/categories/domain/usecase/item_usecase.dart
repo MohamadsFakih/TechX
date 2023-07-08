@@ -12,4 +12,6 @@ class MiniItemUseCase {
   Future<List<MiniItemEntity>> getItems(
           MiniSubCategoryType miniSubCategoryType) =>
       _itemRepository.getItems(miniSubCategoryType);
+  Future<List<MiniItemEntity>> getFavorites(String uid) =>
+      _itemRepository.getFavorites(uid);
 }
