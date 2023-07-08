@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/common/domain/usecase/user_usecase.dart';
 
 part 'user_event.dart';
@@ -13,7 +14,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserEvent>((event, emit) async {
       await event.when(
         checkSignedIn: () => _checkSignedIn(emit),
-        addLike: (String id, String type) => _addAlike(id, type, emit),
+        addLike: (MiniItemEntity item, String type) =>
+            _addAlike(item, type, emit),
         getUid: () => _getUid(emit),
       );
     });
@@ -31,8 +33,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     ));
   }
 
-  Future _addAlike(String id, String type, Emitter<UserState> emit) async {
-    final result = await _useCase.addLike(id, type);
+  Future _addAlike(
+      MiniItemEntity item, String type, Emitter<UserState> emit) async {
+    final result = await _useCase.addLike(item, type);
     result.fold(
       (l) {
         emit(

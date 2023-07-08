@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/common/domain/entity/user_entity.dart';
 import 'package:techx/features/common/domain/repository/user_repository.dart';
 
@@ -12,8 +13,9 @@ class UserUseCase {
 
   Future<String> getCurrentUid() => _userRepository.getCurrentUid();
 
-  Future<Either<String, Unit>> addLike(String id, String collection) =>
-      _userRepository.addLike(id, collection);
+  Future<Either<String, Unit>> addLike(
+          MiniItemEntity item, String collection) =>
+      _userRepository.addLike(item, collection);
 
   Stream<List<UserEntity>> getSingleUser(UserEntity userEntity) =>
       _userRepository.getSingleUser(userEntity);

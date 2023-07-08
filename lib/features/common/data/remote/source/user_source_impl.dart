@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
 import 'package:techx/features/common/data/model/user_model.dart';
 import 'package:techx/features/common/data/remote/service/user_service.dart';
@@ -21,6 +22,6 @@ class UserSourceImpl implements UserSource {
   Future<bool> isSignedIn() => _userService.isSignedIn();
 
   @override
-  Future<void> addLike(String id, String collection) =>
-      _userService.addLike(id, collection);
+  Future<void> addLike(MiniItemEntity item, String collection) =>
+      _userService.addLike(item, collection);
 }

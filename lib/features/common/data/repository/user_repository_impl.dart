@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/common/data/remote/source/user_source.dart';
 import 'package:techx/features/common/domain/entity/user_entity.dart';
 import 'package:techx/features/common/domain/repository/user_repository.dart';
@@ -26,9 +27,10 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<String, Unit>> addLike(String id, String collection) async {
+  Future<Either<String, Unit>> addLike(
+      MiniItemEntity item, String collection) async {
     try {
-      await _userSource.addLike(id, collection);
+      await _userSource.addLike(item, collection);
       return right(unit);
     } catch (e) {
       return left(e.toString());

@@ -75,7 +75,7 @@ class _MiniItemState extends State<MiniItem> {
                     child: GestureDetector(
                       onTap: () {
                         _userBloc.add(
-                          AddLike(widget.itemEntity.id, widget.type),
+                          AddLike(widget.itemEntity, widget.type),
                         );
                         _liked.value = !_liked.value;
                       },
