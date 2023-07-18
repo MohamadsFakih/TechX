@@ -14,11 +14,13 @@ class MiniItem extends StatefulWidget {
     required this.itemEntity,
     required this.type,
     required this.liked,
+    this.showHeart = true,
   });
 
   final MiniItemEntity itemEntity;
   final String type;
   final bool liked;
+  final bool showHeart;
 
   @override
   State<MiniItem> createState() => _MiniItemState();
@@ -70,45 +72,47 @@ class _MiniItemState extends State<MiniItem> {
                   )),
               child: Column(
                 children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        _userBloc.add(
-                          AddLike(widget.itemEntity, widget.type),
-                        );
-                        _liked.value = !_liked.value;
-                      },
-                      child: ValueListenableBuilder(
-                        valueListenable: _liked,
-                        builder: (BuildContext context, value, Widget? child) {
-                          return Icon(
-                            !_liked.value
-                                ? Icons.favorite_border
-                                : Icons.favorite,
-                            color: redTypeColor,
-                          )
-                              .animate(
-                                target: _liked.value ? 0 : 1,
-                              )
-                              .shake()
-                              .scale(
-                                begin: const Offset(0.9, 0.9),
-                                end: const Offset(1.2, 1.2),
-                              )
-                              .then()
-                              .scale(
-                                begin: const Offset(1.2, 1.2),
-                                end: const Offset(0.9, 0.9),
-                              )
-                              .shimmer()
-                              .toggle(
-                                builder: (context, value, child) => child,
-                              );
+                  if (widget.showHeart)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          _userBloc.add(
+                            AddLike(widget.itemEntity, widget.type),
+                          );
+                          _liked.value = !_liked.value;
                         },
+                        child: ValueListenableBuilder(
+                          valueListenable: _liked,
+                          builder:
+                              (BuildContext context, value, Widget? child) {
+                            return Icon(
+                              !_liked.value
+                                  ? Icons.favorite_border
+                                  : Icons.favorite,
+                              color: redTypeColor,
+                            )
+                                .animate(
+                                  target: _liked.value ? 0 : 1,
+                                )
+                                .shake()
+                                .scale(
+                                  begin: const Offset(0.9, 0.9),
+                                  end: const Offset(1.2, 1.2),
+                                )
+                                .then()
+                                .scale(
+                                  begin: const Offset(1.2, 1.2),
+                                  end: const Offset(0.9, 0.9),
+                                )
+                                .shimmer()
+                                .toggle(
+                                  builder: (context, value, child) => child,
+                                );
+                          },
+                        ),
                       ),
                     ),
-                  ),
                   CachedNetworkImage(
                     imageUrl: widget.itemEntity.image,
                     fit: BoxFit.fill,

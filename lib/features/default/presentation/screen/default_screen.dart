@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/presentation/screen/categories_screen.dart';
-import 'package:techx/features/favorite/presentation/favorite_screen.dart';
+import 'package:techx/features/favorite/presentation/screen/favorite_screen.dart';
 import 'package:techx/features/home/presentation/screen/home_page.dart';
 import 'package:techx/features/settings/presentation/screen/settings_screen.dart';
 
@@ -21,7 +21,9 @@ class _DefaultScreenState extends State<DefaultScreen> {
 
   late final List<Widget> screens = [
     const Center(child: Text("placeholder")),
-    const FavoriteScreen(),
+    FavoriteScreen(
+      userId: widget.userId,
+    ),
     const HomePage(),
     CategoriesScreen(
       userId: widget.userId,

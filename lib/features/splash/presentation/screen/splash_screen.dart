@@ -67,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToLogin() {
     const delayDuration =
-        Duration(seconds: 2); // Adjust the delay duration as needed
+        Duration(seconds: 4); // Adjust the delay duration as needed
     SchedulerBinding.instance.addPostFrameCallback((_) {
       Future.delayed(delayDuration, () {
         Navigator.of(context).pushAndRemoveUntil(
