@@ -17,7 +17,7 @@ class MiniItemService {
       case MiniSubCategoryType.applePhones:
         itemCollection = fireStore.collection("applePhones");
         break;
-      case MiniSubCategoryType.samsungPhone:
+      case MiniSubCategoryType.samsungPhones:
         itemCollection = fireStore.collection("samsungPhones");
         break;
       case MiniSubCategoryType.appleTablets:

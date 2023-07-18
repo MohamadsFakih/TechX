@@ -16,11 +16,18 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final UserBloc _userBloc = getIt<UserBloc>();
+  bool _shouldNavigateToLogin = true;
 
   @override
   void initState() {
     super.initState();
     _userBloc.add(const GetUid());
+  }
+
+  @override
+  void dispose() {
+    _shouldNavigateToLogin = false;
+    super.dispose();
   }
 
   @override
@@ -30,7 +37,9 @@ class _SplashScreenState extends State<SplashScreen> {
       child: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
           if (state.id.isEmpty) {
-            _navigateToLogin();
+            if (_shouldNavigateToLogin) {
+              _navigateToLogin();
+            }
           } else {
             _navigateToHome();
           }
@@ -66,16 +75,17 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToLogin() {
-    const delayDuration =
-        Duration(seconds: 4); // Adjust the delay duration as needed
+    const delayDuration = Duration(seconds: 4);
     SchedulerBinding.instance.addPostFrameCallback((_) {
       Future.delayed(delayDuration, () {
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const LoginPage(),
-          ),
-          (route) => false,
-        );
+        if (_shouldNavigateToLogin) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => const LoginPage(),
+            ),
+            (route) => false,
+          );
+        }
       });
     });
   }
