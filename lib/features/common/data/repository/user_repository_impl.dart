@@ -1,5 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:techx/features/common/data/model/user_model.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/common/data/remote/source/user_source.dart';
 import 'package:techx/features/common/domain/entity/user_entity.dart';
 import 'package:techx/features/common/domain/repository/user_repository.dart';
@@ -9,25 +10,6 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this._userSource);
 
   final UserSource _userSource;
-
-  @override
-  Stream<List<UserEntity>> getAllUsers(UserEntity userEntity) {
-    UserModel userModel = UserModel(
-        uid: userEntity.uid,
-        name: userEntity.name,
-        email: userEntity.email,
-        password: userEntity.password);
-    return _userSource.getAllUsers(userModel).map((List<UserModel> userModels) {
-      return userModels.map((UserModel userModel) {
-        UserEntity userEntity = UserEntity(
-            uid: userModel.uid,
-            name: userModel.name,
-            email: userModel.email,
-            password: userModel.password);
-        return userEntity;
-      }).toList();
-    });
-  }
 
   @override
   Future<String> getCurrentUid() async {
@@ -42,5 +24,16 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Stream<List<UserEntity>> getSingleUser(UserEntity userEntity) {
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<String, Unit>> addLike(
+      MiniItemEntity item, String collection) async {
+    try {
+      await _userSource.addLike(item, collection);
+      return right(unit);
+    } catch (e) {
+      return left(e.toString());
+    }
   }
 }

@@ -19,7 +19,7 @@ enum SubCategoryType {
 
 enum MiniSubCategoryType {
   applePhones,
-  samsungPhone,
+  samsungPhones,
   appleTablets,
   samsungTablets,
   macbook,

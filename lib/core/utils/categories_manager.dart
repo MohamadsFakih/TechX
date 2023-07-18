@@ -52,7 +52,7 @@ const List<Widget> phoneSubCategories = [
     coverImage: "assets/images/subCategory/samsung_sub.jpg",
     name: "Samsung Phones",
     type: CategoryType.subCategory,
-    miniSubCategoryType: MiniSubCategoryType.samsungPhone,
+    miniSubCategoryType: MiniSubCategoryType.samsungPhones,
   ),
 ];
 const List<Widget> laptopsSubCategories = [

@@ -3,5 +3,10 @@ import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
 abstract class MiniItemRepository {
   Future<List<MiniItemEntity>> getItems(
-      MiniSubCategoryType miniSubCategoryType);
+    MiniSubCategoryType miniSubCategoryType,
+  );
+
+  Future<List<MiniItemEntity>> getFavorites(
+    String uid,
+  );
 }
