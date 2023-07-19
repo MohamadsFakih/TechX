@@ -24,4 +24,6 @@ class UserSourceImpl implements UserSource {
   @override
   Future<void> addLike(MiniItemEntity item, String collection) =>
       _userService.addLike(item, collection);
+  @override
+  Future<void> signOut() => _userService.signOut();
 }
