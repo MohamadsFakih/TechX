@@ -68,26 +68,31 @@ class _SettingsItemsListState extends State<SettingsItemsList>
             return Stack(
               children: [
                 Column(children: [
-                  const SettingsTile(
+                  SettingsTile(
                     icon: Icons.person_outline,
                     color: Colors.purple,
                     text: "Personal Info",
+                    onTap: () {
+                      Navigator.of(context).pushNamed('profile');
+                    },
                   ),
                   const SizedBox(
                     height: 16,
                   ),
-                  const SettingsTile(
+                  SettingsTile(
                     icon: Icons.person_outline,
                     color: Colors.blue,
                     text: "Redeem Code",
+                    onTap: () {},
                   ),
                   const SizedBox(
                     height: 16,
                   ),
-                  const SettingsTile(
+                  SettingsTile(
                     icon: Icons.credit_card,
                     color: Colors.pink,
                     text: "Payment",
+                    onTap: () {},
                   ),
                   const SizedBox(
                     height: 16,
@@ -117,6 +122,7 @@ class _SettingsItemsListState extends State<SettingsItemsList>
                     icon: Icons.info_outline,
                     color: Colors.blueGrey.shade800,
                     text: "FAQs",
+                    onTap: () {},
                   ),
                   const SizedBox(
                     height: 16,
