@@ -56,8 +56,11 @@ class SettingsContact extends StatelessWidget {
       ],
     )
         .animate(
-            controller: animationController,
-            delay: const Duration(milliseconds: 500))
+          controller: animationController,
+          delay: const Duration(
+            milliseconds: 300,
+          ),
+        )
         .slideX(
           begin: isInitialized
               ? showContact
