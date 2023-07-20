@@ -7,6 +7,7 @@ import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/home/presentation/screen/home_page.dart';
 import 'package:techx/features/login/presentation/screen/login_screen.dart';
 import 'package:techx/features/register/presentation/screen/sign_up_screen.dart';
+import 'package:techx/features/settings/presentation/screen/profile_screen.dart';
 import 'package:techx/features/splash/presentation/screen/splash_screen.dart';
 
 void main() async {
@@ -44,6 +45,10 @@ class MyApp extends StatelessWidget {
           case "home":
             return MaterialPageRoute(builder: (context) {
               return const HomePage();
+            });
+          case "profile":
+            return MaterialPageRoute(builder: (context) {
+              return const ProfileScreen();
             });
         }
         return MaterialPageRoute(builder: (BuildContext context) {

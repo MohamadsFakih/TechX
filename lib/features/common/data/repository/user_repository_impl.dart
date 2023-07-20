@@ -22,6 +22,11 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
+  Future<void> signOut() async {
+    await _userSource.signOut();
+  }
+
+  @override
   Stream<List<UserEntity>> getSingleUser(UserEntity userEntity) {
     throw UnimplementedError();
   }

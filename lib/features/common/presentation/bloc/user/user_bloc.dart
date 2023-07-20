@@ -17,6 +17,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         addLike: (MiniItemEntity item, String type) =>
             _addAlike(item, type, emit),
         getUid: () => _getUid(emit),
+        signOut: () => _signOut(emit),
       );
     });
   }
@@ -66,6 +67,20 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         state.copyWith(error: e.toString()),
       );
     }
+    emit(
+      state.copyWith(
+        isLoading: false,
+      ),
+    );
+  }
+
+  Future _signOut(Emitter<UserState> emit) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+      ),
+    );
+    await _useCase.signOut();
     emit(
       state.copyWith(
         isLoading: false,

@@ -6,4 +6,5 @@ abstract class UserSource {
   Future<String> getCurrentUid();
   Future<void> addLike(MiniItemEntity itemEntity, String collection);
   Stream<List<UserModel>> getSingleUser(UserModel userModel);
+  Future<void> signOut();
 }

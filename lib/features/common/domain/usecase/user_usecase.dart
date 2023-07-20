@@ -13,6 +13,8 @@ class UserUseCase {
 
   Future<String> getCurrentUid() => _userRepository.getCurrentUid();
 
+  Future<void> signOut() => _userRepository.signOut();
+
   Future<Either<String, Unit>> addLike(
           MiniItemEntity item, String collection) =>
       _userRepository.addLike(item, collection);
