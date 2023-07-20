@@ -59,6 +59,9 @@ dependencies:
   #? Needed to launch links
   url_launcher: ^6.1.12
 
+  #? For the FAQ page
+  accordion: ^2.5.1
+
 
 dev_dependencies:
   flutter_test:
