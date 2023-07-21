@@ -189,11 +189,17 @@ class _SettingsItemsListState extends State<SettingsItemsList>
                 isInitialized: isContactInitialized.value,
                 showContact: state.showContact,
                 urlLauncher: _urlLauncher,
+                settingsBloc: _settingsBloc,
+                playAnimation: _playAnimation,
+                mainController: _animationController,
               ),
               SettingsFaq(
                 animationController: _faqAnimationController,
                 isInitialized: isFaqInitialized.value,
                 showFaq: state.showFaq,
+                mainController: _animationController,
+                settingsBloc: _settingsBloc,
+                playAnimation: _playAnimation,
               )
             ],
           ),
