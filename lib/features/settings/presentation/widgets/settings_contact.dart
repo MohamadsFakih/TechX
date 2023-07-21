@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:techx/core/utils/url_launcher.dart';
+import 'package:techx/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:techx/features/settings/presentation/widgets/settings_tile.dart';
 
 class SettingsContact extends StatelessWidget {
-  const SettingsContact(
-      {super.key,
-      required this.animationController,
-      required this.isInitialized,
-      required this.showContact,
-      required this.urlLauncher});
+  const SettingsContact({
+    super.key,
+    required this.animationController,
+    required this.isInitialized,
+    required this.showContact,
+    required this.urlLauncher,
+    required this.settingsBloc,
+    required this.playAnimation,
+    required this.mainController,
+  });
 
   final AnimationController animationController;
+  final AnimationController mainController;
   final bool isInitialized;
   final bool showContact;
   final UrlLauncher urlLauncher;
+  final SettingsBloc settingsBloc;
+  final void Function(AnimationController) playAnimation;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +56,22 @@ class SettingsContact extends StatelessWidget {
           text: "Email",
           onTap: () {
             urlLauncher.launchEmail();
+          },
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        SettingsTile(
+          icon: Icons.arrow_back,
+          color: Colors.black,
+          text: "Back",
+          hideArrow: true,
+          onTap: () {
+            settingsBloc.add(
+              const NavigateToMain(),
+            );
+            playAnimation(animationController);
+            playAnimation(mainController);
           },
         ),
         const SizedBox(

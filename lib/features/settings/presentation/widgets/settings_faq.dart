@@ -3,17 +3,25 @@ import 'package:accordion/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:techx/core/utils/mds.dart';
+import 'package:techx/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:techx/features/settings/presentation/widgets/settings_tile.dart';
 
 class SettingsFaq extends StatelessWidget {
   const SettingsFaq(
       {super.key,
       required this.animationController,
       required this.isInitialized,
-      required this.showFaq});
+      required this.showFaq,
+      required this.mainController,
+      required this.settingsBloc,
+      required this.playAnimation});
 
   final AnimationController animationController;
+  final AnimationController mainController;
   final bool isInitialized;
   final bool showFaq;
+  final SettingsBloc settingsBloc;
+  final void Function(AnimationController) playAnimation;
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +127,22 @@ class SettingsFaq extends StatelessWidget {
               contentBorderColor: redColor,
             ),
           ],
+        ),
+        SettingsTile(
+          icon: Icons.arrow_back,
+          color: Colors.black,
+          text: "Back",
+          hideArrow: true,
+          onTap: () {
+            settingsBloc.add(
+              const NavigateToMain(),
+            );
+            playAnimation(animationController);
+            playAnimation(mainController);
+          },
+        ),
+        const SizedBox(
+          height: 16,
         ),
       ],
     )

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
 class SettingsTile extends StatelessWidget {
-  const SettingsTile(
-      {super.key,
-      required this.icon,
-      required this.color,
-      required this.text,
-      this.onTap});
+  const SettingsTile({
+    super.key,
+    required this.icon,
+    required this.color,
+    required this.text,
+    this.onTap,
+    this.hideArrow = false,
+  });
 
   final IconData icon;
   final Color color;
   final String text;
   final void Function()? onTap;
+  final bool hideArrow;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -34,11 +37,13 @@ class SettingsTile extends StatelessWidget {
           text,
           style: const TextStyle(fontWeight: FontWeight.w600),
         ),
-        trailing: const Icon(
-          Icons.arrow_forward_ios,
-          color: Colors.black,
-          size: 24,
-        ),
+        trailing: hideArrow
+            ? const SizedBox.shrink()
+            : const Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black,
+                size: 24,
+              ),
       ),
     );
   }
