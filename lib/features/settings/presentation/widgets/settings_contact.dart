@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:techx/core/utils/url_launcher.dart';
+import 'package:techx/core/utils/constant_functions.dart';
 import 'package:techx/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:techx/features/settings/presentation/widgets/settings_tile.dart';
 
@@ -20,7 +20,7 @@ class SettingsContact extends StatelessWidget {
   final AnimationController mainController;
   final bool isInitialized;
   final bool showContact;
-  final UrlLauncher urlLauncher;
+  final ConstantFunctions urlLauncher;
   final SettingsBloc settingsBloc;
   final void Function(AnimationController) playAnimation;
 

@@ -62,7 +62,7 @@ dependencies:
   #? For the FAQ page
   accordion: ^2.5.1
 
-
+  shared_preferences: ^2.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,6 +1,6 @@
 import 'package:url_launcher/url_launcher.dart';
 
-class UrlLauncher {
+class ConstantFunctions {
   String? encodeQueryParameters(Map<String, String> params) {
     return params.entries
         .map((MapEntry<String, String> e) =>
