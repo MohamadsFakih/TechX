@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/utils/mds.dart';
+import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
+import 'package:techx/features/detailed/presentation/bloc/detailed_bloc.dart';
 import 'package:techx/features/detailed/presentation/widget/detailed_body.dart';
 import 'package:techx/features/detailed/presentation/widget/sliver_header.dart';
 
@@ -18,6 +21,7 @@ class _DetailedScreenState extends State<DetailedScreen> {
   final ScrollController _controller = ScrollController();
   final ValueNotifier<bool> _showHeaderNotifier = ValueNotifier<bool>(false);
   final PageController _pageController = PageController();
+  final DetailedBloc _detailedBloc = getIt<DetailedBloc>();
 
   @override
   void initState() {
@@ -42,6 +46,10 @@ class _DetailedScreenState extends State<DetailedScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider.value(value: _detailedBloc, child: _buildScaffold());
+  }
+
+  Scaffold _buildScaffold() {
     return Scaffold(
       backgroundColor: miniItemImageColor,
       body: SafeArea(
@@ -84,7 +92,16 @@ class _DetailedScreenState extends State<DetailedScreen> {
           children: [
             Expanded(
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  _detailedBloc.add(
+                    AddToCart(widget.miniItemEntity),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Item added to cart.'),
+                    ),
+                  );
+                },
                 child: const Padding(
                   padding: EdgeInsets.all(24.0),
                   child: Row(
