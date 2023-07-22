@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/detailed/domain/usecases/DetailedUseCase.dart';
 
@@ -7,6 +8,7 @@ part 'detailed_event.dart';
 part 'detailed_state.dart';
 part 'detailed_bloc.freezed.dart';
 
+@injectable
 class DetailedBloc extends Bloc<DetailedEvent, DetailedState> {
   DetailedBloc(this._detailedUseCase) : super(DetailedState.initial()) {
     on<DetailedEvent>((event, emit) async {

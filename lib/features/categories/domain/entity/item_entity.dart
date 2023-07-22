@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'item_entity.freezed.dart';
+part 'item_entity.g.dart';
 
 @freezed
 class MiniItemEntity with _$MiniItemEntity {
@@ -19,19 +18,21 @@ class MiniItemEntity with _$MiniItemEntity {
     @Default([]) List<String> likes,
   }) = _MiniItemEntity;
 
-  static String toJson(MiniItemEntity item) {
-    Map<String, dynamic> map = {
-      'id': item.id,
-      'name': item.name,
-      'image': item.image,
-      'price': item.price,
-      'description': item.description,
-      'imageLinks': item.imageLinks,
-      'models': item.models,
-      'colors': item.colors,
-      'specifications': item.specifications,
-      'likes': item.likes,
+  factory MiniItemEntity.fromJson(Map<String, dynamic> json) =>
+      _$MiniItemEntityFromJson(json);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'image': image,
+      'price': price,
+      'description': description,
+      'imageLinks': imageLinks,
+      'models': models,
+      'colors': colors,
+      'specifications': specifications,
+      'likes': likes,
     };
-    return json.encode(map);
   }
 }
