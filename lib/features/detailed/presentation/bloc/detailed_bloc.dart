@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
-import 'package:techx/features/detailed/domain/usecases/DetailedUseCase.dart';
+import 'package:techx/features/detailed/domain/usecases/detailed_usecase.dart';
 
 part 'detailed_event.dart';
 part 'detailed_state.dart';

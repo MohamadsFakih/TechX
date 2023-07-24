@@ -21,6 +21,7 @@ class MiniItemEntity with _$MiniItemEntity {
   factory MiniItemEntity.fromJson(Map<String, dynamic> json) =>
       _$MiniItemEntityFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,

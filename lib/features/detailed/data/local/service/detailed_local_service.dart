@@ -32,7 +32,6 @@ class DetailedLocalService {
   Future<void> addToCart(MiniItemEntity item) async {
     try {
       final List<MiniItemEntity> cartItems = await _getCartItems();
-      print(cartItems);
 
       cartItems.add(item);
 
