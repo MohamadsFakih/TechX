@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:techx/core/utils/mds.dart';
+import 'package:techx/features/cart/presentation/screen/cart_screen.dart';
 import 'package:techx/features/categories/presentation/screen/categories_screen.dart';
 import 'package:techx/features/favorite/presentation/screen/favorite_screen.dart';
 import 'package:techx/features/home/presentation/screen/home_page.dart';
@@ -20,7 +21,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
   late final PageController _controller;
 
   late final List<Widget> screens = [
-    const Center(child: Text("placeholder")),
+    const CartScreen(),
     FavoriteScreen(
       userId: widget.userId,
     ),

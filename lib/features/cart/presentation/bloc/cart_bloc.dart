@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:techx/features/cart/domain/usecase/cart_usecase.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
@@ -7,6 +8,7 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 part 'cart_bloc.freezed.dart';
 
+@injectable
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc(this._cartUseCase) : super(CartState.initial()) {
     on<CartEvent>((event, emit) async {
