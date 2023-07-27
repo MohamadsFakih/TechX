@@ -3,8 +3,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:techx/features/cart/presentation/widgets/cart_item.dart';
+import 'package:techx/features/cart/presentation/widgets/checkout_button.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
-import 'package:techx/features/categories/presentation/widget/mini_item.dart';
 import 'package:techx/features/common/presentation/widget/techx_logo.dart';
 
 class CartScreen extends StatefulWidget {
@@ -53,7 +54,18 @@ class _CartScreenState extends State<CartScreen> {
                         const SizedBox(
                           height: 16,
                         ),
-                        _buildList(state.items, state),
+                        const Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            "Clear all",
+                            style: TextStyle(color: Colors.red, fontSize: 16),
+                          ),
+                        ),
+                        _buildList(
+                          state.items,
+                          state,
+                        ),
+                        const CheckOutButton(),
                       ],
                     ),
                   ),
@@ -65,22 +77,15 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget _buildList(selectedList, state) {
     return Expanded(
-      child: GridView.builder(
+      child: ListView.builder(
         itemCount: state.items.length,
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          childAspectRatio: 0.6,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-        ),
+        scrollDirection: Axis.vertical,
         itemBuilder: (context, pos) {
           final MiniItemEntity itemEntity = state.items[pos];
 
-          return MiniItem(
-            itemEntity: itemEntity,
-            type: '',
-            liked: false,
-            showHeart: false,
+          return CartItem(
+            item: itemEntity,
+            quantity: 2,
           );
         },
       ).animate().scale(),
