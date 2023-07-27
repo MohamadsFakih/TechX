@@ -8,10 +8,12 @@ import 'package:techx/features/detailed/presentation/widget/detailed_body.dart';
 import 'package:techx/features/detailed/presentation/widget/sliver_header.dart';
 
 class DetailedScreen extends StatefulWidget {
-  const DetailedScreen({Key? key, required this.miniItemEntity})
+  const DetailedScreen(
+      {Key? key, required this.miniItemEntity, required this.id})
       : super(key: key);
 
   final MiniItemEntity miniItemEntity;
+  final String id;
 
   @override
   State<DetailedScreen> createState() => _DetailedScreenState();
@@ -94,7 +96,10 @@ class _DetailedScreenState extends State<DetailedScreen> {
               child: InkWell(
                 onTap: () {
                   _detailedBloc.add(
-                    AddToCart(widget.miniItemEntity),
+                    AddToCart(
+                      widget.miniItemEntity,
+                      widget.id,
+                    ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(

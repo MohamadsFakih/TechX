@@ -7,6 +7,6 @@ class DetailedUseCase {
   DetailedUseCase(this._detailedRepository);
   final DetailedRepository _detailedRepository;
 
-  Future<void> addToCart(MiniItemEntity item) =>
-      _detailedRepository.addToCart(item);
+  Future<void> addToCart(MiniItemEntity item, String id) =>
+      _detailedRepository.addToCart(item, id);
 }

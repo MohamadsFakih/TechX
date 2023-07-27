@@ -95,6 +95,7 @@ class _MiniItemViewState extends State<MiniItemView> {
                             itemEntity: itemEntity,
                             type: widget.itemType.name,
                             liked: isLiked,
+                            id: widget.userId,
                           );
                         },
                       ).animate().scale(),
