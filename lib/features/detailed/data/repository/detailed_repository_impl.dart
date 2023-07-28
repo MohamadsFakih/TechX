@@ -9,7 +9,8 @@ class DetailedRepositoryImpl implements DetailedRepository {
   DetailedRepositoryImpl(this._detailedLocalSource);
   final DetailedLocalSource _detailedLocalSource;
   @override
-  Future<void> addToCart(MiniItemEntity item, String id) async {
+  Future<void> addToCart(MiniItemEntity item, String id, int quantity,
+      String model, String color) async {
     await _detailedLocalSource.addToCart(
       MiniItemModel(
           id: item.id,
@@ -23,6 +24,9 @@ class DetailedRepositoryImpl implements DetailedRepository {
           colors: item.colors,
           specifications: item.specifications),
       id,
+      quantity,
+      model,
+      color,
     );
   }
 }

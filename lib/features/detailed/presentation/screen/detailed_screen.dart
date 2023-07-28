@@ -25,6 +25,10 @@ class _DetailedScreenState extends State<DetailedScreen> {
   final PageController _pageController = PageController();
   final DetailedBloc _detailedBloc = getIt<DetailedBloc>();
 
+  final ValueNotifier<int> _currentModelIndex = ValueNotifier(0);
+  final ValueNotifier<int> _currentColorIndex = ValueNotifier(0);
+  final ValueNotifier<int> _nbOfItems = ValueNotifier<int>(1);
+
   @override
   void initState() {
     super.initState();
@@ -77,6 +81,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                     [
                       DetailedBody(
                         itemEntity: widget.miniItemEntity,
+                        currentColorIndex: _currentColorIndex,
+                        currentModelIndex: _currentModelIndex,
+                        nbOfItems: _nbOfItems,
                       ),
                     ],
                   ),
@@ -99,6 +106,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                     AddToCart(
                       widget.miniItemEntity,
                       widget.id,
+                      _nbOfItems.value,
+                      widget.miniItemEntity.models[_currentModelIndex.value],
+                      widget.miniItemEntity.colors[_currentColorIndex.value],
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(

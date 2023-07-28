@@ -7,20 +7,20 @@ class DetailedLocalService {
   DetailedLocalService(this.fireStore);
   final FirebaseFirestore fireStore;
 
-  Future<void> addToCart(MiniItemModel item, String id) async {
+  Future<void> addToCart(MiniItemModel item, String id, int quantity,
+      String model, String color) async {
     var userCollection =
-        fireStore.collection("users").doc(id).collection("cart");
-    userCollection.add({
+        fireStore.collection("users").doc(id).collection("cart").doc(item.id);
+    userCollection.set({
       "name": item.name,
       "description": item.description,
       "image": item.image,
       "id": item.id,
-      "imageLinks": item.imageLinks,
-      "likes": item.likes,
-      "models": item.models,
+      "model": model,
       "price": item.price,
       "specifications": item.specifications,
-      "colors": item.colors,
+      "color": color,
+      "quantity": quantity
     });
   }
 }

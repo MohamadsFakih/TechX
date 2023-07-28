@@ -9,6 +9,7 @@ class DetailedLocalSourceImpl implements DetailedLocalSource {
   final DetailedLocalService _detailedLocalService;
 
   @override
-  Future<void> addToCart(MiniItemModel item, String id) =>
-      _detailedLocalService.addToCart(item, id);
+  Future<void> addToCart(MiniItemModel item, String id, int quantity,
+          String model, String color) =>
+      _detailedLocalService.addToCart(item, id, quantity, model, color);
 }

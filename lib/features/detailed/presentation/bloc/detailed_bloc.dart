@@ -13,14 +13,15 @@ class DetailedBloc extends Bloc<DetailedEvent, DetailedState> {
   DetailedBloc(this._detailedUseCase) : super(DetailedState.initial()) {
     on<DetailedEvent>((event, emit) async {
       await event.when(
-          addToCart: (MiniItemEntity entity, String id) =>
-              _addToCart(emit, entity, id));
+          addToCart: (MiniItemEntity entity, String id, int quantity,
+                  String model, String color) =>
+              _addToCart(emit, entity, id, quantity, model, color));
     });
   }
 
   final DetailedUseCase _detailedUseCase;
-  Future _addToCart(
-      Emitter<DetailedState> emit, MiniItemEntity entity, String id) async {
+  Future _addToCart(Emitter<DetailedState> emit, MiniItemEntity entity,
+      String id, int quantity, String model, String color) async {
     emit(
       state.copyWith(isLoading: true, error: ''),
     );
@@ -28,6 +29,9 @@ class DetailedBloc extends Bloc<DetailedEvent, DetailedState> {
       await _detailedUseCase.addToCart(
         entity,
         id,
+        quantity,
+        model,
+        color,
       );
     } catch (e) {
       emit(

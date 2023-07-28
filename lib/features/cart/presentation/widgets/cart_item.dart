@@ -1,13 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key, required this.quantity, required this.item});
+  const CartItem({
+    super.key,
+    required this.quantity,
+    required this.item,
+    required this.cartBloc,
+    required this.userId,
+  });
 
   final MiniItemEntity item;
   final int quantity;
+  final CartBloc cartBloc;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +28,14 @@ class CartItem extends StatelessWidget {
           startActionPane: ActionPane(
             motion: const ScrollMotion(),
             dismissible: DismissiblePane(
-              onDismissed: () {},
+              onDismissed: () {
+                cartBloc.add(
+                  RemoveCartItem(
+                    userId,
+                    item.id,
+                  ),
+                );
+              },
               closeOnCancel: true,
             ),
             children: [

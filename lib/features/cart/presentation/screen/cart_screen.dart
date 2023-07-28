@@ -58,11 +58,20 @@ class _CartScreenState extends State<CartScreen> {
                         const SizedBox(
                           height: 16,
                         ),
-                        const Align(
+                        Align(
                           alignment: Alignment.centerRight,
-                          child: Text(
-                            "Clear all",
-                            style: TextStyle(color: Colors.red, fontSize: 16),
+                          child: GestureDetector(
+                            onTap: () {
+                              _cartBloc.add(
+                                ClearCart(
+                                  widget.userId,
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Clear all",
+                              style: TextStyle(color: Colors.red, fontSize: 16),
+                            ),
                           ),
                         ),
                         _buildList(
@@ -90,6 +99,8 @@ class _CartScreenState extends State<CartScreen> {
           return CartItem(
             item: itemEntity,
             quantity: 2,
+            cartBloc: _cartBloc,
+            userId: widget.userId,
           );
         },
       ).animate().scale(),
