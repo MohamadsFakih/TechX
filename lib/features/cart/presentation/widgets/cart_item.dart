@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
-import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
@@ -13,7 +13,7 @@ class CartItem extends StatelessWidget {
     required this.userId,
   });
 
-  final MiniItemEntity item;
+  final CartModel item;
   final int quantity;
   final CartBloc cartBloc;
   final String userId;

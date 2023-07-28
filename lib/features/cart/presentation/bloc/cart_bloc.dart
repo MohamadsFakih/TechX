@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/domain/usecase/cart_usecase.dart';
-import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';

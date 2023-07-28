@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/di/injection_container.dart';
+import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:techx/features/cart/presentation/widgets/cart_item.dart';
 import 'package:techx/features/cart/presentation/widgets/checkout_button.dart';
-import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/common/presentation/widget/techx_logo.dart';
 
 class CartScreen extends StatefulWidget {
@@ -94,11 +94,11 @@ class _CartScreenState extends State<CartScreen> {
         itemCount: state.items.length,
         scrollDirection: Axis.vertical,
         itemBuilder: (context, pos) {
-          final MiniItemEntity itemEntity = state.items[pos];
+          final CartModel item = state.items[pos];
 
           return CartItem(
-            item: itemEntity,
-            quantity: 2,
+            item: item,
+            quantity: item.quantity,
             cartBloc: _cartBloc,
             userId: widget.userId,
           );
