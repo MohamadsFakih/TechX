@@ -43,7 +43,7 @@ class _CartScreenState extends State<CartScreen> {
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           return state.isLoading
-              ? const CircularProgressIndicator()
+              ? const Center(child: CircularProgressIndicator())
               : SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

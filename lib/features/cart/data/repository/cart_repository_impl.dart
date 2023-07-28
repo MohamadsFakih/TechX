@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:techx/features/cart/data/remote/source/cart_source.dart';
 import 'package:techx/features/cart/domain/repository/cart_repository.dart';
@@ -44,5 +45,26 @@ class CartRepositoryImpl implements CartRepository {
     }).toList();
 
     return miniItemEntities;
+  }
+
+  @override
+  Future<Either<String, Unit>> clearCart(String userId) async {
+    try {
+      await _cartSource.clearCart(userId);
+      return right(unit);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> removeCartItem(
+      String itemId, String userId) async {
+    try {
+      await _cartSource.removeCartItem(itemId, userId);
+      return right(unit);
+    } catch (e) {
+      return left(e.toString());
+    }
   }
 }

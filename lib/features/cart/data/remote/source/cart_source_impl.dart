@@ -10,4 +10,11 @@ class CartSourceImpl implements CartSource {
   @override
   Future<List<MiniItemModel>> getCartItems(String id) =>
       _cartService.getCartItems(id);
+
+  @override
+  Future<void> clearCart(String userId) => _cartService.clearCart(userId);
+
+  @override
+  Future<void> removeCartItem(String itemId, String userId) =>
+      _cartService.removeCartItem(itemId, userId);
 }

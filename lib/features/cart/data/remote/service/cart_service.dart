@@ -7,9 +7,9 @@ class CartService {
   CartService(this.fireStore);
 
   final FirebaseFirestore fireStore;
-  Future<List<MiniItemModel>> getCartItems(String id) async {
+  Future<List<MiniItemModel>> getCartItems(String userId) async {
     final cartCollection =
-        fireStore.collection("users").doc(id).collection('"cart');
+        fireStore.collection("users").doc(userId).collection('cart');
 
     final querySnapshot = await cartCollection.get();
 
@@ -17,5 +17,27 @@ class CartService {
         querySnapshot.docs.map((e) => MiniItemModel.fromSnapshot(e)).toList();
 
     return itemList;
+  }
+
+  Future<void> removeCartItem(String itemId, String userId) async {
+    final cartCollection =
+        fireStore.collection("users").doc(userId).collection('cart');
+
+    await cartCollection.doc(itemId).delete();
+  }
+
+  Future<void> clearCart(String userId) async {
+    final cartRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('cart');
+
+    final cartSnapshot = await cartRef.get();
+    final batch = fireStore.batch();
+    for (var doc in cartSnapshot.docs) {
+      batch.delete(doc.reference);
+    }
+
+    await batch.commit();
   }
 }
