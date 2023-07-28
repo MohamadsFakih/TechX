@@ -21,7 +21,9 @@ class _DefaultScreenState extends State<DefaultScreen> {
   late final PageController _controller;
 
   late final List<Widget> screens = [
-    const CartScreen(),
+    CartScreen(
+      userId: widget.userId,
+    ),
     FavoriteScreen(
       userId: widget.userId,
     ),

@@ -12,17 +12,17 @@ part 'cart_bloc.freezed.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc(this._cartUseCase) : super(CartState.initial()) {
     on<CartEvent>((event, emit) async {
-      await event.when(getCartItems: () => _getCartItems(emit));
+      await event.when(getCartItems: (String id) => _getCartItems(emit, id));
     });
   }
   final CartUseCase _cartUseCase;
 
-  Future _getCartItems(Emitter<CartState> emit) async {
+  Future _getCartItems(Emitter<CartState> emit, String id) async {
     emit(
       state.copyWith(isLoading: true, error: ''),
     );
     try {
-      final result = await _cartUseCase.getCartItems();
+      final result = await _cartUseCase.getCartItems(id);
       emit(
         state.copyWith(items: result),
       );

@@ -9,7 +9,9 @@ import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/common/presentation/widget/techx_logo.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({super.key});
+  const CartScreen({super.key, required this.userId});
+
+  final String userId;
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -22,7 +24,9 @@ class _CartScreenState extends State<CartScreen> {
   void initState() {
     super.initState();
     _cartBloc.add(
-      const GetCartItems(),
+      GetCartItems(
+        widget.userId,
+      ),
     );
   }
 
