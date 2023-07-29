@@ -19,6 +19,7 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   final CartBloc _cartBloc = getIt<CartBloc>();
+  int total = 0;
 
   @override
   void initState() {
@@ -42,47 +43,52 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
-          return state.isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        const Align(
-                          alignment: Alignment.center,
-                          child: TechXLogo(
-                            text: "My Cart",
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: GestureDetector(
-                            onTap: () {
-                              _cartBloc.add(
-                                ClearCart(
-                                  widget.userId,
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Clear all",
-                              style: TextStyle(color: Colors.red, fontSize: 16),
-                            ),
-                          ),
-                        ),
-                        _buildList(
-                          state.items,
-                          state,
-                        ),
-                        const CheckOutButton(),
-                      ],
+          int totalPrice = 0;
+          for (final CartModel item in state.items) {
+            totalPrice += int.parse(item.price) * item.quantity;
+          }
+          total = totalPrice;
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.center,
+                    child: TechXLogo(
+                      text: "My Cart",
                     ),
                   ),
-                );
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: () {
+                        _cartBloc.add(
+                          ClearCart(
+                            widget.userId,
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Clear all",
+                        style: TextStyle(color: Colors.red, fontSize: 16),
+                      ),
+                    ),
+                  ),
+                  _buildList(
+                    state.items,
+                    state,
+                  ),
+                  CheckOutButton(
+                    total: total,
+                  )
+                ],
+              ),
+            ),
+          );
         },
       ),
     );
