@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:techx/core/utils/url_launcher.dart';
+import 'package:techx/core/utils/constant_functions.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/presentation/bloc/user/user_bloc.dart';
 import 'package:techx/features/login/presentation/screen/login_screen.dart';
@@ -26,7 +26,7 @@ class _SettingsItemsListState extends State<SettingsItemsList>
 
   ValueNotifier<bool> isFaqInitialized = ValueNotifier(false);
 
-  final UrlLauncher _urlLauncher = UrlLauncher();
+  final ConstantFunctions _urlLauncher = ConstantFunctions();
 
   late final AnimationController _animationController;
   late final AnimationController _subAnimationController;

@@ -15,12 +15,14 @@ class MiniItem extends StatefulWidget {
     required this.type,
     required this.liked,
     this.showHeart = true,
+    required this.id,
   });
 
   final MiniItemEntity itemEntity;
   final String type;
   final bool liked;
   final bool showHeart;
+  final String id;
 
   @override
   State<MiniItem> createState() => _MiniItemState();
@@ -55,6 +57,7 @@ class _MiniItemState extends State<MiniItem> {
             MaterialPageRoute(
               builder: (context) => DetailedScreen(
                 miniItemEntity: widget.itemEntity,
+                id: widget.id,
               ),
             ),
           );

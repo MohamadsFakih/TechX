@@ -62,6 +62,11 @@ dependencies:
   #? For the FAQ page
   accordion: ^2.5.1
 
+  shared_preferences: ^2.2.0
+
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
+  flutter_slidable: ^3.0.0
 
 dev_dependencies:
   flutter_test:

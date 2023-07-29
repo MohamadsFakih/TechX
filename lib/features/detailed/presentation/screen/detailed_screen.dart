@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/utils/mds.dart';
+import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
+import 'package:techx/features/detailed/presentation/bloc/detailed_bloc.dart';
 import 'package:techx/features/detailed/presentation/widget/detailed_body.dart';
 import 'package:techx/features/detailed/presentation/widget/sliver_header.dart';
 
 class DetailedScreen extends StatefulWidget {
-  const DetailedScreen({Key? key, required this.miniItemEntity})
+  const DetailedScreen(
+      {Key? key, required this.miniItemEntity, required this.id})
       : super(key: key);
 
   final MiniItemEntity miniItemEntity;
+  final String id;
 
   @override
   State<DetailedScreen> createState() => _DetailedScreenState();
@@ -18,6 +23,11 @@ class _DetailedScreenState extends State<DetailedScreen> {
   final ScrollController _controller = ScrollController();
   final ValueNotifier<bool> _showHeaderNotifier = ValueNotifier<bool>(false);
   final PageController _pageController = PageController();
+  final DetailedBloc _detailedBloc = getIt<DetailedBloc>();
+
+  final ValueNotifier<int> _currentModelIndex = ValueNotifier(0);
+  final ValueNotifier<int> _currentColorIndex = ValueNotifier(0);
+  final ValueNotifier<int> _nbOfItems = ValueNotifier<int>(1);
 
   @override
   void initState() {
@@ -42,6 +52,10 @@ class _DetailedScreenState extends State<DetailedScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider.value(value: _detailedBloc, child: _buildScaffold());
+  }
+
+  Scaffold _buildScaffold() {
     return Scaffold(
       backgroundColor: miniItemImageColor,
       body: SafeArea(
@@ -67,6 +81,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                     [
                       DetailedBody(
                         itemEntity: widget.miniItemEntity,
+                        currentColorIndex: _currentColorIndex,
+                        currentModelIndex: _currentModelIndex,
+                        nbOfItems: _nbOfItems,
                       ),
                     ],
                   ),
@@ -84,7 +101,22 @@ class _DetailedScreenState extends State<DetailedScreen> {
           children: [
             Expanded(
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  _detailedBloc.add(
+                    AddToCart(
+                      widget.miniItemEntity,
+                      widget.id,
+                      _nbOfItems.value,
+                      widget.miniItemEntity.models[_currentModelIndex.value],
+                      widget.miniItemEntity.colors[_currentColorIndex.value],
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Item added to cart.'),
+                    ),
+                  );
+                },
                 child: const Padding(
                   padding: EdgeInsets.all(24.0),
                   child: Row(

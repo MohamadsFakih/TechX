@@ -4,19 +4,23 @@ import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
 class DetailedBody extends StatefulWidget {
-  const DetailedBody({super.key, required this.itemEntity});
+  const DetailedBody(
+      {super.key,
+      required this.itemEntity,
+      required this.currentModelIndex,
+      required this.currentColorIndex,
+      required this.nbOfItems});
 
   final MiniItemEntity itemEntity;
+  final ValueNotifier<int> currentModelIndex;
+  final ValueNotifier<int> currentColorIndex;
+  final ValueNotifier<int> nbOfItems;
 
   @override
   State<DetailedBody> createState() => _DetailedBodyState();
 }
 
 class _DetailedBodyState extends State<DetailedBody> {
-  final ValueNotifier<int> _currentModelIndex = ValueNotifier(0);
-  final ValueNotifier<int> _currentColorIndex = ValueNotifier(0);
-  final ValueNotifier<int> _nbOfItems = ValueNotifier<int>(1);
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -69,8 +73,8 @@ class _DetailedBodyState extends State<DetailedBody> {
                   const Spacer(),
                   InkWell(
                     onTap: () {
-                      if (_nbOfItems.value > 1) {
-                        _nbOfItems.value -= 1;
+                      if (widget.nbOfItems.value > 1) {
+                        widget.nbOfItems.value -= 1;
                       }
                     },
                     child: const Card(
@@ -82,10 +86,10 @@ class _DetailedBodyState extends State<DetailedBody> {
                     ),
                   ),
                   ValueListenableBuilder(
-                    valueListenable: _nbOfItems,
+                    valueListenable: widget.nbOfItems,
                     builder: (context, child, e) {
                       return Text(
-                        _nbOfItems.value.toString(),
+                        widget.nbOfItems.value.toString(),
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -95,7 +99,7 @@ class _DetailedBodyState extends State<DetailedBody> {
                   ),
                   InkWell(
                     onTap: () {
-                      _nbOfItems.value += 1;
+                      widget.nbOfItems.value += 1;
                     },
                     child: const Card(
                       margin: EdgeInsets.all(16),
@@ -130,7 +134,7 @@ class _DetailedBodyState extends State<DetailedBody> {
                       height: 4,
                     ),
                     ValueListenableBuilder(
-                      valueListenable: _currentModelIndex,
+                      valueListenable: widget.currentModelIndex,
                       builder: (context, value, e) {
                         return SizedBox(
                             height: 80,
@@ -162,7 +166,7 @@ class _DetailedBodyState extends State<DetailedBody> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                     ValueListenableBuilder(
-                      valueListenable: _currentColorIndex,
+                      valueListenable: widget.currentColorIndex,
                       builder: (context, value, e) {
                         return SizedBox(
                             height: 80,
@@ -380,7 +384,7 @@ class _DetailedBodyState extends State<DetailedBody> {
       padding: const EdgeInsets.all(8),
       child: InkWell(
         onTap: () {
-          _currentModelIndex.value = index;
+          widget.currentModelIndex.value = index;
         },
         borderRadius: BorderRadius.circular(16),
         child: Container(
@@ -388,7 +392,7 @@ class _DetailedBodyState extends State<DetailedBody> {
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: index == _currentModelIndex.value
+            color: index == widget.currentModelIndex.value
                 ? Colors.black
                 : miniItemImageColor,
           ),
@@ -396,7 +400,7 @@ class _DetailedBodyState extends State<DetailedBody> {
             child: Text(
               name,
               style: TextStyle(
-                  color: index == _currentModelIndex.value
+                  color: index == widget.currentModelIndex.value
                       ? Colors.white
                       : Colors.black),
             ),
@@ -410,14 +414,14 @@ class _DetailedBodyState extends State<DetailedBody> {
     int v = int.parse(s);
     return InkWell(
       onTap: () {
-        _currentColorIndex.value = index;
+        widget.currentColorIndex.value = index;
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: _currentColorIndex.value == index
+            border: widget.currentColorIndex.value == index
                 ? Border.all(width: 2)
                 : Border.all(width: 0),
             shape: BoxShape.circle,
