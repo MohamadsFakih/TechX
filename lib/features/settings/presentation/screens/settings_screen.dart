@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/utils/constant_functions.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/presentation/bloc/user/user_bloc.dart';
-import 'package:techx/features/settings/presentation/screen/profile_screen.dart';
-import 'package:techx/features/settings/presentation/widgets/settings_contact.dart';
-import 'package:techx/features/settings/presentation/widgets/settings_faq.dart';
-import 'package:techx/features/settings/presentation/widgets/settings_items_list.dart';
+import 'package:techx/features/settings/presentation/screens/profile_screen.dart';
+import 'package:techx/features/settings/presentation/screens/settings_contact_screen.dart';
+import 'package:techx/features/settings/presentation/screens/settings_faq.dart';
+import 'package:techx/features/settings/presentation/screens/settings_main_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -50,15 +50,15 @@ class _SettingsScreenState extends State<SettingsScreen>
                 controller: _controller,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  SettingsItemsList(
+                  SettingsMainScreen(
                     userBloc: _userBloc,
                     controller: _controller,
                   ),
-                  SettingsContact(
+                  SettingsContactScreen(
                     urlLauncher: _urlLauncher,
                     controller: _controller,
                   ),
-                  SettingsFaq(
+                  SettingsFaqScreen(
                     controller: _controller,
                   ),
                   ProfileScreen(
