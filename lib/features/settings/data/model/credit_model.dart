@@ -11,9 +11,8 @@ class CreditCardModel with _$CreditCardModel {
     @Default(MyCardType.invalid) MyCardType cardType,
     @Default('') String cardNumber,
     @Default('') String cardHolder,
-    @Default(0) int cardCvv,
-    @Default(0) int cardMonth,
-    @Default(0) int cardYear,
+    @Default('') String cardCvv,
+    @Default('') String cardDate,
   }) = _CreditCardModel;
 
   factory CreditCardModel.fromJson(Map<String, dynamic> json) =>
@@ -25,7 +24,6 @@ class CreditCardModel with _$CreditCardModel {
         'cardNumber': cardNumber,
         'cardHolder': cardHolder,
         'cardCvv': cardCvv,
-        'cardMonth': cardMonth,
-        'cardYear': cardYear,
+        'cardDate': cardDate,
       };
 }

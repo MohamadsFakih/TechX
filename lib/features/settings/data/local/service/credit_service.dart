@@ -31,4 +31,16 @@ class CreditService {
 
     await prefs.setStringList('creditCards', cardsJson);
   }
+
+  Future<void> deleteCreditCard(String cardNumber) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<CreditCardModel> existingCards = await getCreditCard();
+
+    existingCards.removeWhere((card) => card.cardNumber == cardNumber);
+
+    List<String> cardsJson =
+        existingCards.map((card) => json.encode(card.toJson())).toList();
+
+    await prefs.setStringList('creditCards', cardsJson);
+  }
 }

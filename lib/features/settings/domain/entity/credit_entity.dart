@@ -10,9 +10,8 @@ class CreditEntity with _$CreditEntity {
     @Default(MyCardType.invalid) MyCardType cardType,
     @Default('') String cardNumber,
     @Default('') String cardHolder,
-    @Default(0) int cardCvv,
-    @Default(0) int cardMonth,
-    @Default(0) int cardYear,
+    @Default('') String cardCvv,
+    @Default('') String cardDate,
   }) = _CreditEntity;
 
   factory CreditEntity.fromModel(CreditCardModel model) => CreditEntity(
@@ -20,7 +19,6 @@ class CreditEntity with _$CreditEntity {
         cardNumber: model.cardNumber,
         cardHolder: model.cardHolder,
         cardCvv: model.cardCvv,
-        cardMonth: model.cardMonth,
-        cardYear: model.cardYear,
+        cardDate: model.cardDate,
       );
 }

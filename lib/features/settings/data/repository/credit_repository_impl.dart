@@ -15,12 +15,12 @@ class CreditRepositoryImpl implements CreditRepository {
     try {
       await _creditSource.addCreditCard(
         CreditCardModel(
-            cardType: creditCard.cardType,
-            cardNumber: creditCard.cardNumber,
-            cardCvv: creditCard.cardCvv,
-            cardHolder: creditCard.cardHolder,
-            cardMonth: creditCard.cardMonth,
-            cardYear: creditCard.cardYear),
+          cardType: creditCard.cardType,
+          cardNumber: creditCard.cardNumber,
+          cardCvv: creditCard.cardCvv,
+          cardHolder: creditCard.cardHolder,
+          cardDate: creditCard.cardDate,
+        ),
       );
       return right(unit);
     } catch (e) {
