@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:techx/core/utils/constant_functions.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/presentation/bloc/user/user_bloc.dart';
+import 'package:techx/features/settings/presentation/screen/profile_screen.dart';
+import 'package:techx/features/settings/presentation/widgets/settings_contact.dart';
+import 'package:techx/features/settings/presentation/widgets/settings_faq.dart';
 import 'package:techx/features/settings/presentation/widgets/settings_items_list.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -14,6 +18,14 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen>
     with AutomaticKeepAliveClientMixin {
   final UserBloc _userBloc = getIt<UserBloc>();
+  late final PageController _controller;
+  final ConstantFunctions _urlLauncher = ConstantFunctions();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController(initialPage: 0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,28 +41,32 @@ class _SettingsScreenState extends State<SettingsScreen>
   Widget _buildContainer() {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
-        return Stack(
+        return Column(
           children: [
-            ListView(
-              padding: const EdgeInsets.all(8),
-              physics: const BouncingScrollPhysics(),
-              children: [
-                _buildUserWidget(),
-                _divider(),
-                SettingsItemsList(
-                  userBloc: _userBloc,
-                ),
-              ],
+            _buildUserWidget(),
+            _divider(),
+            Expanded(
+              child: PageView(
+                controller: _controller,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  SettingsItemsList(
+                    userBloc: _userBloc,
+                    controller: _controller,
+                  ),
+                  SettingsContact(
+                    urlLauncher: _urlLauncher,
+                    controller: _controller,
+                  ),
+                  SettingsFaq(
+                    controller: _controller,
+                  ),
+                  ProfileScreen(
+                    controller: _controller,
+                  ),
+                ],
+              ),
             ),
-            if (state.isLoading)
-              const Opacity(
-                opacity: 0.8,
-                child: ModalBarrier(dismissible: false, color: Colors.black),
-              ),
-            if (state.isLoading)
-              const Center(
-                child: CircularProgressIndicator(),
-              ),
           ],
         );
       },
