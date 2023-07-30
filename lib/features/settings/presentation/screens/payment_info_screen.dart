@@ -45,7 +45,6 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
   @override
   void initState() {
     super.initState();
-
     _cardNumberController.addListener(_updateCard);
     _cardHolderController.addListener(_updateCard);
     _cardCvvController.addListener(_updateCard);
@@ -65,9 +64,10 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -91,12 +91,13 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                   stream: _cardStream,
                   builder: (context, snapshot) {
                     return CreditCardWidget(
-                      cardType: cardType.name,
+                      cardType: cardType.name.toUpperCase(),
                       cardNumber: _cardNumberController.text,
                       cardHolder: _cardHolderController.text,
                       cardDate: _cardDateController.text,
                       cardCVV: _cardCvvController.text,
                       cardImage: CardUtils.getCardIcon(cardType),
+                      cardColor: CardUtils.getCardColor(cardType),
                     );
                   }),
             ),

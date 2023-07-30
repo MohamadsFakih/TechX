@@ -49,12 +49,6 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          titleTextStyle:
-              TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
-        ),
       ),
       onGenerateRoute: (settings) {
         switch (settings.name) {

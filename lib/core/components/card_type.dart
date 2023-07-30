@@ -1,11 +1,8 @@
 enum MyCardType {
-  master,
+  masterCard,
   visa,
-  verve,
   discover,
   americanExpress,
-  dinersClub,
-  jcb,
   others,
-  invalid
+  invalid,
 }

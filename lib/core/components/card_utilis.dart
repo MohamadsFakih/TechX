@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techx/core/utils/mds.dart';
 
 import 'card_strings.dart';
 import 'card_type.dart';
@@ -123,26 +124,17 @@ class CardUtils {
     String img = "";
     Icon? icon;
     switch (cardType) {
-      case MyCardType.master:
+      case MyCardType.masterCard:
         img = 'mastercard.png';
         break;
       case MyCardType.visa:
         img = 'visa.png';
-        break;
-      case MyCardType.verve:
-        img = 'verve.png';
         break;
       case MyCardType.americanExpress:
         img = 'american_express.png';
         break;
       case MyCardType.discover:
         img = 'discover.png';
-        break;
-      case MyCardType.dinersClub:
-        img = 'dinners_club.png';
-        break;
-      case MyCardType.jcb:
-        img = 'jcb.png';
         break;
       case MyCardType.others:
         icon = const Icon(
@@ -169,6 +161,29 @@ class CardUtils {
       widget = icon;
     }
     return widget;
+  }
+
+  static Color getCardColor(MyCardType? cardType) {
+    Color color = mainColor;
+    switch (cardType) {
+      case MyCardType.masterCard:
+        color = Colors.black;
+        break;
+      case MyCardType.visa:
+        color = mainColor;
+        break;
+      case MyCardType.americanExpress:
+        color = Colors.pink;
+        break;
+      case MyCardType.discover:
+        color = Colors.cyan;
+        break;
+      default:
+        color = mainColor;
+        break;
+    }
+
+    return color;
   }
 
   /// With the card number with Luhn Algorithm
@@ -208,19 +223,13 @@ class CardUtils {
     MyCardType cardType;
     if (input.startsWith(RegExp(
         r'((5[1-5])|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720))'))) {
-      cardType = MyCardType.master;
+      cardType = MyCardType.masterCard;
     } else if (input.startsWith(RegExp(r'[4]'))) {
       cardType = MyCardType.visa;
-    } else if (input.startsWith(RegExp(r'((506([01]))|(507([89]))|(6500))'))) {
-      cardType = MyCardType.verve;
     } else if (input.startsWith(RegExp(r'((34)|(37))'))) {
       cardType = MyCardType.americanExpress;
     } else if (input.startsWith(RegExp(r'((6[45])|(6011))'))) {
       cardType = MyCardType.discover;
-    } else if (input.startsWith(RegExp(r'((30[0-5])|(3[89])|(36)|(3095))'))) {
-      cardType = MyCardType.dinersClub;
-    } else if (input.startsWith(RegExp(r'(352[89]|35[3-8][0-9])'))) {
-      cardType = MyCardType.jcb;
     } else if (input.length <= 8) {
       cardType = MyCardType.others;
     } else {

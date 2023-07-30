@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:techx/core/utils/mds.dart';
 
 class CreditCardWidget extends StatelessWidget {
@@ -86,6 +87,6 @@ class CreditCardWidget extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ).animate().fade();
   }
 }
