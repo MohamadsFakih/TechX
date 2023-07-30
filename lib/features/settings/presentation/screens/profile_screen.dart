@@ -3,7 +3,9 @@ import 'package:techx/features/common/presentation/widget/global_button.dart';
 import 'package:techx/features/common/presentation/widget/login_text_field.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({super.key, required this.controller});
+
+  final PageController controller;
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -18,7 +20,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop();
+            widget.controller.animateToPage(
+              0,
+              duration: const Duration(
+                milliseconds: 300,
+              ),
+              curve: Curves.ease,
+            );
           },
         ),
       ),

@@ -5,7 +5,7 @@ import 'package:techx/features/cart/presentation/screen/cart_screen.dart';
 import 'package:techx/features/categories/presentation/screen/categories_screen.dart';
 import 'package:techx/features/favorite/presentation/screen/favorite_screen.dart';
 import 'package:techx/features/home/presentation/screen/home_page.dart';
-import 'package:techx/features/settings/presentation/screen/settings_screen.dart';
+import 'package:techx/features/settings/presentation/screens/settings_screen.dart';
 
 class DefaultScreen extends StatefulWidget {
   const DefaultScreen({super.key, required this.userId});
@@ -57,7 +57,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
         top: false,
         child: ValueListenableBuilder(
             valueListenable: _currentIndex,
-            builder: (a, b, c) {
+            builder: (context, value, c) {
               return PageView(
                 controller: _controller,
                 physics: const NeverScrollableScrollPhysics(),
@@ -72,7 +72,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
   Widget _buildBottomNavigationBar() {
     return ValueListenableBuilder(
         valueListenable: _currentIndex,
-        builder: (a, b, c) {
+        builder: (context, value, c) {
           return BottomNavigationBar(
             showSelectedLabels: false,
             elevation: 0,
@@ -89,32 +89,40 @@ class _DefaultScreenState extends State<DefaultScreen> {
                   icon: const Icon(
                     Icons.shopping_cart,
                   ),
-                  activeIcon: _buildSelectedIcon(Icons.shopping_cart),
+                  activeIcon: _buildSelectedIcon(
+                    Icons.shopping_cart,
+                  ),
                   label: ""),
               BottomNavigationBarItem(
-                  icon: const Icon(
-                    Icons.favorite_border,
-                  ),
-                  activeIcon: _buildSelectedIcon(Icons.favorite),
-                  label: ""),
+                icon: const Icon(
+                  Icons.favorite_border,
+                ),
+                activeIcon: _buildSelectedIcon(Icons.favorite),
+                label: "",
+              ),
               BottomNavigationBarItem(
-                  icon: const Icon(
-                    Icons.home_outlined,
-                  ),
-                  activeIcon: _buildSelectedIcon(Icons.home),
-                  label: ""),
+                icon: const Icon(
+                  Icons.home_outlined,
+                ),
+                activeIcon: _buildSelectedIcon(
+                  Icons.home,
+                ),
+                label: "",
+              ),
               BottomNavigationBarItem(
-                  icon: const Icon(
-                    Icons.search,
-                  ),
-                  activeIcon: _buildSelectedIcon(Icons.search),
-                  label: ""),
+                icon: const Icon(
+                  Icons.search,
+                ),
+                activeIcon: _buildSelectedIcon(Icons.search),
+                label: "",
+              ),
               BottomNavigationBarItem(
-                  icon: const Icon(
-                    Icons.person_outline,
-                  ),
-                  activeIcon: _buildSelectedIcon(Icons.person),
-                  label: ""),
+                icon: const Icon(
+                  Icons.person_outline,
+                ),
+                activeIcon: _buildSelectedIcon(Icons.person),
+                label: "",
+              ),
             ],
           );
         });
