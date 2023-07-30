@@ -52,7 +52,9 @@ class _SettingsMainScreenState extends State<SettingsMainScreen> {
             icon: Icons.credit_card,
             color: Colors.pink,
             text: "Payment",
-            onTap: () {},
+            onTap: () {
+              _animateToPage(4);
+            },
           ),
           const SizedBox(
             height: 16,

@@ -1,4 +1,4 @@
-enum CardType {
+enum MyCardType {
   master,
   visa,
   verve,

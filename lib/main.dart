@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/home/presentation/screen/home_page.dart';
 import 'package:techx/features/login/presentation/screen/login_screen.dart';
@@ -30,6 +31,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: primaryColor,
+            minimumSize: const Size(double.infinity, 56),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: Colors.black,
+            minimumSize: const Size(double.infinity, 56),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          titleTextStyle:
+              TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+        ),
       ),
       onGenerateRoute: (settings) {
         switch (settings.name) {

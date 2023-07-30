@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/utils/constant_functions.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/presentation/bloc/user/user_bloc.dart';
+import 'package:techx/features/settings/presentation/screens/payment_info_screen.dart';
 import 'package:techx/features/settings/presentation/screens/profile_screen.dart';
 import 'package:techx/features/settings/presentation/screens/settings_contact_screen.dart';
 import 'package:techx/features/settings/presentation/screens/settings_faq.dart';
@@ -62,6 +63,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                     controller: _controller,
                   ),
                   ProfileScreen(
+                    controller: _controller,
+                  ),
+                  PaymentInfoScreen(
                     controller: _controller,
                   ),
                 ],

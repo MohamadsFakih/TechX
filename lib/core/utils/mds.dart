@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const Color primaryColor = Color(0xFF7B61FF);
 const Color mainColor = Color(0xFF1E3190);
 const Color textColor = Color(0xFF4F4F4F);
 const Color cardColor = Color(0xFFF2F2F2);
@@ -10,3 +11,9 @@ const Color bottomBarItemColor = Color(0xFF77767D);
 const Color redColor = Color(0xFFB83925);
 const Color homeColor = Color(0xFFF3F3F3);
 const Color miniItemImageColor = Color(0xFFDEDFE9);
+
+const TextStyle creditCardStyle = TextStyle(
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+  fontSize: 20,
+);
