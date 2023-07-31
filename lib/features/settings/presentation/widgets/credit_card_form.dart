@@ -30,6 +30,7 @@ class CreditCardForm extends StatelessWidget {
         children: [
           CreditCardField(
               textFormField: TextFormField(
+            textInputAction: TextInputAction.next,
             onChanged: (val) {
               getCardTypeFromNumber();
             },
@@ -60,6 +61,7 @@ class CreditCardForm extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CreditCardField(
                 textFormField: TextFormField(
+                  textInputAction: TextInputAction.next,
                   controller: cardHolderController,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -79,6 +81,7 @@ class CreditCardForm extends StatelessWidget {
               Expanded(
                 child: CreditCardField(
                   textFormField: TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: cardCvvController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -87,12 +90,13 @@ class CreditCardForm extends StatelessWidget {
                       ),
                       hintText: "CVV",
                       prefixIcon: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(Icons.add_card_sharp)),
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(Icons.add_card_sharp),
+                      ),
                     ),
                     keyboardType: TextInputType.number,
                     inputFormatters: [
-                      LengthLimitingTextInputFormatter(4),
+                      LengthLimitingTextInputFormatter(3),
                       FilteringTextInputFormatter.digitsOnly,
                     ],
                   ),

@@ -64,10 +64,7 @@ class CheckOutButton extends StatelessWidget {
         return CreditCardSelectionSheet(
           total: total.toString(),
           onCardSelected: (selectedCard) {
-            if (selectedCard != null) {
-              print("Selected Card Type: ${selectedCard.cardType}");
-              print("Selected Card Number: ${selectedCard.cardNumber}");
-            }
+            if (selectedCard != null) {}
           },
           creditCards: cards,
         );

@@ -36,7 +36,19 @@ class CreditService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<CreditCardModel> existingCards = await getCreditCard();
 
-    existingCards.removeWhere((card) => card.cardNumber == cardNumber);
+    existingCards.removeWhere((card) {
+      String existingCardFirstFourChars =
+          card.cardNumber.substring(0, 4).replaceAll(RegExp(r'\s+\b|\b\s'), '');
+      String existingCardLastTwoChars =
+          card.cardNumber.substring(card.cardNumber.length - 2);
+      String cardToDeleteFirstFourChars =
+          cardNumber.substring(0, 4).replaceAll(RegExp(r'\s+\b|\b\s'), '');
+      String cardToDeleteLastTwoChars =
+          cardNumber.substring(cardNumber.length - 2);
+
+      return (existingCardFirstFourChars == cardToDeleteFirstFourChars) &&
+          (existingCardLastTwoChars == cardToDeleteLastTwoChars);
+    });
 
     List<String> cardsJson =
         existingCards.map((card) => json.encode(card.toJson())).toList();

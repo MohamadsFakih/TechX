@@ -36,7 +36,7 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
 
   Stream<void> get _cardStream => _streamController.stream;
 
-  MyCardType cardType = MyCardType.invalid;
+  ValueNotifier<MyCardType> cardType = ValueNotifier(MyCardType.invalid);
 
   List<CreditEntity> _list = [];
 
@@ -47,11 +47,7 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
     if (_cardNumberController.text.length <= 6) {
       String cardNum = CardUtils.getCleanedNumber(_cardNumberController.text);
       MyCardType type = CardUtils.getCardTypeFrmNumber(cardNum);
-      if (type != cardType) {
-        setState(() {
-          cardType = type;
-        });
-      }
+      cardType.value = type;
     }
   }
 
@@ -110,11 +106,12 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
           _list = List.from(_settingsBloc.state.creditCards);
           _list.add(
             const CreditEntity(
-                cardHolder: '',
-                cardNumber: '',
-                cardCvv: '',
-                cardType: MyCardType.invalid,
-                cardDate: ''),
+              cardHolder: '',
+              cardNumber: '',
+              cardCvv: '',
+              cardType: MyCardType.invalid,
+              cardDate: '',
+            ),
           );
 
           return state.isLoading
@@ -137,17 +134,18 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                                     stream: _cardStream,
                                     builder: (context, snapshot) {
                                       return CreditCardWidget(
-                                        cardType: cardType.name.toUpperCase(),
+                                        cardType:
+                                            cardType.value.name.toUpperCase(),
                                         cardNumber: _cardNumberController.text,
                                         cardHolder: _cardHolderController.text,
                                         cardDate: _cardDateController.text,
                                         cardCVV: _cardCvvController.text,
-                                        cardImage:
-                                            CardUtils.getCardIcon(cardType),
+                                        cardImage: CardUtils.getCardIcon(
+                                            cardType.value),
                                         settingsBloc: _settingsBloc,
                                         isEditing: true,
-                                        creditCardColor:
-                                            CardUtils.getCardColor(cardType),
+                                        creditCardColor: CardUtils.getCardColor(
+                                            cardType.value),
                                       );
                                     });
                               }
@@ -184,14 +182,22 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                       const SizedBox(
                         height: 32,
                       ),
-                      CreditCardForm(
-                        cardNumberController: _cardNumberController,
-                        cardCvvController: _cardCvvController,
-                        cardDateController: _cardDateController,
-                        cardHolderController: _cardHolderController,
-                        cardType: cardType,
-                        getCardTypeFromNumber: getCardTypeFromNumber,
-                      ),
+                      ValueListenableBuilder(
+                          valueListenable: cardType,
+                          builder: (
+                            context,
+                            value,
+                            c,
+                          ) {
+                            return CreditCardForm(
+                              cardNumberController: _cardNumberController,
+                              cardCvvController: _cardCvvController,
+                              cardDateController: _cardDateController,
+                              cardHolderController: _cardHolderController,
+                              cardType: cardType.value,
+                              getCardTypeFromNumber: getCardTypeFromNumber,
+                            );
+                          }),
                       const SizedBox(
                         height: 32,
                       ),
@@ -251,7 +257,7 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                                   CreditEntity(
                                     cardHolder: _cardHolderController.text,
                                     cardNumber: _cardNumberController.text,
-                                    cardType: cardType,
+                                    cardType: cardType.value,
                                     cardCvv: _cardCvvController.text,
                                     cardDate: _cardDateController.text,
                                   ),
@@ -266,6 +272,7 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                               _cardCvvController.text = "";
                               _cardDateController.text = "";
                               _cardHolderController.text = "";
+                              cardType.value = MyCardType.invalid;
                             }
                           },
                           child: const Text(
