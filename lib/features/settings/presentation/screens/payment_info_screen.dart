@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:techx/core/components/card_type.dart';
-import 'package:techx/core/components/card_utilis.dart';
+import 'package:techx/core/utils/card_type.dart';
+import 'package:techx/core/utils/card_utilis.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/settings/domain/entity/credit_entity.dart';
 import 'package:techx/features/settings/presentation/bloc/settings_bloc.dart';
@@ -41,6 +41,9 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
   List<CreditEntity> _list = [];
 
   void getCardTypeFromNumber() {
+    _pageController.animateToPage(_list.length - 1,
+        duration: const Duration(milliseconds: 200), curve: Curves.ease);
+
     if (_cardNumberController.text.length <= 6) {
       String cardNum = CardUtils.getCleanedNumber(_cardNumberController.text);
       MyCardType type = CardUtils.getCardTypeFrmNumber(cardNum);
@@ -141,21 +144,26 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                                         cardCVV: _cardCvvController.text,
                                         cardImage:
                                             CardUtils.getCardIcon(cardType),
-                                        cardColor:
+                                        settingsBloc: _settingsBloc,
+                                        isEditing: true,
+                                        creditCardColor:
                                             CardUtils.getCardColor(cardType),
                                       );
                                     });
                               }
                               return CreditCardWidget(
                                 cardType: cardEntity.cardType.name,
-                                cardNumber: cardEntity.cardNumber,
+                                cardNumber: CardUtils.getFormattedCardNumber(
+                                  cardEntity.cardNumber,
+                                ),
                                 cardHolder: cardEntity.cardHolder.toUpperCase(),
                                 cardDate: cardEntity.cardDate,
                                 cardCVV: cardEntity.cardCvv,
                                 cardImage:
                                     CardUtils.getCardIcon(cardEntity.cardType),
-                                cardColor:
+                                creditCardColor:
                                     CardUtils.getCardColor(cardEntity.cardType),
+                                settingsBloc: _settingsBloc,
                               );
                             }),
                       ),
@@ -177,12 +185,13 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                         height: 32,
                       ),
                       CreditCardForm(
-                          cardNumberController: _cardNumberController,
-                          cardCvvController: _cardCvvController,
-                          cardDateController: _cardDateController,
-                          cardHolderController: _cardHolderController,
-                          cardType: cardType,
-                          getCardTypeFromNumber: getCardTypeFromNumber),
+                        cardNumberController: _cardNumberController,
+                        cardCvvController: _cardCvvController,
+                        cardDateController: _cardDateController,
+                        cardHolderController: _cardHolderController,
+                        cardType: cardType,
+                        getCardTypeFromNumber: getCardTypeFromNumber,
+                      ),
                       const SizedBox(
                         height: 32,
                       ),

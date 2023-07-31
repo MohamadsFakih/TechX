@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:techx/core/components/card_type.dart';
-import 'package:techx/core/components/card_utilis.dart';
-import 'package:techx/core/components/input_formatters.dart';
+import 'package:techx/core/utils/card_type.dart';
+import 'package:techx/core/utils/card_utilis.dart';
+import 'package:techx/core/utils/input_formatters.dart';
 
 import 'credit_card_field.dart';
 
@@ -31,7 +31,7 @@ class CreditCardForm extends StatelessWidget {
           CreditCardField(
               textFormField: TextFormField(
             onChanged: (val) {
-              getCardTypeFromNumber;
+              getCardTypeFromNumber();
             },
             decoration: InputDecoration(
               hintText: "Card number",
@@ -40,8 +40,9 @@ class CreditCardForm extends StatelessWidget {
                 height: 2,
               ),
               prefixIcon: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Icon(Icons.credit_card)),
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: Icon(Icons.credit_card),
+              ),
               suffixIcon: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CardUtils.getCardIcon(cardType),

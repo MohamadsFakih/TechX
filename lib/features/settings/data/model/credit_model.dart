@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:techx/core/components/card_type.dart';
+import 'package:techx/core/utils/card_type.dart';
 
 part 'credit_model.freezed.dart';
 part 'credit_model.g.dart';

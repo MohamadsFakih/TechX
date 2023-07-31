@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:techx/core/utils/card_type.dart';
 import 'package:techx/core/utils/mds.dart';
 
 import 'card_strings.dart';
-import 'card_type.dart';
 
 class CardUtils {
   static String? validateCVV(String? value) {
@@ -150,7 +150,7 @@ class CardUtils {
     Color color = mainColor;
     switch (cardType) {
       case MyCardType.masterCard:
-        color = Colors.black;
+        color = masterCardColor;
         break;
       case MyCardType.visa:
         color = mainColor;
@@ -159,7 +159,7 @@ class CardUtils {
         color = Colors.pink;
         break;
       case MyCardType.discover:
-        color = Colors.cyan;
+        color = orangeColor;
         break;
       default:
         color = mainColor;
@@ -219,5 +219,33 @@ class CardUtils {
       cardType = MyCardType.invalid;
     }
     return cardType;
+  }
+
+  static String getFormattedCardNumber(String cardNumber) {
+    // Remove any existing spaces from the card number
+    String cleanedCardNumber = cardNumber.replaceAll(RegExp(r'\s+\b|\b\s'), '');
+
+    // Get the length of the cleaned card number
+    int cardNumberLength = cleanedCardNumber.length;
+
+    // Get the first 4 characters of the card number
+    String firstFourChars = cleanedCardNumber.substring(0, 4);
+
+    // Get the last 2 characters of the card number
+    String lastTwoChars = cleanedCardNumber.substring(cardNumberLength - 2);
+
+    // Replace characters between the first 4 and last 2 with "*"
+    String maskedChars = '';
+    for (int i = 4; i < cardNumberLength - 2; i++) {
+      maskedChars += '*';
+      if ((i + 1) % 4 == 0) {
+        maskedChars += ' ';
+      }
+    }
+
+    // Concatenate the formatted card number
+    String formattedCardNumber = '$firstFourChars $maskedChars$lastTwoChars';
+
+    return formattedCardNumber;
   }
 }

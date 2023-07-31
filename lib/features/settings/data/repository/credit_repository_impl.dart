@@ -35,4 +35,16 @@ class CreditRepositoryImpl implements CreditRepository {
     final result = await _creditSource.getCreditCard();
     return result.map((e) => CreditEntity.fromModel(e)).toList();
   }
+
+  @override
+  Future<Either<String, Unit>> deleteCreditCard(String cardNumber) async {
+    try {
+      await _creditSource.deleteCreditCard(cardNumber);
+      return right(unit);
+    } catch (e) {
+      return left(
+        e.toString(),
+      );
+    }
+  }
 }

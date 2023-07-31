@@ -10,6 +10,10 @@ class CreditUseCase {
 
   Future<List<CreditEntity>> getCreditCard() =>
       _creditRepository.getCreditCard();
+
   Future<Either<String, Unit>> addCreditCard(CreditEntity creditCard) =>
       _creditRepository.addCreditCard(creditCard);
+
+  Future<Either<String, Unit>> deleteCreditCard(String cardNumber) =>
+      _creditRepository.deleteCreditCard(cardNumber);
 }

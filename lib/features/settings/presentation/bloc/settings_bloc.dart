@@ -13,9 +13,17 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   SettingsBloc(this._creditUseCase) : super(SettingsState.initial()) {
     on<SettingsEvent>((event, emit) async {
       await event.when(
-        getCreditCards: () => _getCreditCards(emit),
-        addCreditCard: (CreditEntity creditEntity) =>
-            _addCreditCard(emit, creditEntity),
+        getCreditCards: () => _getCreditCards(
+          emit,
+        ),
+        addCreditCard: (CreditEntity creditEntity) => _addCreditCard(
+          emit,
+          creditEntity,
+        ),
+        deleteCreditCard: (String cardNumber) => _deleteCreditCard(
+          emit,
+          cardNumber,
+        ),
       );
     });
   }
@@ -37,15 +45,34 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         ),
       );
     } catch (e) {
-      print(
-        e.toString(),
+      emit(
+        state.copyWith(
+          error: e.toString(),
+        ),
       );
     }
   }
 
   Future _addCreditCard(
       Emitter<SettingsState> emit, CreditEntity creditEntity) async {
-    final result = await _creditUseCase.addCreditCard(creditEntity);
+    final result = await _creditUseCase.addCreditCard(
+      creditEntity,
+    );
+    await result.fold(
+      (l) async => state.copyWith(error: l.toString()),
+      (r) async {
+        await _getCreditCards(
+          emit,
+        );
+      },
+    );
+  }
+
+  Future _deleteCreditCard(
+      Emitter<SettingsState> emit, String cardNumber) async {
+    final result = await _creditUseCase.deleteCreditCard(
+      cardNumber,
+    );
     await result.fold(
       (l) async => state.copyWith(error: l.toString()),
       (r) async {

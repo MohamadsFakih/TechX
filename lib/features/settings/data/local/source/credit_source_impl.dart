@@ -16,4 +16,8 @@ class CreditSourceImpl implements CreditSource {
   @override
   Future<List<CreditCardModel>> getCreditCard() =>
       _creditService.getCreditCard();
+
+  @override
+  Future<void> deleteCreditCard(String cardNumber) =>
+      _creditService.deleteCreditCard(cardNumber);
 }
