@@ -1,4 +1,4 @@
-import 'package:techx/features/settings/data/model/credit_model.dart';
+import 'package:techx/features/common/data/model/credit_model.dart';
 
 abstract class CreditSource {
   Future<List<CreditCardModel>> getCreditCard();

@@ -4,6 +4,7 @@ part of 'cart_bloc.dart';
 class CartState with _$CartState {
   const factory CartState({
     @Default([]) List<CartModel> items,
+    @Default([]) List<CreditEntity> creditCards,
     @Default(false) bool isLoading,
     @Default('') String error,
   }) = _Initial;

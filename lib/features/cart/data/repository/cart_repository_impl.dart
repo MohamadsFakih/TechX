@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/data/remote/source/cart_source.dart';
 import 'package:techx/features/cart/domain/repository/cart_repository.dart';
+import 'package:techx/features/common/domain/entity/credit_entity.dart';
 
 @Injectable(as: CartRepository)
 class CartRepositoryImpl implements CartRepository {
@@ -32,5 +33,11 @@ class CartRepositoryImpl implements CartRepository {
     } catch (e) {
       return left(e.toString());
     }
+  }
+
+  @override
+  Future<List<CreditEntity>> getCreditCard() async {
+    final result = await _cartSource.getCreditCard();
+    return result.map((e) => CreditEntity.fromModel(e)).toList();
   }
 }

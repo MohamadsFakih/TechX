@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:techx/features/common/data/model/credit_card_model.dart';
+import 'package:techx/core/utils/card_utilis.dart';
+import 'package:techx/features/common/domain/entity/credit_entity.dart';
 
 class CreditCardSelectionSheet extends StatefulWidget {
   const CreditCardSelectionSheet({
@@ -9,8 +10,8 @@ class CreditCardSelectionSheet extends StatefulWidget {
     required this.total,
   }) : super(key: key);
 
-  final List<CreditCard> creditCards;
-  final Function(CreditCard?) onCardSelected;
+  final List<CreditEntity> creditCards;
+  final Function(CreditEntity?) onCardSelected;
   final String total;
 
   @override
@@ -19,7 +20,7 @@ class CreditCardSelectionSheet extends StatefulWidget {
 }
 
 class _CreditCardSelectionSheetState extends State<CreditCardSelectionSheet> {
-  CreditCard? selectedCard;
+  CreditEntity? selectedCard;
 
   @override
   void initState() {
@@ -53,7 +54,7 @@ class _CreditCardSelectionSheetState extends State<CreditCardSelectionSheet> {
             ),
           ),
           for (var card in widget.creditCards)
-            RadioListTile<CreditCard?>(
+            RadioListTile<CreditEntity?>(
               value: card,
               groupValue: selectedCard,
               onChanged: (value) {
@@ -63,13 +64,11 @@ class _CreditCardSelectionSheetState extends State<CreditCardSelectionSheet> {
               },
               title: Row(
                 children: [
-                  Image.asset(
-                    card.imageAsset,
-                    width: 32,
-                    height: 32,
-                  ),
+                  CardUtils.getCardIcon(card.cardType) ?? Container(),
                   const SizedBox(width: 8),
-                  Text(card.number),
+                  Text(
+                    CardUtils.getFormattedCardNumber(card.cardNumber),
+                  ),
                 ],
               ),
             ),
@@ -78,7 +77,12 @@ class _CreditCardSelectionSheetState extends State<CreditCardSelectionSheet> {
               widget.onCardSelected(selectedCard);
               Navigator.of(context).pop();
             },
-            child: const Text("Proceed to Checkout"),
+            child: const Text(
+              "Proceed to Checkout",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),

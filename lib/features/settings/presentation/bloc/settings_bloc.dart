@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:techx/features/settings/domain/entity/credit_entity.dart';
+import 'package:techx/features/common/domain/entity/credit_entity.dart';
 import 'package:techx/features/settings/domain/usecase/credit_usecase.dart';
 
 part 'settings_event.dart';

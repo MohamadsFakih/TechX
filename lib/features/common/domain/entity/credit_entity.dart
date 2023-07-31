@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:techx/core/utils/card_type.dart';
-import 'package:techx/features/settings/data/model/credit_model.dart';
+import 'package:techx/features/common/data/model/credit_model.dart';
 
 part 'credit_entity.freezed.dart';
 

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:techx/features/settings/domain/entity/credit_entity.dart';
+import 'package:techx/features/common/domain/entity/credit_entity.dart';
 import 'package:techx/features/settings/domain/repository/credit_repository.dart';
 
 @injectable

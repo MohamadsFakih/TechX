@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/domain/usecase/cart_usecase.dart';
+import 'package:techx/features/common/domain/entity/credit_entity.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -16,7 +17,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           getCartItems: (String id) => _getCartItems(emit, id),
           removeCartItem: (String userId, String itemId) =>
               _removeCartItem(emit, userId, itemId),
-          clearCart: (String userId) => _clearCart(emit, userId));
+          clearCart: (String userId) => _clearCart(emit, userId),
+          getCreditCards: () => _getCreditCards(emit));
     });
   }
 
@@ -31,6 +33,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       emit(
         state.copyWith(items: result),
       );
+      await _getCreditCards(emit);
     } catch (e) {
       emit(
         state.copyWith(error: e.toString()),
@@ -62,5 +65,30 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         return state;
       },
     );
+  }
+
+  Future _getCreditCards(Emitter<CartState> emit) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: "",
+      ),
+    );
+
+    try {
+      final result = await _cartUseCase.getCreditCard();
+      emit(
+        state.copyWith(
+          creditCards: result,
+          isLoading: false,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          error: e.toString(),
+        ),
+      );
+    }
   }
 }
