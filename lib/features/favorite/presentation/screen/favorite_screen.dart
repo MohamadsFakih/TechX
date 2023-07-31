@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/categories/presentation/widget/mini_item.dart';
@@ -55,7 +56,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               builder: (context, state) {
                 return Expanded(
                   child: state.isLoading
-                      ? const Center(child: CircularProgressIndicator())
+                      ? const Center(
+                          child: SpinKitFadingCircle(
+                            color: Colors.black,
+                            size: 50.0,
+                          ),
+                        )
                       : state.items.isEmpty
                           ? const Center(
                               child: Text("No Items Found!"),

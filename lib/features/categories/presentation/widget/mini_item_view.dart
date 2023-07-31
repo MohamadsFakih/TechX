@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techx/core/data/model/enums.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/categories/presentation/widget/mini_item.dart';
@@ -72,7 +73,12 @@ class _MiniItemViewState extends State<MiniItemView> {
           ),
           Expanded(
             child: widget.isLoading
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(
+                    child: SpinKitFadingCircle(
+                      color: Colors.black,
+                      size: 50.0,
+                    ),
+                  )
                 : widget.itemList.isEmpty
                     ? const Center(
                         child: Text("No Items Found!"),
