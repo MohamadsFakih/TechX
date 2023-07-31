@@ -3,9 +3,9 @@ part of 'settings_bloc.dart';
 @freezed
 class SettingsState with _$SettingsState {
   const factory SettingsState({
-    @Default(false) bool showContact,
-    @Default(false) bool showFaq,
-    @Default(true) bool showMain,
+    @Default([]) List<CreditEntity> creditCards,
+    @Default(false) bool isLoading,
+    @Default("") String error,
   }) = _Initial;
 
   factory SettingsState.initial() => const SettingsState();

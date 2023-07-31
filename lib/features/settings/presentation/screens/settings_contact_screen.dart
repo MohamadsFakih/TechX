@@ -16,75 +16,65 @@ class SettingsContactScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WillPopScope(
-        onWillPop: () {
-          controller.animateToPage(
-            0,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.ease,
-          );
-          return Future.value(false);
-        },
-        child: SafeArea(
-          child: Column(
-            children: [
-              SettingsTile(
-                icon: Icons.person_outline,
-                color: Colors.green,
-                text: "Whatsapp",
-                onTap: () {
-                  urlLauncher.launchWhatsApp();
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              SettingsTile(
-                icon: Icons.phone,
-                color: Colors.blueGrey,
-                text: "Phone Number",
-                onTap: () {
-                  urlLauncher.launchPhone();
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              SettingsTile(
-                icon: Icons.email,
-                color: Colors.red,
-                text: "Email",
-                onTap: () {
-                  urlLauncher.launchEmail();
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              SettingsTile(
-                icon: Icons.arrow_back,
-                color: Colors.black,
-                text: "Back",
-                hideArrow: true,
-                onTap: () {
-                  controller.animateToPage(
-                    0,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.ease,
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-            ]
-                .animate(
-                  interval: const Duration(
-                    milliseconds: 50,
-                  ),
-                )
-                .slideX(),
-          ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            SettingsTile(
+              icon: Icons.person_outline,
+              color: Colors.green,
+              text: "Whatsapp",
+              onTap: () {
+                urlLauncher.launchWhatsApp();
+              },
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            SettingsTile(
+              icon: Icons.phone,
+              color: Colors.blueGrey,
+              text: "Phone Number",
+              onTap: () {
+                urlLauncher.launchPhone();
+              },
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            SettingsTile(
+              icon: Icons.email,
+              color: Colors.red,
+              text: "Email",
+              onTap: () {
+                urlLauncher.launchEmail();
+              },
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            SettingsTile(
+              icon: Icons.arrow_back,
+              color: Colors.black,
+              text: "Back",
+              hideArrow: true,
+              onTap: () {
+                controller.animateToPage(
+                  0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.ease,
+                );
+              },
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+          ]
+              .animate(
+                interval: const Duration(
+                  milliseconds: 50,
+                ),
+              )
+              .slideX(),
         ),
       ),
     );

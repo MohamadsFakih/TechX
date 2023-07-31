@@ -84,6 +84,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   CheckOutButton(
                     total: total,
+                    cards: state.creditCards,
                   )
                 ],
               ),

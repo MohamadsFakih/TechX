@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/data/remote/service/cart_service.dart';
 import 'package:techx/features/cart/data/remote/source/cart_source.dart';
+import 'package:techx/features/common/data/model/credit_model.dart';
 
 @Injectable(as: CartSource)
 class CartSourceImpl implements CartSource {
@@ -17,4 +18,7 @@ class CartSourceImpl implements CartSource {
   @override
   Future<void> removeCartItem(String itemId, String userId) =>
       _cartService.removeCartItem(itemId, userId);
+
+  @override
+  Future<List<CreditCardModel>> getCreditCard() => _cartService.getCreditCard();
 }

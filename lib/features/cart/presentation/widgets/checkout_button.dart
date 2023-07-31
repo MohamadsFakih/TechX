@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/cart/presentation/widgets/cart_bottom_sheet.dart';
-import 'package:techx/features/common/data/model/credit_card_model.dart';
+import 'package:techx/features/common/domain/entity/credit_entity.dart';
 
 class CheckOutButton extends StatelessWidget {
-  const CheckOutButton({super.key, required this.total});
+  const CheckOutButton({super.key, required this.total, required this.cards});
 
   final int total;
+  final List<CreditEntity> cards;
 
   @override
   Widget build(BuildContext context) {
@@ -62,29 +63,10 @@ class CheckOutButton extends StatelessWidget {
       builder: (BuildContext context) {
         return CreditCardSelectionSheet(
           total: total.toString(),
-          creditCards: [
-            CreditCard(
-              cardType: "Visa",
-              number: "**** **** **** 1234",
-              imageAsset: "assets/images/visa.png",
-            ),
-            CreditCard(
-              cardType: "Mastercard",
-              number: "**** **** **** 5678",
-              imageAsset: "assets/images/mastercard.png",
-            ),
-            CreditCard(
-              cardType: "Mastercard",
-              number: "Add new payment method",
-              imageAsset: "assets/images/mastercard.png",
-            ),
-          ],
           onCardSelected: (selectedCard) {
-            if (selectedCard != null) {
-              print("Selected Card Type: ${selectedCard.cardType}");
-              print("Selected Card Number: ${selectedCard.number}");
-            }
+            if (selectedCard != null) {}
           },
+          creditCards: cards,
         );
       },
     );
