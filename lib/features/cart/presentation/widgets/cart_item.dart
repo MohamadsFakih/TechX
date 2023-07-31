@@ -4,7 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
 
-class CartItem extends StatefulWidget {
+class CartItem extends StatelessWidget {
   const CartItem({
     super.key,
     required this.quantity,
@@ -19,91 +19,78 @@ class CartItem extends StatefulWidget {
   final String userId;
 
   @override
-  State<CartItem> createState() => _CartItemState();
-}
-
-class _CartItemState extends State<CartItem> {
-  bool isDestroyed = false;
-  @override
   Widget build(BuildContext context) {
-    return isDestroyed
-        ? Container()
-        : Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Slidable(
-                key: const ValueKey(0),
-                startActionPane: ActionPane(
-                  motion: const ScrollMotion(),
-                  dismissible: DismissiblePane(
-                    onDismissed: () {
-                      isDestroyed = true;
-                      widget.cartBloc.add(
-                        RemoveCartItem(
-                          widget.userId,
-                          widget.item.id,
-                        ),
-                      );
-                    },
-                    closeOnCancel: true,
-                  ),
-                  children: [
-                    SlidableAction(
-                      onPressed: (context) {},
-                      backgroundColor: const Color(0xFFFE4A49),
-                      foregroundColor: Colors.white,
-                      icon: Icons.delete,
-                      label: 'Remove',
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Slidable(
+          key: const ValueKey(0),
+          startActionPane: ActionPane(
+            motion: const ScrollMotion(),
+            children: [
+              SlidableAction(
+                onPressed: (context) {
+                  cartBloc.add(
+                    RemoveCartItem(
+                      userId,
+                      item.id,
                     ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    CachedNetworkImage(
-                      imageUrl: widget.item.image,
-                      width: 100,
-                      height: 100,
-                    ),
-                    Expanded(
-                      // Wrap the Row with Expanded to take up available space
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.item.name,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "\$${widget.item.price}",
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "x${widget.quantity}",
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                  );
+                },
+                backgroundColor: const Color(0xFFFE4A49),
+                foregroundColor: Colors.white,
+                icon: Icons.delete,
+                label: 'Remove',
               ),
-            ),
-          );
+            ],
+          ),
+          child: Row(
+            children: [
+              CachedNetworkImage(
+                imageUrl: item.image,
+                width: 100,
+                height: 100,
+              ),
+              Expanded(
+                // Wrap the Row with Expanded to take up available space
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.name,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      "\$${item.price}",
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "x$quantity",
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

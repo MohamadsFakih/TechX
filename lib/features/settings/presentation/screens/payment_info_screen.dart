@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:techx/core/utils/card_type.dart';
@@ -115,7 +116,12 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
           );
 
           return state.isLoading
-              ? const Center(child: CircularProgressIndicator())
+              ? const Center(
+                  child: SpinKitFadingCircle(
+                    color: Colors.black,
+                    size: 50.0,
+                  ),
+                )
               : Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView(

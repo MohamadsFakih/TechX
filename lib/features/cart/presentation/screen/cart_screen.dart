@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
@@ -48,48 +49,55 @@ class _CartScreenState extends State<CartScreen> {
             totalPrice += int.parse(item.price) * item.quantity;
           }
           total = totalPrice;
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  const Align(
-                    alignment: Alignment.center,
-                    child: TechXLogo(
-                      text: "My Cart",
-                    ),
+          return state.isLoading
+              ? const Center(
+                  child: SpinKitFadingCircle(
+                    color: Colors.black,
+                    size: 50.0,
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        _cartBloc.add(
-                          ClearCart(
-                            widget.userId,
+                )
+              : SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        const Align(
+                          alignment: Alignment.center,
+                          child: TechXLogo(
+                            text: "My Cart",
                           ),
-                        );
-                      },
-                      child: const Text(
-                        "Clear all",
-                        style: TextStyle(color: Colors.red, fontSize: 16),
-                      ),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: GestureDetector(
+                            onTap: () {
+                              _cartBloc.add(
+                                ClearCart(
+                                  widget.userId,
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Clear all",
+                              style: TextStyle(color: Colors.red, fontSize: 16),
+                            ),
+                          ),
+                        ),
+                        _buildList(
+                          state.items,
+                          state,
+                        ),
+                        CheckOutButton(
+                          total: total,
+                          cards: state.creditCards,
+                        )
+                      ],
                     ),
                   ),
-                  _buildList(
-                    state.items,
-                    state,
-                  ),
-                  CheckOutButton(
-                    total: total,
-                    cards: state.creditCards,
-                  )
-                ],
-              ),
-            ),
-          );
+                );
         },
       ),
     );
