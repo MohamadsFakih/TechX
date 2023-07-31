@@ -10,6 +10,6 @@ class LoginUseCase {
   Future<void> googleAuth() => _loginRepository.googleAuth();
   Future<void> forgotPassword(String email) =>
       _loginRepository.forgotPassword(email);
-  Future<Either<String, Unit>> signIn(LoginCredentials loginCredentials) =>
+  Future<Either<String, String>> signIn(LoginCredentials loginCredentials) =>
       _loginRepository.signIn(loginCredentials);
 }

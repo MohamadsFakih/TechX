@@ -15,8 +15,12 @@ class LoginService {
     throw UnimplementedError();
   }
 
-  Future<void> signIn(LoginCredentials loginCredentials) async {
-    await auth.signInWithEmailAndPassword(
-        email: loginCredentials.email, password: loginCredentials.password);
+  Future<String> signIn(LoginCredentials loginCredentials) async {
+    final result = await auth.signInWithEmailAndPassword(
+      email: loginCredentials.email,
+      password: loginCredentials.password,
+    );
+
+    return result.user?.uid ?? "";
   }
 }
