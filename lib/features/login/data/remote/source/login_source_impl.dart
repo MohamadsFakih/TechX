@@ -20,6 +20,6 @@ class LoginSourceImpl implements LoginSource {
   }
 
   @override
-  Future<void> signIn(LoginCredentials loginCredentials) =>
+  Future<String> signIn(LoginCredentials loginCredentials) =>
       _loginService.signIn(loginCredentials);
 }

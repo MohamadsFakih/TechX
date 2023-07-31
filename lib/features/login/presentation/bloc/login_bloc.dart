@@ -43,6 +43,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         (r) => emit(
           state.copyWith(
             signedIn: true,
+            userId: r,
           ),
         ),
       );
