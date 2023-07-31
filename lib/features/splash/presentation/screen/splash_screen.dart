@@ -21,7 +21,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _userBloc.add(const GetUid());
+    _userBloc.add(
+      const GetUid(),
+    );
+  }
+
+  bool _isLoggedIn() {
+    return _userBloc.state.id.isNotEmpty;
   }
 
   @override
@@ -36,12 +42,12 @@ class _SplashScreenState extends State<SplashScreen> {
       value: _userBloc,
       child: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
-          if (state.id.isEmpty) {
+          if (!_isLoggedIn()) {
             if (_shouldNavigateToLogin) {
               _navigateToLogin();
             }
           } else {
-            _navigateToHome();
+            _navigateToHome(state.id);
           }
         },
         child: const Scaffold(
@@ -61,16 +67,19 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  void _navigateToHome() {
+  void _navigateToHome(String userId) {
+    const delayDuration = Duration(seconds: 2);
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => DefaultScreen(
-            userId: _userBloc.state.id,
-          ),
-        ),
-        (route) => false,
-      );
+      Future.delayed(delayDuration, () {
+        if (_shouldNavigateToLogin) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => DefaultScreen(userId: userId),
+            ),
+            (route) => false,
+          );
+        }
+      });
     });
   }
 
