@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
@@ -26,10 +25,6 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  bool _isLoggedIn() {
-    return _userBloc.state.id.isNotEmpty;
-  }
-
   @override
   void dispose() {
     _shouldNavigateToLogin = false;
@@ -42,12 +37,14 @@ class _SplashScreenState extends State<SplashScreen> {
       value: _userBloc,
       child: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
-          if (!_isLoggedIn()) {
-            if (_shouldNavigateToLogin) {
-              _navigateToLogin();
-            }
-          } else {
-            _navigateToHome(state.id);
+          if (!state.isLoading) {
+            Future.delayed(const Duration(seconds: 2), () {
+              if (!_isLoggedIn(state)) {
+                _navigateToLogin();
+              } else {
+                _navigateToHome(state.id);
+              }
+            });
           }
         },
         child: const Scaffold(
@@ -67,35 +64,29 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  bool _isLoggedIn(UserState state) {
+    return state.id.isNotEmpty;
+  }
+
   void _navigateToHome(String userId) {
-    const delayDuration = Duration(seconds: 2);
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(delayDuration, () {
-        if (_shouldNavigateToLogin) {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => DefaultScreen(userId: userId),
-            ),
-            (route) => false,
-          );
-        }
-      });
-    });
+    if (_shouldNavigateToLogin) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => DefaultScreen(userId: userId),
+        ),
+        (route) => false,
+      );
+    }
   }
 
   void _navigateToLogin() {
-    const delayDuration = Duration(seconds: 4);
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(delayDuration, () {
-        if (_shouldNavigateToLogin) {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => const LoginPage(),
-            ),
-            (route) => false,
-          );
-        }
-      });
-    });
+    if (_shouldNavigateToLogin) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const LoginPage(),
+        ),
+        (route) => false,
+      );
+    }
   }
 }
