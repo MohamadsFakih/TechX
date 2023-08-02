@@ -7,7 +7,7 @@ import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/categories/presentation/bloc/category_bloc.dart';
 import 'package:techx/core/utils/categories_manager.dart';
 import 'package:techx/features/categories/presentation/widget/mini_item_view.dart';
-import 'package:techx/features/common/presentation/widget/techx_logo.dart';
+import 'package:techx/features/common/presentation/widget/custom_app_bar.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key, required this.userId});
@@ -49,6 +49,9 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       },
       child: Scaffold(
         backgroundColor: homeColor,
+        appBar: CustomAppBar(
+          text: "Browse",
+        ),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -77,9 +80,6 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                               color: mainColor,
                             ),
                           ),
-                        const Spacer(),
-                        const TechXLogo(),
-                        const Spacer(),
                       ],
                     ),
                     Expanded(
@@ -91,7 +91,9 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                               userId: widget.userId,
                             )
                           : state.showSubCategory
-                              ? _subView(state.selectedList)
+                              ? _subView(
+                                  state.selectedList,
+                                )
                               : _buildListView(),
                     ),
                   ],
@@ -115,7 +117,9 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     return ListView(
       children: result
           .animate(
-            interval: const Duration(milliseconds: 400),
+            interval: const Duration(
+              milliseconds: 400,
+            ),
           )
           .slideX()
           .fade(),

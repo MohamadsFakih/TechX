@@ -5,7 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/categories/presentation/widget/mini_item.dart';
-import 'package:techx/features/common/presentation/widget/techx_logo.dart';
+import 'package:techx/features/common/presentation/widget/custom_app_bar.dart';
 import 'package:techx/features/favorite/presentation/bloc/favorite_bloc.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -24,7 +24,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: _favoriteBloc,
-      child: _buildPadding(),
+      child: Scaffold(
+        appBar: CustomAppBar(
+          text: "Favorites",
+        ),
+        body: _buildPadding(),
+      ),
     );
   }
 
@@ -42,13 +47,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       child: SafeArea(
         child: Column(
           children: [
-            const Row(
-              children: [
-                Spacer(),
-                TechXLogo(),
-                Spacer(),
-              ],
-            ),
             const SizedBox(
               height: 16,
             ),

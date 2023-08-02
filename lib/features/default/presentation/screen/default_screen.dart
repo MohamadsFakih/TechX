@@ -141,10 +141,11 @@ class _DefaultScreenState extends State<DefaultScreen> {
       )
           .animate()
           .scale(
-              end: const Offset(
-            1.1,
-            1.1,
-          ))
+            end: const Offset(
+              1.1,
+              1.1,
+            ),
+          )
           .slideY(end: -.3),
     );
   }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
+import 'package:techx/features/common/presentation/widget/custom_app_bar.dart';
 import 'package:techx/features/home/data/model/item_model.dart';
 import 'package:techx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:techx/features/home/presentation/widgets/list_banners.dart';
@@ -40,10 +41,11 @@ class _HomePageState extends State<HomePage>
     super.build(context);
     return BlocProvider.value(
       value: _bloc,
-      child: SafeArea(
-        child: Scaffold(
-          body: _buildHome(),
+      child: Scaffold(
+        appBar: CustomAppBar(
+          text: "Home",
         ),
+        body: _buildHome(),
       ),
     );
   }
@@ -66,27 +68,8 @@ class _HomePageState extends State<HomePage>
                     padding: const EdgeInsets.all(8.0),
                     child: ListView(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 46,
-                              height: 46,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: const Image(
-                                  image: AssetImage('assets/images/github.png'),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 4,
-                            ),
-                            const Text("Welcome,\nMohamad"),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 16,
+                        SizedBox(
+                          height: 8,
                         ),
                         ListBanners(
                           pageController: _pageController,
@@ -120,6 +103,8 @@ class _HomePageState extends State<HomePage>
   }
 
   Future<void> _refresh() async {
-    _bloc.add(const Fetch());
+    _bloc.add(
+      const Fetch(),
+    );
   }
 }
