@@ -7,7 +7,7 @@ import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:techx/features/cart/presentation/widgets/cart_item.dart';
 import 'package:techx/features/cart/presentation/widgets/checkout_button.dart';
-import 'package:techx/features/common/presentation/widget/techx_logo.dart';
+import 'package:techx/features/common/presentation/widget/custom_app_bar.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key, required this.userId});
@@ -42,6 +42,9 @@ class _CartScreenState extends State<CartScreen> {
 
   Scaffold _buildScaffold() {
     return Scaffold(
+      appBar: CustomAppBar(
+        text: "My Cart",
+      ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           int totalPrice = 0;
@@ -61,15 +64,6 @@ class _CartScreenState extends State<CartScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        const Align(
-                          alignment: Alignment.center,
-                          child: TechXLogo(
-                            text: "My Cart",
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
                         Align(
                           alignment: Alignment.centerRight,
                           child: GestureDetector(
