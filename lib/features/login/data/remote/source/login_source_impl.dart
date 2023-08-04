@@ -10,9 +10,8 @@ class LoginSourceImpl implements LoginSource {
   final LoginService _loginService;
 
   @override
-  Future<void> forgotPassword(String email) {
-    throw UnimplementedError();
-  }
+  Future<void> forgotPassword(String email) =>
+      _loginService.forgotPassword(email);
 
   @override
   Future<void> googleAuth() {
@@ -21,5 +20,19 @@ class LoginSourceImpl implements LoginSource {
 
   @override
   Future<String> signIn(LoginCredentials loginCredentials) =>
-      _loginService.signIn(loginCredentials);
+      _loginService.signIn(
+        loginCredentials,
+      );
+
+  @override
+  Future<LoginCredentials> getLoginCredentials() =>
+      _loginService.getLoginCredentials();
+
+  @override
+  Future<void> rememberMe(String email, String password, bool toggleValue) =>
+      _loginService.rememberMe(
+        email,
+        password,
+        toggleValue,
+      );
 }

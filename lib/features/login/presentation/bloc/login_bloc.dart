@@ -17,6 +17,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           loginCredentials,
           emit,
         ),
+        rememberMe: (String email, String password, bool toggleValue) =>
+            _rememberMe(
+          emit,
+          email,
+          password,
+          toggleValue,
+        ),
+        getLoginCredentials: () => _getLoginCredentials(
+          emit,
+        ),
+        sendPasswordReset: (String email) => _sendPasswordReset(
+          emit,
+          email,
+        ),
       );
     });
   }
@@ -35,18 +49,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       final result = await _loginUseCase.signIn(loginCredentials);
       result.fold(
-        (l) => emit(
-          state.copyWith(
-            error: l.toString(),
-          ),
-        ),
-        (r) => emit(
+          (l) => emit(
+                state.copyWith(
+                  error: l.toString(),
+                ),
+              ), (r) {
+        _rememberMe(
+          emit,
+          loginCredentials.email,
+          loginCredentials.password,
+          loginCredentials.isRemembered,
+        );
+        emit(
           state.copyWith(
             signedIn: true,
             userId: r,
           ),
-        ),
-      );
+        );
+      });
     } catch (e) {
       emit(
         state.copyWith(
@@ -54,6 +74,48 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         ),
       );
     }
+
+    emit(
+      state.copyWith(
+        isLoading: false,
+      ),
+    );
+  }
+
+  Future _rememberMe(Emitter<LoginState> emit, String email, String password,
+      bool toggleValue) async {
+    await _loginUseCase.rememberMe(
+      email,
+      password,
+      toggleValue,
+    );
+  }
+
+  Future _getLoginCredentials(Emitter<LoginState> emit) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: '',
+      ),
+    );
+    final result = await _loginUseCase.getLoginCredentials();
+
+    emit(
+      state.copyWith(
+        isLoading: false,
+        loginCredentials: result,
+      ),
+    );
+  }
+
+  Future _sendPasswordReset(Emitter<LoginState> emit, String email) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: '',
+      ),
+    );
+    await _loginUseCase.forgotPassword(email);
 
     emit(
       state.copyWith(

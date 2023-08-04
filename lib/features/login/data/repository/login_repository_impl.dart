@@ -12,9 +12,8 @@ class LoginRepositoryImpl implements LoginRepository {
   final LoginSource _loginSource;
 
   @override
-  Future<void> forgotPassword(String email) {
-    throw UnimplementedError();
-  }
+  Future<void> forgotPassword(String email) =>
+      _loginSource.forgotPassword(email);
 
   @override
   Future<void> googleAuth() {
@@ -31,4 +30,16 @@ class LoginRepositoryImpl implements LoginRepository {
       return left(e.toString());
     }
   }
+
+  @override
+  Future<LoginCredentials> getLoginCredentials() =>
+      _loginSource.getLoginCredentials();
+
+  @override
+  Future<void> rememberMe(String email, String password, bool toggleValue) =>
+      _loginSource.rememberMe(
+        email,
+        password,
+        toggleValue,
+      );
 }
