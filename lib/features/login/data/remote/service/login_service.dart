@@ -8,8 +8,8 @@ class LoginService {
   LoginService(this.auth);
   final FirebaseAuth auth;
 
-  Future<void> forgotPassword(String email) {
-    throw UnimplementedError();
+  Future<void> forgotPassword(String email) async {
+    await auth.sendPasswordResetEmail(email: email);
   }
 
   Future<void> googleAuth() {

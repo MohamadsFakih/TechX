@@ -27,6 +27,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         getLoginCredentials: () => _getLoginCredentials(
           emit,
         ),
+        sendPasswordReset: (String email) => _sendPasswordReset(
+          emit,
+          email,
+        ),
       );
     });
   }
@@ -100,6 +104,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       state.copyWith(
         isLoading: false,
         loginCredentials: result,
+      ),
+    );
+  }
+
+  Future _sendPasswordReset(Emitter<LoginState> emit, String email) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: '',
+      ),
+    );
+    await _loginUseCase.forgotPassword(email);
+
+    emit(
+      state.copyWith(
+        isLoading: false,
       ),
     );
   }

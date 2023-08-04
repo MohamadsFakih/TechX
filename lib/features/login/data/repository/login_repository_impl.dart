@@ -12,9 +12,8 @@ class LoginRepositoryImpl implements LoginRepository {
   final LoginSource _loginSource;
 
   @override
-  Future<void> forgotPassword(String email) {
-    throw UnimplementedError();
-  }
+  Future<void> forgotPassword(String email) =>
+      _loginSource.forgotPassword(email);
 
   @override
   Future<void> googleAuth() {

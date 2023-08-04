@@ -6,4 +6,5 @@ class LoginEvent with _$LoginEvent {
   const factory LoginEvent.rememberMe(
       String email, String password, bool toggleValue) = RememberMe;
   const factory LoginEvent.getLoginCredentials() = GetLoginCredentials;
+  const factory LoginEvent.sendPasswordReset(String email) = SendPasswordReset;
 }

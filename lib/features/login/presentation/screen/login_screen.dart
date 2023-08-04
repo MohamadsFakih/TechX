@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
       AnimationController(vsync: this);
   final LoginBloc _loginBloc = getIt<LoginBloc>();
   ValueNotifier<bool> _isChecked = ValueNotifier(false);
+  bool firstEnter = false;
 
   @override
   void initState() {
@@ -54,9 +55,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           if (state.loginCredentials.isRemembered) {
             emailController.text = state.loginCredentials.email;
             passwordController.text = state.loginCredentials.password;
-            if (_isChecked.value) {
+            if (!firstEnter) {
               _isChecked.value = state.loginCredentials.isRemembered;
             }
+            firstEnter = true;
           }
           if (state.error.isNotEmpty) {
             SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -156,35 +158,39 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             height: 8,
                           ),
                           ValueListenableBuilder<bool>(
-                              valueListenable: _isChecked,
-                              builder: (context, value, child) {
-                                return Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .pushNamed('signUp');
-                                      },
-                                      child: const Text(
-                                        "Don't have an account?",
-                                        style: TextStyle(color: mainColor),
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    Checkbox(
-                                      value: _isChecked.value,
-                                      onChanged: (b) {
-                                        _isChecked.value = b!;
-                                      },
-                                    ),
-                                    const Text(
-                                      "Remember me",
+                            valueListenable: _isChecked,
+                            builder: (context, value, child) {
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      _loginBloc.add(
+                                        SendPasswordReset(
+                                          emailController.text.trim(),
+                                        ),
+                                      );
+                                    },
+                                    child: const Text(
+                                      "Forgot password?",
                                       style: TextStyle(color: mainColor),
-                                    )
-                                  ],
-                                );
-                              }),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Checkbox(
+                                    value: _isChecked.value,
+                                    onChanged: (b) {
+                                      _isChecked.value = b!;
+                                    },
+                                  ),
+                                  const Text(
+                                    "Remember me",
+                                    style: TextStyle(color: mainColor),
+                                  )
+                                ],
+                              );
+                            },
+                          ),
                           GlobalButton(
                             text: "Sign In",
                             onTap: () {
@@ -198,6 +204,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                 ),
                               );
                             },
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('signUp');
+                            },
+                            child: const Text(
+                              "Don't have an account?",
+                              style: TextStyle(color: mainColor),
+                            ),
                           ),
                           const SizedBox(
                             height: 16,
