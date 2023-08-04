@@ -21,5 +21,19 @@ class LoginSourceImpl implements LoginSource {
 
   @override
   Future<String> signIn(LoginCredentials loginCredentials) =>
-      _loginService.signIn(loginCredentials);
+      _loginService.signIn(
+        loginCredentials,
+      );
+
+  @override
+  Future<LoginCredentials> getLoginCredentials() =>
+      _loginService.getLoginCredentials();
+
+  @override
+  Future<void> rememberMe(String email, String password, bool toggleValue) =>
+      _loginService.rememberMe(
+        email,
+        password,
+        toggleValue,
+      );
 }

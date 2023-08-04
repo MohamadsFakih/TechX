@@ -17,6 +17,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           loginCredentials,
           emit,
         ),
+        rememberMe: (String email, String password, bool toggleValue) =>
+            _rememberMe(
+          emit,
+          email,
+          password,
+          toggleValue,
+        ),
+        getLoginCredentials: () => _getLoginCredentials(
+          emit,
+        ),
       );
     });
   }
@@ -58,6 +68,44 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(
       state.copyWith(
         isLoading: false,
+      ),
+    );
+  }
+
+  Future _rememberMe(Emitter<LoginState> emit, String email, String password,
+      bool toggleValue) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: '',
+      ),
+    );
+    await _loginUseCase.rememberMe(
+      email,
+      password,
+      toggleValue,
+    );
+
+    emit(
+      state.copyWith(
+        isLoading: false,
+      ),
+    );
+  }
+
+  Future _getLoginCredentials(Emitter<LoginState> emit) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: '',
+      ),
+    );
+    final result = await _loginUseCase.getLoginCredentials();
+
+    emit(
+      state.copyWith(
+        isLoading: false,
+        loginCredentials: result,
       ),
     );
   }

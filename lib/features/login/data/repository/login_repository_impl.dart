@@ -31,4 +31,16 @@ class LoginRepositoryImpl implements LoginRepository {
       return left(e.toString());
     }
   }
+
+  @override
+  Future<LoginCredentials> getLoginCredentials() =>
+      _loginSource.getLoginCredentials();
+
+  @override
+  Future<void> rememberMe(String email, String password, bool toggleValue) =>
+      _loginSource.rememberMe(
+        email,
+        password,
+        toggleValue,
+      );
 }
