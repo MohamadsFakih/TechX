@@ -26,6 +26,13 @@ class MiniItemView extends StatefulWidget {
 
 class _MiniItemViewState extends State<MiniItemView> {
   final TextEditingController _controller = TextEditingController();
+  ValueNotifier<List<MiniItemEntity>> _filteredItemList = ValueNotifier([]);
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredItemList.value = widget.itemList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,10 @@ class _MiniItemViewState extends State<MiniItemView> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          HomeSearchBar(searchController: _controller),
+          HomeSearchBar(
+            searchController: _controller,
+            onTextChanged: _onTextChanged,
+          ),
           const SizedBox(
             height: 16,
           ),
@@ -51,18 +61,26 @@ class _MiniItemViewState extends State<MiniItemView> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(
+                  8,
+                ),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(
+                    12,
+                  ),
                   color: Colors.white,
                 ),
                 child: Row(
                   children: [
                     Text(
                       "Sort By",
-                      style: TextStyle(color: Colors.grey.shade700),
+                      style: TextStyle(
+                        color: Colors.grey.shade700,
+                      ),
                     ),
-                    const Icon(Icons.arrow_drop_down),
+                    const Icon(
+                      Icons.arrow_drop_down,
+                    ),
                   ],
                 ),
               )
@@ -83,31 +101,52 @@ class _MiniItemViewState extends State<MiniItemView> {
                     ? const Center(
                         child: Text("No Items Found!"),
                       )
-                    : GridView.builder(
-                        itemCount: widget.itemList.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 200,
-                          childAspectRatio: 0.6,
-                          crossAxisSpacing: 20,
-                          mainAxisSpacing: 20,
-                        ),
-                        itemBuilder: (context, pos) {
-                          final MiniItemEntity itemEntity =
-                              widget.itemList[pos];
-                          final bool isLiked =
-                              itemEntity.likes.contains(widget.userId);
-                          return MiniItem(
-                            itemEntity: itemEntity,
-                            type: widget.itemType.name,
-                            liked: isLiked,
-                            id: widget.userId,
-                          );
-                        },
-                      ).animate().scale(),
+                    : Builder(builder: (context) {
+                        _filteredItemList.value = widget.itemList;
+
+                        return ValueListenableBuilder(
+                          valueListenable: _filteredItemList,
+                          builder: (context, value, _) {
+                            return GridView.builder(
+                              itemCount: _filteredItemList.value.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 200,
+                                childAspectRatio: 0.6,
+                                crossAxisSpacing: 20,
+                                mainAxisSpacing: 20,
+                              ),
+                              itemBuilder: (context, pos) {
+                                final MiniItemEntity itemEntity =
+                                    _filteredItemList.value[pos];
+                                final bool isLiked =
+                                    itemEntity.likes.contains(widget.userId);
+                                return MiniItem(
+                                  itemEntity: itemEntity,
+                                  type: widget.itemType.name,
+                                  liked: isLiked,
+                                  id: widget.userId,
+                                );
+                              },
+                            ).animate().scale();
+                          },
+                        );
+                      }),
           ),
         ],
       ),
     );
+  }
+
+  void _onTextChanged(String value) {
+    _filteredItemList.value = widget.itemList.where((
+      item,
+    ) {
+      final itemNameWithoutSpaces = item.name.replaceAll(' ', '').toLowerCase();
+      final queryWithoutSpaces = value.replaceAll(' ', '').toLowerCase();
+      return itemNameWithoutSpaces.contains(
+        queryWithoutSpaces,
+      );
+    }).toList();
   }
 }
