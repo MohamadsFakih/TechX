@@ -26,12 +26,17 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   late AnimationController animationController =
       AnimationController(vsync: this);
   final LoginBloc _loginBloc = getIt<LoginBloc>();
-  ValueNotifier<bool> isChecked = ValueNotifier(false);
+  ValueNotifier<bool> _isChecked = ValueNotifier(false);
 
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(vsync: this);
+    animationController = AnimationController(
+      vsync: this,
+    );
+    _loginBloc.add(
+      GetLoginCredentials(),
+    );
   }
 
   @override
@@ -44,42 +49,59 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: _loginBloc,
-      child: _buildLogin(),
+      child: BlocListener<LoginBloc, LoginState>(
+        listener: (context, state) {
+          if (state.loginCredentials.isRemembered) {
+            emailController.text = state.loginCredentials.email;
+            passwordController.text = state.loginCredentials.password;
+            if (_isChecked.value) {
+              _isChecked.value = state.loginCredentials.isRemembered;
+            }
+          }
+          if (state.error.isNotEmpty) {
+            SchedulerBinding.instance.addPostFrameCallback((_) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                CustomSnackAlert.showErrorSnackBar(state.error),
+              );
+            });
+          }
+          if (state.signedIn) {
+            SchedulerBinding.instance.addPostFrameCallback((_) {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                  builder: (context) => DefaultScreen(
+                    userId: state.userId,
+                  ),
+                ),
+                (route) => false,
+              );
+            });
+          }
+          if (state.isLoading) {
+            animationController.repeat(
+              period: const Duration(
+                milliseconds: 500,
+              ),
+            );
+          } else {
+            animationController.reset();
+          }
+        },
+        child: _buildLogin(),
+      ),
     );
   }
 
   Widget _buildLogin() {
     return Scaffold(
       body: Container(
-        color: Colors.black.withOpacity(.6),
+        color: Colors.black.withOpacity(
+          .6,
+        ),
         child: Center(
           child: SingleChildScrollView(
             child: SafeArea(child: BlocBuilder<LoginBloc, LoginState>(
               builder: (context, state) {
-                if (state.error.isNotEmpty) {
-                  SchedulerBinding.instance.addPostFrameCallback((_) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      CustomSnackAlert.showErrorSnackBar(state.error),
-                    );
-                  });
-                }
-                if (state.signedIn) {
-                  SchedulerBinding.instance.addPostFrameCallback((_) {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) => DefaultScreen(
-                            userId: state.userId,
-                          ),
-                        ),
-                        (route) => false);
-                  });
-                }
-                if (state.isLoading) {
-                  animationController.repeat(
-                      period: const Duration(milliseconds: 500));
-                } else {
-                  animationController.reset();
-                }
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
@@ -134,7 +156,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             height: 8,
                           ),
                           ValueListenableBuilder<bool>(
-                              valueListenable: isChecked,
+                              valueListenable: _isChecked,
                               builder: (context, value, child) {
                                 return Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -151,9 +173,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                     ),
                                     const Spacer(),
                                     Checkbox(
-                                      value: isChecked.value,
+                                      value: _isChecked.value,
                                       onChanged: (b) {
-                                        isChecked.value = b!;
+                                        _isChecked.value = b!;
                                       },
                                     ),
                                     const Text(
@@ -171,6 +193,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                   LoginCredentials(
                                     email: emailController.text.trim(),
                                     password: passwordController.text.trim(),
+                                    isRemembered: _isChecked.value,
                                   ),
                                 ),
                               );

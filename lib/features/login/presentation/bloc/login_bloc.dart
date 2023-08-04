@@ -45,18 +45,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       final result = await _loginUseCase.signIn(loginCredentials);
       result.fold(
-        (l) => emit(
-          state.copyWith(
-            error: l.toString(),
-          ),
-        ),
-        (r) => emit(
+          (l) => emit(
+                state.copyWith(
+                  error: l.toString(),
+                ),
+              ), (r) {
+        _rememberMe(
+          emit,
+          loginCredentials.email,
+          loginCredentials.password,
+          loginCredentials.isRemembered,
+        );
+        emit(
           state.copyWith(
             signedIn: true,
             userId: r,
           ),
-        ),
-      );
+        );
+      });
     } catch (e) {
       emit(
         state.copyWith(
@@ -74,22 +80,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   Future _rememberMe(Emitter<LoginState> emit, String email, String password,
       bool toggleValue) async {
-    emit(
-      state.copyWith(
-        isLoading: true,
-        error: '',
-      ),
-    );
     await _loginUseCase.rememberMe(
       email,
       password,
       toggleValue,
-    );
-
-    emit(
-      state.copyWith(
-        isLoading: false,
-      ),
     );
   }
 

@@ -58,13 +58,12 @@ class LoginService {
       final String email = prefs.getString('savedEmail') ?? '';
       final String pass = prefs.getString('savedPassword') ?? '';
       return LoginCredentials(
-        email: email,
-        password: pass,
-      );
+          email: email, password: pass, isRemembered: isRemembered);
     } else {
       return LoginCredentials(
         email: '',
         password: '',
+        isRemembered: false,
       );
     }
   }
