@@ -102,134 +102,148 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
         ),
         child: Center(
           child: SingleChildScrollView(
-            child: SafeArea(child: BlocBuilder<LoginBloc, LoginState>(
-              builder: (context, state) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    color: Colors.white,
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        children: [
-                          const Text(
-                            "TechX",
-                            style: TextStyle(
-                                color: mainColor,
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 32,
-                          ),
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Login to your account",
+            child: SafeArea(
+              child: BlocBuilder<LoginBloc, LoginState>(
+                builder: (context, state) {
+                  return Padding(
+                    padding: const EdgeInsets.all(
+                      8.0,
+                    ),
+                    child: Card(
+                      color: Colors.white,
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(
+                          16,
+                        ),
+                        child: Column(
+                          children: [
+                            const Text(
+                              "TechX",
                               style: TextStyle(
-                                color: textColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                                  color: mainColor,
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Login to your account",
+                                style: TextStyle(
+                                  color: textColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          LoginTextField(
-                            controller: emailController,
-                            hint: "Email",
-                            inputType: TextInputType.emailAddress,
-                            obscure: false,
-                            enabled: !state.isLoading,
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          LoginTextField(
-                            controller: passwordController,
-                            hint: "Password",
-                            inputType: TextInputType.text,
-                            obscure: true,
-                            enabled: !state.isLoading,
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          ValueListenableBuilder<bool>(
-                            valueListenable: _isChecked,
-                            builder: (context, value, child) {
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      _loginBloc.add(
-                                        SendPasswordReset(
-                                          emailController.text.trim(),
-                                        ),
-                                      );
-                                    },
-                                    child: const Text(
-                                      "Forgot password?",
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            LoginTextField(
+                              controller: emailController,
+                              hint: "Email",
+                              inputType: TextInputType.emailAddress,
+                              obscure: false,
+                              enabled: !state.isLoading,
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            LoginTextField(
+                              controller: passwordController,
+                              hint: "Password",
+                              inputType: TextInputType.text,
+                              obscure: true,
+                              enabled: !state.isLoading,
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            ValueListenableBuilder<bool>(
+                              valueListenable: _isChecked,
+                              builder: (context, value, child) {
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        _loginBloc.add(
+                                          SendPasswordReset(
+                                            emailController.text.trim(),
+                                          ),
+                                        );
+                                      },
+                                      child: const Text(
+                                        "Forgot password?",
+                                        style: TextStyle(color: mainColor),
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Checkbox(
+                                      value: _isChecked.value,
+                                      onChanged: (b) {
+                                        _isChecked.value = b!;
+                                      },
+                                    ),
+                                    const Text(
+                                      "Remember me",
                                       style: TextStyle(color: mainColor),
+                                    )
+                                  ],
+                                );
+                              },
+                            ),
+                            GlobalButton(
+                              text: "Sign In",
+                              onTap: () {
+                                _loginBloc.add(
+                                  SignIn(
+                                    LoginCredentials(
+                                      email: emailController.text.trim(),
+                                      password: passwordController.text.trim(),
+                                      isRemembered: _isChecked.value,
                                     ),
                                   ),
-                                  const Spacer(),
-                                  Checkbox(
-                                    value: _isChecked.value,
-                                    onChanged: (b) {
-                                      _isChecked.value = b!;
-                                    },
-                                  ),
-                                  const Text(
-                                    "Remember me",
-                                    style: TextStyle(color: mainColor),
-                                  )
-                                ],
-                              );
-                            },
-                          ),
-                          GlobalButton(
-                            text: "Sign In",
-                            onTap: () {
-                              _loginBloc.add(
-                                SignIn(
-                                  LoginCredentials(
-                                    email: emailController.text.trim(),
-                                    password: passwordController.text.trim(),
-                                    isRemembered: _isChecked.value,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed('signUp');
-                            },
-                            child: const Text(
-                              "Don't have an account?",
-                              style: TextStyle(color: mainColor),
+                                );
+                              },
                             ),
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          const SocialButton(),
-                        ],
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  'signUp',
+                                );
+                              },
+                              child: const Text(
+                                "Don't have an account?",
+                                style: TextStyle(
+                                  color: mainColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            const SocialButton(),
+                          ],
+                        ),
                       ),
-                    ),
+                    ).animate().slideY(
+                          duration: const Duration(milliseconds: 500),
+                        ),
                   )
-                      .animate()
-                      .slideY(duration: const Duration(milliseconds: 500)),
-                ).animate(controller: animationController).shimmer();
-              },
-            )),
+                      .animate(
+                        controller: animationController,
+                      )
+                      .shimmer();
+                },
+              ),
+            ),
           ),
         ),
       ),
