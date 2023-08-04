@@ -14,8 +14,8 @@ class MiniItemEntity with _$MiniItemEntity {
     @Default([]) List<String> imageLinks,
     @Default([]) List<String> models,
     @Default([]) List<String> colors,
-    @Default([]) List<String> specifications,
     @Default([]) List<String> likes,
+    @Default({}) Map<String, String> specifications,
   }) = _MiniItemEntity;
 
   factory MiniItemEntity.fromJson(Map<String, dynamic> json) =>

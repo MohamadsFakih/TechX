@@ -45,6 +45,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         ),
       );
     } catch (e) {
+      print(e.toString());
       emit(
         state.copyWith(
           error: e.toString(),
