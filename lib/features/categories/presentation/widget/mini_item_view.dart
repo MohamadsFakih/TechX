@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techx/core/data/model/enums.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/categories/presentation/widget/mini_item.dart';
 import 'package:techx/features/categories/presentation/widget/search_bar.dart';
+import 'package:techx/features/categories/presentation/widget/sorting_bottom_sheet.dart';
 
 class MiniItemView extends StatefulWidget {
   const MiniItemView({
@@ -27,6 +29,14 @@ class MiniItemView extends StatefulWidget {
 class _MiniItemViewState extends State<MiniItemView> {
   final TextEditingController _controller = TextEditingController();
   ValueNotifier<List<MiniItemEntity>> _filteredItemList = ValueNotifier([]);
+  final List<String> sortingOptions = [
+    'Name (A-Z)',
+    'Name (Z-A)',
+    'Price (Low to High)',
+    'Price (High to Low)'
+  ];
+
+  String sortingCriteria = 'Name (A-Z)';
 
   @override
   void initState() {
@@ -55,33 +65,38 @@ class _MiniItemViewState extends State<MiniItemView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.itemType.name,
+                widget.itemType.name.toUpperCase(),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.all(
-                  8,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    12,
+              InkWell(
+                onTap: () {
+                  _showCreditCardSelectionSheet(context);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(
+                    8,
                   ),
-                  color: Colors.white,
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      "Sort By",
-                      style: TextStyle(
-                        color: Colors.grey.shade700,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      12,
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Sort By",
+                        style: TextStyle(
+                          color: Colors.grey.shade700,
+                        ),
                       ),
-                    ),
-                    const Icon(
-                      Icons.arrow_drop_down,
-                    ),
-                  ],
+                      const Icon(
+                        Icons.arrow_drop_down,
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -148,5 +163,45 @@ class _MiniItemViewState extends State<MiniItemView> {
         queryWithoutSpaces,
       );
     }).toList();
+    _sortItems();
+  }
+
+  void _sortItems() {
+    List<MiniItemEntity> sortedList = List.from(_filteredItemList.value);
+    switch (sortingCriteria) {
+      case 'Name (A-Z)':
+        sortedList.sort((a, b) => a.name.compareTo(b.name));
+        break;
+      case 'Name (Z-A)':
+        sortedList.sort((a, b) => b.name.compareTo(a.name));
+        break;
+      case 'Price (Low to High)':
+        sortedList.sort((a, b) => a.price.compareTo(b.price));
+        break;
+      case 'Price (High to Low)':
+        sortedList.sort((a, b) => b.price.compareTo(a.price));
+        break;
+      default:
+        break;
+    }
+    _filteredItemList.value = sortedList;
+  }
+
+  void _showCreditCardSelectionSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: cardColor,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return SortingBottomSheet(
+          selectedValue: sortingCriteria,
+          sortingOptions: sortingOptions,
+          onOptionSelected: (option) {
+            sortingCriteria = option!;
+            _sortItems();
+          },
+        );
+      },
+    );
   }
 }
