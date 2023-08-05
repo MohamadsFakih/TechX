@@ -64,38 +64,48 @@ const List<Widget> laptopsSubCategories = [
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/used_laptop_sub.jpg",
-    name: "LaptopAccessories",
+    name: "Laptop Accessories",
     type: CategoryType.subCategory,
     miniSubCategoryType: MiniSubCategoryType.laptopAccessories,
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/business_laptop_sub.jpg",
-    name: "Business Laptops",
+    name: "Docking Stations",
     type: CategoryType.subCategory,
-    miniSubCategoryType: MiniSubCategoryType.businessLaptop,
+    miniSubCategoryType: MiniSubCategoryType.dockingStations,
   ),
 ];
 const List<Widget> tabletsSubCategories = [
   CategoryItem(
     coverImage: "assets/images/subCategory/ipad_tablet_sub.jpg",
     name: "Ipads",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.appleTablets,
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/samsung_tab_sub.jpg",
     name: "Samsung Tablets",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.samsungTablets,
   ),
 ];
 const List<Widget> wearablesSubCategories = [
   CategoryItem(
     coverImage: "assets/images/subCategory/samsung_buds_sub.jpg",
     name: "Earbuds",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.earbuds,
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/samsung_watch_sub.jpg",
     name: "Smart Watches",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.smartWatches,
   ),
   CategoryItem(
     coverImage: "assets/images/subCategory/headphones_buds_sub.jpg",
     name: "Headphones",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.headphones,
   ),
 ];

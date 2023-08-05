@@ -118,7 +118,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                   );
                 },
                 child: const Padding(
-                  padding: EdgeInsets.all(24.0),
+                  padding: EdgeInsets.all(
+                    24.0,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -128,7 +130,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                       SizedBox(
                         width: 4,
                       ),
-                      Text("Add to Cart")
+                      Text(
+                        "Add to Cart",
+                      )
                     ],
                   ),
                 ),
@@ -138,7 +142,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
               child: InkWell(
                 onTap: () {},
                 child: const Padding(
-                  padding: EdgeInsets.all(24.0),
+                  padding: EdgeInsets.all(
+                    24.0,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -148,7 +154,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                       SizedBox(
                         width: 4,
                       ),
-                      Text("Add to Favorites")
+                      Text(
+                        "Add to Favorites",
+                      )
                     ],
                   ),
                 ),

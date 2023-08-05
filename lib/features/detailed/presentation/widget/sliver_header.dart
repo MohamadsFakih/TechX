@@ -25,7 +25,7 @@ class DetailedSliverHeader extends StatelessWidget {
             itemCount: imageUrls.length,
             itemBuilder: (context, index) {
               return CachedNetworkImage(
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 imageUrl: imageUrls[index],
               );
             },
