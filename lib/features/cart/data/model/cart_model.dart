@@ -14,7 +14,7 @@ class CartModel with _$CartModel {
     @Default('') String model,
     @Default('') String color,
     @Default(0) int quantity,
-    @Default([]) List<dynamic> specifications,
+    @Default({}) Map<String, dynamic> specifications,
   }) = _CartModel;
 
   factory CartModel.fromSnapshot(DocumentSnapshot snapshot) {
