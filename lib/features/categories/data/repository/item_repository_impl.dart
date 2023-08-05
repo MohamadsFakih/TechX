@@ -16,20 +16,34 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
     final List<MiniItemModel> miniItemModels =
         await _miniItemSource.getItems(miniSubCategoryType);
     final List<MiniItemEntity> miniItemEntities = miniItemModels.map((model) {
-      List<String> stringImageList =
-          model.imageLinks.map((item) => item.toString()).toList();
+      List<String> stringImageList = model.imageLinks
+          .map(
+            (item) => item.toString(),
+          )
+          .toList();
 
-      List<String> stringColorList =
-          model.colors.map((item) => item.toString()).toList();
+      List<String> stringColorList = model.colors
+          .map(
+            (item) => item.toString(),
+          )
+          .toList();
 
-      List<String> stringModelList =
-          model.models.map((item) => item.toString()).toList();
+      List<String> stringModelList = model.models
+          .map(
+            (item) => item.toString(),
+          )
+          .toList();
 
-      List<String> stringSpecificationsList =
-          model.specifications.map((item) => item.toString()).toList();
+      List<String> stringLikesList = model.likes
+          .map(
+            (item) => item.toString(),
+          )
+          .toList();
 
-      List<String> stringLikesList =
-          model.likes.map((item) => item.toString()).toList();
+      Map<String, String> specificationMap =
+          model.specifications.map((key, value) {
+        return MapEntry(key, value.toString());
+      });
 
       return MiniItemEntity(
         id: model.id.trim(),
@@ -40,7 +54,7 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
         imageLinks: stringImageList,
         models: stringModelList,
         colors: stringColorList,
-        specifications: stringSpecificationsList,
+        specifications: specificationMap,
         likes: stringLikesList,
       );
     }).toList();
@@ -53,20 +67,34 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
     final List<MiniItemModel> miniItemModels =
         await _miniItemSource.getFavorites(uid);
     final List<MiniItemEntity> miniItemEntities = miniItemModels.map((model) {
-      List<String> stringImageList =
-          model.imageLinks.map((item) => item.toString()).toList();
+      List<String> stringImageList = model.imageLinks
+          .map(
+            (item) => item.toString(),
+          )
+          .toList();
 
-      List<String> stringColorList =
-          model.colors.map((item) => item.toString()).toList();
+      List<String> stringColorList = model.colors
+          .map(
+            (item) => item.toString(),
+          )
+          .toList();
 
-      List<String> stringModelList =
-          model.models.map((item) => item.toString()).toList();
+      List<String> stringModelList = model.models
+          .map(
+            (item) => item.toString(),
+          )
+          .toList();
 
-      List<String> stringSpecificationsList =
-          model.specifications.map((item) => item.toString()).toList();
+      List<String> stringLikesList = model.likes
+          .map(
+            (item) => item.toString(),
+          )
+          .toList();
 
-      List<String> stringLikesList =
-          model.likes.map((item) => item.toString()).toList();
+      Map<String, String> specificationMap =
+          model.specifications.map((key, value) {
+        return MapEntry(key, value.toString());
+      });
 
       return MiniItemEntity(
         id: model.id.trim(),
@@ -77,7 +105,7 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
         imageLinks: stringImageList,
         models: stringModelList,
         colors: stringColorList,
-        specifications: stringSpecificationsList,
+        specifications: specificationMap,
         likes: stringLikesList,
       );
     }).toList();

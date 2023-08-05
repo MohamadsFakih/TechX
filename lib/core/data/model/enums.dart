@@ -24,6 +24,9 @@ enum MiniSubCategoryType {
   samsungTablets,
   macbook,
   laptopAccessories,
-  businessLaptop,
+  dockingStations,
+  earbuds,
+  smartWatches,
+  headphones,
   none,
 }

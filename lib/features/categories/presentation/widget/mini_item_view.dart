@@ -170,16 +170,24 @@ class _MiniItemViewState extends State<MiniItemView> {
     List<MiniItemEntity> sortedList = List.from(_filteredItemList.value);
     switch (sortingCriteria) {
       case 'Name (A-Z)':
-        sortedList.sort((a, b) => a.name.compareTo(b.name));
+        sortedList.sort(
+          (a, b) => a.name.compareTo(b.name),
+        );
         break;
       case 'Name (Z-A)':
-        sortedList.sort((a, b) => b.name.compareTo(a.name));
+        sortedList.sort(
+          (a, b) => b.name.compareTo(a.name),
+        );
         break;
       case 'Price (Low to High)':
-        sortedList.sort((a, b) => a.price.compareTo(b.price));
+        sortedList.sort(
+          (a, b) => int.parse(a.price).compareTo(int.parse(b.price)),
+        );
         break;
       case 'Price (High to Low)':
-        sortedList.sort((a, b) => b.price.compareTo(a.price));
+        sortedList.sort(
+          (a, b) => int.parse(b.price).compareTo(int.parse(a.price)),
+        );
         break;
       default:
         break;

@@ -4,12 +4,13 @@ import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
 class DetailedBody extends StatefulWidget {
-  const DetailedBody(
-      {super.key,
-      required this.itemEntity,
-      required this.currentModelIndex,
-      required this.currentColorIndex,
-      required this.nbOfItems});
+  const DetailedBody({
+    super.key,
+    required this.itemEntity,
+    required this.currentModelIndex,
+    required this.currentColorIndex,
+    required this.nbOfItems,
+  });
 
   final MiniItemEntity itemEntity;
   final ValueNotifier<int> currentModelIndex;
@@ -29,11 +30,17 @@ class _DetailedBodyState extends State<DetailedBody> {
           minHeight: MediaQuery.of(context).size.height,
         ),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(
+            16,
+          ),
           decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
-                topRight: Radius.circular(20),
-                topLeft: Radius.circular(20),
+                topRight: Radius.circular(
+                  20,
+                ),
+                topLeft: Radius.circular(
+                  20,
+                ),
               ),
               color: Colors.white),
           child: Column(
@@ -68,7 +75,9 @@ class _DetailedBodyState extends State<DetailedBody> {
                   Text(
                     "\$${widget.itemEntity.price}",
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 24),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
                   ),
                   const Spacer(),
                   InkWell(
@@ -78,10 +87,16 @@ class _DetailedBodyState extends State<DetailedBody> {
                       }
                     },
                     child: const Card(
-                      margin: EdgeInsets.all(16),
+                      margin: EdgeInsets.all(
+                        16,
+                      ),
                       child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Text("-"),
+                        padding: EdgeInsets.all(
+                          8,
+                        ),
+                        child: Text(
+                          "-",
+                        ),
                       ),
                     ),
                   ),
@@ -99,7 +114,9 @@ class _DetailedBodyState extends State<DetailedBody> {
                   ),
                   InkWell(
                     onTap: () {
-                      widget.nbOfItems.value += 1;
+                      if (widget.nbOfItems.value < 6) {
+                        widget.nbOfItems.value += 1;
+                      }
                     },
                     child: const Card(
                       margin: EdgeInsets.all(16),
@@ -198,9 +215,6 @@ class _DetailedBodyState extends State<DetailedBody> {
               Container(
                 child: _buildTable(),
               ),
-              const SizedBox(
-                height: 8,
-              ),
             ],
           ),
         ),
@@ -208,51 +222,29 @@ class _DetailedBodyState extends State<DetailedBody> {
     );
   }
 
-  Table _buildTable() {
+  Widget _buildTable() {
     return Table(
-      border: TableBorder.all(color: Colors.black),
+      border: TableBorder.all(
+        color: Colors.black,
+      ),
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       columnWidths: const {
-        0: FixedColumnWidth(120),
+        0: FixedColumnWidth(
+          120,
+        ),
       },
       children: [
-        TableRow(
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-          ),
-          children: [
-            const TableCell(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Brand',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            TableCell(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  widget.itemEntity.specifications[0],
-                ),
-              ),
-            ),
-          ],
-        ),
-        if (widget.itemEntity.specifications.asMap().containsKey(1))
+        for (var entry in widget.itemEntity.specifications.entries)
           TableRow(
             decoration: BoxDecoration(
               color: Colors.grey[100],
             ),
             children: [
-              const TableCell(
+              TableCell(
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Model',
+                    entry.key,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -261,115 +253,11 @@ class _DetailedBodyState extends State<DetailedBody> {
               ),
               TableCell(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(widget.itemEntity.specifications[1]),
-                ),
-              ),
-            ],
-          ),
-        if (widget.itemEntity.specifications.asMap().containsKey(2))
-          TableRow(
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-            ),
-            children: [
-              const TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Dimensions',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  padding: const EdgeInsets.all(
+                    8.0,
                   ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    widget.itemEntity.specifications[2],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        if (widget.itemEntity.specifications.asMap().containsKey(3))
-          TableRow(
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-            ),
-            children: [
-              const TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Weight',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.itemEntity.specifications[3],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        if (widget.itemEntity.specifications.asMap().containsKey(4))
-          TableRow(
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-            ),
-            children: [
-              const TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Memory',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.itemEntity.specifications[4],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        if (widget.itemEntity.specifications.asMap().containsKey(5))
-          TableRow(
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-            ),
-            children: [
-              const TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'OS',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.itemEntity.specifications[5],
+                    entry.value,
                   ),
                 ),
               ),
