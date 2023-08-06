@@ -22,9 +22,13 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(
+          8.0,
+        ),
         child: Slidable(
-          key: const ValueKey(0),
+          key: const ValueKey(
+            0,
+          ),
           startActionPane: ActionPane(
             motion: const ScrollMotion(),
             children: [
@@ -37,7 +41,9 @@ class CartItem extends StatelessWidget {
                     ),
                   );
                 },
-                backgroundColor: const Color(0xFFFE4A49),
+                backgroundColor: const Color(
+                  0xFFFE4A49,
+                ),
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
                 label: 'Remove',
@@ -52,7 +58,6 @@ class CartItem extends StatelessWidget {
                 height: 100,
               ),
               Expanded(
-                // Wrap the Row with Expanded to take up available space
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

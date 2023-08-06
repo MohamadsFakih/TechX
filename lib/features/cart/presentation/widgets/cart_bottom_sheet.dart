@@ -20,6 +20,7 @@ class CreditCardSelectionSheet extends StatefulWidget {
 }
 
 class _CreditCardSelectionSheetState extends State<CreditCardSelectionSheet> {
+  /// The selected credit card from the list
   ValueNotifier<CreditEntity> selectedCard = ValueNotifier(CreditEntity());
 
   @override
@@ -36,7 +37,9 @@ class _CreditCardSelectionSheetState extends State<CreditCardSelectionSheet> {
       valueListenable: selectedCard,
       builder: (context, value, _) {
         return Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(
+            16,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -66,10 +69,17 @@ class _CreditCardSelectionSheetState extends State<CreditCardSelectionSheet> {
                   },
                   title: Row(
                     children: [
-                      CardUtils.getCardIcon(card.cardType) ?? Container(),
-                      const SizedBox(width: 8),
+                      CardUtils.getCardIcon(
+                            card.cardType,
+                          ) ??
+                          Container(),
+                      const SizedBox(
+                        width: 8,
+                      ),
                       Text(
-                        CardUtils.getFormattedCardNumber(card.cardNumber),
+                        CardUtils.getFormattedCardNumber(
+                          card.cardNumber,
+                        ),
                       ),
                     ],
                   ),
