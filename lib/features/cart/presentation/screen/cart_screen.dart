@@ -80,10 +80,18 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           ),
                         ),
-                        _buildList(
-                          state.items,
-                          state,
-                        ),
+                        state.items.isEmpty
+                            ? Expanded(
+                                child: Center(
+                                  child: Container(
+                                    child: Text("Cart is empty"),
+                                  ),
+                                ),
+                              )
+                            : _buildList(
+                                state.items,
+                                state,
+                              ),
                         CheckOutButton(
                           total: total,
                           cards: state.creditCards,

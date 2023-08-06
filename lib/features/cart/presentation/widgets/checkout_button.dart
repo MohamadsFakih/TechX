@@ -33,7 +33,9 @@ class CheckOutButton extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: () {
-                _showCreditCardSelectionSheet(context);
+                if (cartBloc.state.items.isNotEmpty) {
+                  _showCreditCardSelectionSheet(context);
+                }
               },
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
