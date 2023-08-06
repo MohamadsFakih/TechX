@@ -122,10 +122,8 @@ class _SettingsMainScreenState extends State<SettingsMainScreen> {
     );
   }
 
-  Future<void> _animateToPage(int value) => widget.controller.animateToPage(
+  void _animateToPage(int value) => widget.controller.jumpToPage(
         value,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.ease,
       );
 }
 

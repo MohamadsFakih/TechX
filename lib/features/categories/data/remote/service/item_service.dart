@@ -44,6 +44,21 @@ class MiniItemService {
       case MiniSubCategoryType.headphones:
         itemCollection = fireStore.collection("headphones");
         break;
+      case MiniSubCategoryType.cameras:
+        itemCollection = fireStore.collection("cameras");
+        break;
+      case MiniSubCategoryType.speakers:
+        itemCollection = fireStore.collection("speakers");
+        break;
+      case MiniSubCategoryType.consoles:
+        itemCollection = fireStore.collection("consoles");
+        break;
+      case MiniSubCategoryType.games:
+        itemCollection = fireStore.collection("games");
+        break;
+      case MiniSubCategoryType.controllers:
+        itemCollection = fireStore.collection("controllers");
+        break;
       default:
         break;
     }

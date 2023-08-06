@@ -92,12 +92,8 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            widget.controller.animateToPage(
+            widget.controller.jumpToPage(
               0,
-              duration: const Duration(
-                milliseconds: 300,
-              ),
-              curve: Curves.ease,
             );
           },
         ),

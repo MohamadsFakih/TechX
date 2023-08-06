@@ -76,6 +76,10 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       selectedList = tabletsSubCategories;
     } else if (state.category == SubCategoryType.wearables) {
       selectedList = wearablesSubCategories;
+    } else if (state.category == SubCategoryType.gadgets) {
+      selectedList = gadgetsSubCategories;
+    } else if (state.category == SubCategoryType.gaming) {
+      selectedList = gamingSubCategories;
     }
     emit(state.copyWith(selectedList: selectedList));
   }

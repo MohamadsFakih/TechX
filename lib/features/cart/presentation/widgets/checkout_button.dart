@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:techx/core/utils/mds.dart';
+import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:techx/features/cart/presentation/widgets/cart_bottom_sheet.dart';
 import 'package:techx/features/common/domain/entity/credit_entity.dart';
 
 class CheckOutButton extends StatelessWidget {
-  const CheckOutButton({super.key, required this.total, required this.cards});
+  const CheckOutButton({
+    super.key,
+    required this.total,
+    required this.cards,
+    required this.cartBloc,
+    required this.userId,
+  });
 
   final int total;
   final List<CreditEntity> cards;
+  final CartBloc cartBloc;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +73,16 @@ class CheckOutButton extends StatelessWidget {
         return CreditCardSelectionSheet(
           total: total.toString(),
           onCardSelected: (selectedCard) {
-            if (selectedCard != null) {}
+            if (selectedCard != null) {
+              cartBloc.add(
+                ClearCart(userId),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Purchase successful"),
+                ),
+              );
+            }
           },
           creditCards: cards,
         );
