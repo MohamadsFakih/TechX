@@ -7,8 +7,11 @@ import 'package:techx/features/categories/data/model/item_model.dart';
 class MiniItemService {
   MiniItemService(this.fireStore);
 
+  /// The instance of [FirebaseFirestore]
   final FirebaseFirestore fireStore;
 
+  /// The function to get the selected set of items
+  /// depending on the chosen sub category
   Future<List<MiniItemModel>> getItems(
       MiniSubCategoryType miniSubCategoryType) async {
     var itemCollection = fireStore.collection("applePhones");
@@ -65,20 +68,27 @@ class MiniItemService {
 
     final querySnapshot = await itemCollection.get();
 
-    final itemList =
-        querySnapshot.docs.map((e) => MiniItemModel.fromSnapshot(e)).toList();
+    final itemList = querySnapshot.docs
+        .map(
+          (e) => MiniItemModel.fromSnapshot(e),
+        )
+        .toList();
 
     return itemList;
   }
 
+  /// The function used to get the items the user added to their favorites
   Future<List<MiniItemModel>> getFavorites(String uid) async {
     var userCollection =
         fireStore.collection("users").doc(uid).collection("favorites");
 
     final querySnapshot = await userCollection.get();
 
-    final itemList =
-        querySnapshot.docs.map((e) => MiniItemModel.fromSnapshot(e)).toList();
+    final itemList = querySnapshot.docs
+        .map(
+          (e) => MiniItemModel.fromSnapshot(e),
+        )
+        .toList();
 
     return itemList;
   }

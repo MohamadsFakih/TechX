@@ -27,8 +27,13 @@ class MiniItemView extends StatefulWidget {
 }
 
 class _MiniItemViewState extends State<MiniItemView> {
+  /// The search bar controller
   final TextEditingController _controller = TextEditingController();
+
+  /// The original list of items but with applied filters
   ValueNotifier<List<MiniItemEntity>> _filteredItemList = ValueNotifier([]);
+
+  /// The sorting options available
   final List<String> sortingOptions = [
     'Name (A-Z)',
     'Name (Z-A)',
@@ -36,6 +41,7 @@ class _MiniItemViewState extends State<MiniItemView> {
     'Price (High to Low)'
   ];
 
+  /// The chosen sorting option
   String sortingCriteria = 'Name (A-Z)';
 
   @override
@@ -153,40 +159,60 @@ class _MiniItemViewState extends State<MiniItemView> {
     );
   }
 
+  /// To query the items depending on the search input
   void _onTextChanged(String value) {
-    _filteredItemList.value = widget.itemList.where((
-      item,
-    ) {
-      final itemNameWithoutSpaces = item.name.replaceAll(' ', '').toLowerCase();
-      final queryWithoutSpaces = value.replaceAll(' ', '').toLowerCase();
-      return itemNameWithoutSpaces.contains(
-        queryWithoutSpaces,
-      );
-    }).toList();
+    _filteredItemList.value = widget.itemList.where(
+      (
+        item,
+      ) {
+        final itemNameWithoutSpaces =
+            item.name.replaceAll(' ', '').toLowerCase();
+        final queryWithoutSpaces = value.replaceAll(' ', '').toLowerCase();
+        return itemNameWithoutSpaces.contains(
+          queryWithoutSpaces,
+        );
+      },
+    ).toList();
     _sortItems();
   }
 
+  /// Sort the list depending on the chosen sorting method
   void _sortItems() {
-    List<MiniItemEntity> sortedList = List.from(_filteredItemList.value);
+    List<MiniItemEntity> sortedList = List.from(
+      _filteredItemList.value,
+    );
+
     switch (sortingCriteria) {
       case 'Name (A-Z)':
         sortedList.sort(
-          (a, b) => a.name.compareTo(b.name),
+          (a, b) => a.name.compareTo(
+            b.name,
+          ),
         );
         break;
       case 'Name (Z-A)':
         sortedList.sort(
-          (a, b) => b.name.compareTo(a.name),
+          (a, b) => b.name.compareTo(
+            a.name,
+          ),
         );
         break;
       case 'Price (Low to High)':
         sortedList.sort(
-          (a, b) => int.parse(a.price).compareTo(int.parse(b.price)),
+          (a, b) => int.parse(a.price).compareTo(
+            int.parse(
+              b.price,
+            ),
+          ),
         );
         break;
       case 'Price (High to Low)':
         sortedList.sort(
-          (a, b) => int.parse(b.price).compareTo(int.parse(a.price)),
+          (a, b) => int.parse(b.price).compareTo(
+            int.parse(
+              a.price,
+            ),
+          ),
         );
         break;
       default:
@@ -195,6 +221,7 @@ class _MiniItemViewState extends State<MiniItemView> {
     _filteredItemList.value = sortedList;
   }
 
+  /// Show the bottom filter sheet
   void _showCreditCardSelectionSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,

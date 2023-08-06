@@ -19,9 +19,13 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen>
     with AutomaticKeepAliveClientMixin {
+  /// To keep the screen alive
   @override
   bool get wantKeepAlive => true;
+
+  /// The instance of [CategoryBloc]
   final CategoryBloc _categoryBloc = getIt<CategoryBloc>();
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -106,12 +110,14 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     );
   }
 
+  /// Build the main list categories
   Widget _buildListView() {
     return ListView(
       children: mainCategories,
     ).animate().fade();
   }
 
+  /// Build the list of sub categories
   Widget _subView(selectedList) {
     final List<Widget> result = selectedList;
     return ListView(

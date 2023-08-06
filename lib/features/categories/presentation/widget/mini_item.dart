@@ -29,8 +29,10 @@ class MiniItem extends StatefulWidget {
 }
 
 class _MiniItemState extends State<MiniItem> {
+  /// The instance of [UserBloc]
   final UserBloc _userBloc = getIt<UserBloc>();
 
+  /// To check if the item is liked or not
   final ValueNotifier<bool> _liked = ValueNotifier(false);
 
   @override

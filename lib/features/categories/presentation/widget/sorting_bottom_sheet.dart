@@ -17,6 +17,7 @@ class SortingBottomSheet extends StatefulWidget {
 }
 
 class _SortingBottomSheetState extends State<SortingBottomSheet> {
+  /// The selected sorting option
   ValueNotifier<String> selectedCard = ValueNotifier('');
 
   @override

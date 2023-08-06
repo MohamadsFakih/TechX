@@ -9,12 +9,19 @@ import '../model/item_model.dart';
 @Injectable(as: MiniItemRepository)
 class MiniItemRepositoryImpl implements MiniItemRepository {
   MiniItemRepositoryImpl(this._miniItemSource);
+
+  /// The instance of [MiniItemSource]
   final MiniItemSource _miniItemSource;
+
+  /// The function to get the selected set of items
   @override
   Future<List<MiniItemEntity>> getItems(
       MiniSubCategoryType miniSubCategoryType) async {
+    // Converting from dynamic to the specified type in each list
+
     final List<MiniItemModel> miniItemModels =
         await _miniItemSource.getItems(miniSubCategoryType);
+
     final List<MiniItemEntity> miniItemEntities = miniItemModels.map((model) {
       List<String> stringImageList = model.imageLinks
           .map(
@@ -42,7 +49,10 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
 
       Map<String, String> specificationMap =
           model.specifications.map((key, value) {
-        return MapEntry(key, value.toString());
+        return MapEntry(
+          key,
+          value.toString(),
+        );
       });
 
       return MiniItemEntity(
@@ -62,10 +72,14 @@ class MiniItemRepositoryImpl implements MiniItemRepository {
     return miniItemEntities;
   }
 
+  /// The function used to get the items the user added to their favorites
   @override
   Future<List<MiniItemEntity>> getFavorites(String uid) async {
     final List<MiniItemModel> miniItemModels =
         await _miniItemSource.getFavorites(uid);
+
+    // Converting from dynamic to the specified type in each list
+
     final List<MiniItemEntity> miniItemEntities = miniItemModels.map((model) {
       List<String> stringImageList = model.imageLinks
           .map(

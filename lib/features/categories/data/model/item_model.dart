@@ -6,15 +6,34 @@ part 'item_model.freezed.dart';
 @freezed
 class MiniItemModel with _$MiniItemModel {
   const factory MiniItemModel({
+    /// The id of the item
     @Default('') String id,
+
+    /// The name of the item
     @Default('') String name,
+
+    /// The cover image of the item
     @Default('') String image,
+
+    /// The price of the item
     @Default('') String price,
+
+    /// The item description
     @Default('') String description,
+
+    /// The images shown in the detailed page
     @Default([]) List<dynamic> imageLinks,
+
+    /// The different models of the item
     @Default([]) List<dynamic> models,
+
+    /// The different colors of the item
     @Default([]) List<dynamic> colors,
+
+    /// The user ids that added a favorite to the item
     @Default([]) List<dynamic> likes,
+
+    /// The specifications to build the table in teh detaield page
     @Default({}) Map<String, dynamic> specifications,
   }) = _MiniItemModel;
 

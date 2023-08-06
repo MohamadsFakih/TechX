@@ -24,8 +24,11 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     });
   }
 
+  /// The instance of [MiniItemUseCase]
   final MiniItemUseCase _miniItemUseCase;
 
+  /// The event to get the list of products
+  /// depending on the [MiniSubCategoryType]
   Future<void> _getItems(MiniSubCategoryType miniSubCategoryType,
       Emitter<CategoryState> emit) async {
     emit(
@@ -58,6 +61,8 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     );
   }
 
+  /// The function used to show sub categories
+  /// depending on the chosen [Category]
   Future<void> _showSubCategory(
       SubCategoryType category, Emitter<CategoryState> emit) async {
     emit(
@@ -84,6 +89,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     emit(state.copyWith(selectedList: selectedList));
   }
 
+  /// The function to show the main categories
   Future<void> _showMainCategory(Emitter<CategoryState> emit) async {
     emit(
       state.copyWith(
