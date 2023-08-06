@@ -14,7 +14,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  /// The instance of [UserBloc]
   final UserBloc _userBloc = getIt<UserBloc>();
+
+  /// To check if the screen should go the login page
   bool _shouldNavigateToLogin = true;
 
   @override
@@ -38,13 +41,20 @@ class _SplashScreenState extends State<SplashScreen> {
       child: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
           if (!state.isLoading) {
-            Future.delayed(const Duration(seconds: 2), () {
-              if (!_isLoggedIn(state)) {
-                _navigateToLogin();
-              } else {
-                _navigateToHome(state.id);
-              }
-            });
+            Future.delayed(
+              const Duration(
+                seconds: 2,
+              ),
+              () {
+                if (!_isLoggedIn(state)) {
+                  _navigateToLogin();
+                } else {
+                  _navigateToHome(
+                    state.id,
+                  );
+                }
+              },
+            );
           }
         },
         child: const Scaffold(
@@ -64,15 +74,19 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  /// Checks if the user is logged in by checking the user id
   bool _isLoggedIn(UserState state) {
     return state.id.isNotEmpty;
   }
 
+  /// Navigates to the home screen
   void _navigateToHome(String userId) {
     if (_shouldNavigateToLogin) {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (context) => DefaultScreen(userId: userId),
+          builder: (context) => DefaultScreen(
+            userId: userId,
+          ),
         ),
         (route) => false,
       );
