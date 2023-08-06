@@ -17,12 +17,8 @@ class SettingsFaqScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            controller.animateToPage(
+            controller.jumpToPage(
               0,
-              duration: const Duration(
-                milliseconds: 300,
-              ),
-              curve: Curves.ease,
             );
           },
         ),
