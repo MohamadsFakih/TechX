@@ -13,7 +13,10 @@ class TechXLogo extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-          color: mainColor, fontWeight: FontWeight.bold, fontSize: 28),
+        color: mainColor,
+        fontWeight: FontWeight.bold,
+        fontSize: 28,
+      ),
     );
   }
 }

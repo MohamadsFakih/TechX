@@ -25,8 +25,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       flexibleSpace: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20),
-            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(
+              20,
+            ),
+            bottomLeft: Radius.circular(
+              20,
+            ),
           ),
           gradient: LinearGradient(
             colors: [

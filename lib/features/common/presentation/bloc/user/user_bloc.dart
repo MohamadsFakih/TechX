@@ -13,16 +13,28 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc(this._useCase) : super(UserState.initial()) {
     on<UserEvent>((event, emit) async {
       await event.when(
-        checkSignedIn: () => _checkSignedIn(emit),
-        addLike: (MiniItemEntity item, String type) =>
-            _addAlike(item, type, emit),
-        getUid: () => _getUid(emit),
-        signOut: () => _signOut(emit),
+        checkSignedIn: () => _checkSignedIn(
+          emit,
+        ),
+        addLike: (MiniItemEntity item, String type) => _addAlike(
+          item,
+          type,
+          emit,
+        ),
+        getUid: () => _getUid(
+          emit,
+        ),
+        signOut: () => _signOut(
+          emit,
+        ),
       );
     });
   }
+
+  /// The instance of [UserUseCase]
   final UserUseCase _useCase;
 
+  /// The function to check if a user is signed in
   Future _checkSignedIn(Emitter<UserState> emit) async {
     emit(
       state.copyWith(isLoading: true, error: ''),
@@ -34,6 +46,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     ));
   }
 
+  /// The function to add and item to favorites
   Future _addAlike(
       MiniItemEntity item, String type, Emitter<UserState> emit) async {
     final result = await _useCase.addLike(item, type);
@@ -51,6 +64,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     );
   }
 
+  /// The function to get the current user id
   Future _getUid(Emitter<UserState> emit) async {
     emit(
       state.copyWith(
@@ -74,6 +88,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     );
   }
 
+  /// The function to sign the user out
   Future _signOut(Emitter<UserState> emit) async {
     emit(
       state.copyWith(

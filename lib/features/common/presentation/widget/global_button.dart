@@ -16,14 +16,21 @@ class GlobalButton extends StatelessWidget {
         height: 55,
         decoration: BoxDecoration(
             color: mainColor,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(
+              8,
+            ),
             boxShadow: [
-              BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10),
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+              ),
             ]),
         child: Text(
           text,
-          style:
-              const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

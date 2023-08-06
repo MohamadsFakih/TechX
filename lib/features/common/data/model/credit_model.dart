@@ -8,10 +8,19 @@ part 'credit_model.g.dart';
 @freezed
 class CreditCardModel with _$CreditCardModel {
   const factory CreditCardModel({
+    /// The credit card type
     @Default(MyCardType.invalid) MyCardType cardType,
+
+    /// The credit card number
     @Default('') String cardNumber,
+
+    /// The credit card holder
     @Default('') String cardHolder,
+
+    /// The credit card cvv
     @Default('') String cardCvv,
+
+    /// The credit card expiry date
     @Default('') String cardDate,
   }) = _CreditCardModel;
 

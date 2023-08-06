@@ -6,14 +6,19 @@ class CustomSnackAlert {
       content: Text(
         message.replaceAll("firebase_auth/", ""),
       ),
-      duration: const Duration(seconds: 2),
+      duration: const Duration(
+        seconds: 2,
+      ),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(
+            20,
+          ),
+          topRight: Radius.circular(
+            20,
+          ),
         ),
       ),
     );
   }
-// ... another snackbar
 }
