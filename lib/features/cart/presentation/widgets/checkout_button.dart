@@ -79,7 +79,7 @@ class CheckOutButton extends StatelessWidget {
               );
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text("Purchase completed"),
+                  content: Text("Purchase successful"),
                 ),
               );
             }

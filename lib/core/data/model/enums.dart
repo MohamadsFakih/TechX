@@ -28,5 +28,10 @@ enum MiniSubCategoryType {
   earbuds,
   smartWatches,
   headphones,
+  cameras,
+  speakers,
+  consoles,
+  controllers,
+  games,
   none,
 }

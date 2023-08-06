@@ -31,14 +31,14 @@ const List<Widget> mainCategories = [
   CategoryItem(
     coverImage: "assets/images/category/gadgets_category.jpg",
     name: "Gadgets",
+    type: CategoryType.category,
+    subCategory: SubCategoryType.gadgets,
   ),
   CategoryItem(
     coverImage: "assets/images/category/gaming_category.jpg",
     name: "Gaming",
-  ),
-  CategoryItem(
-    coverImage: "assets/images/category/accessories_category.jpg",
-    name: "Accessories",
+    type: CategoryType.category,
+    subCategory: SubCategoryType.gaming,
   ),
 ];
 const List<Widget> phoneSubCategories = [
@@ -107,5 +107,41 @@ const List<Widget> wearablesSubCategories = [
     name: "Headphones",
     type: CategoryType.subCategory,
     miniSubCategoryType: MiniSubCategoryType.headphones,
+  ),
+];
+
+const List<Widget> gadgetsSubCategories = [
+  CategoryItem(
+    coverImage: "assets/images/subCategory/cameras_sub.jpg",
+    name: "Cameras",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.cameras,
+  ),
+  CategoryItem(
+    coverImage: "assets/images/subCategory/speakers_sub.jpg",
+    name: "Speakers",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.speakers,
+  ),
+];
+
+const List<Widget> gamingSubCategories = [
+  CategoryItem(
+    coverImage: "assets/images/subCategory/consoles_sub.webp",
+    name: "Consoles",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.consoles,
+  ),
+  CategoryItem(
+    coverImage: "assets/images/subCategory/games_sub.webp",
+    name: "Games",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.games,
+  ),
+  CategoryItem(
+    coverImage: "assets/images/subCategory/controllers_sub.jpg",
+    name: "Controllers",
+    type: CategoryType.subCategory,
+    miniSubCategoryType: MiniSubCategoryType.controllers,
   ),
 ];
