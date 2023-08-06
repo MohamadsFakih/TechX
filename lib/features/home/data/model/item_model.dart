@@ -16,7 +16,6 @@ class ItemModel with _$ItemModel {
     @Default('') String price,
 
     /// The product cover image
-
     @Default('') String image,
   }) = _ItemModel;
 
@@ -34,6 +33,7 @@ class ItemModel with _$ItemModel {
 @freezed
 class BannerItem with _$BannerItem {
   const factory BannerItem({
+    /// The image of the banner
     @Default('') String image,
   }) = _BannerItem;
 
