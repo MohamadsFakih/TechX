@@ -6,10 +6,20 @@ import 'package:techx/features/detailed/data/remote/source/detailed_local_source
 @Injectable(as: DetailedLocalSource)
 class DetailedLocalSourceImpl implements DetailedLocalSource {
   DetailedLocalSourceImpl(this._detailedLocalService);
+
+  /// The instance of [DetailedLocalService]
   final DetailedLocalService _detailedLocalService;
 
+  /// The function to add an item to the cart
+  /// it takes the [item] user [id] and [quantity]
   @override
   Future<void> addToCart(MiniItemModel item, String id, int quantity,
           String model, String color) =>
-      _detailedLocalService.addToCart(item, id, quantity, model, color);
+      _detailedLocalService.addToCart(
+        item,
+        id,
+        quantity,
+        model,
+        color,
+      );
 }

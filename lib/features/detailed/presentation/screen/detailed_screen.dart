@@ -20,13 +20,25 @@ class DetailedScreen extends StatefulWidget {
 }
 
 class _DetailedScreenState extends State<DetailedScreen> {
+  /// The controller for the custom scroll view
   final ScrollController _controller = ScrollController();
+
+  /// To check if the sliver header should be shown
   final ValueNotifier<bool> _showHeaderNotifier = ValueNotifier<bool>(false);
+
+  /// The controller for the list of images in the sliver header
   final PageController _pageController = PageController();
+
+  /// The instance of [DetailedBloc]
   final DetailedBloc _detailedBloc = getIt<DetailedBloc>();
 
+  /// Used to track the selected model in the detailed body
   final ValueNotifier<int> _currentModelIndex = ValueNotifier(0);
+
+  /// Used to track the selected color in the detailed body
   final ValueNotifier<int> _currentColorIndex = ValueNotifier(0);
+
+  /// Used to track the item quantity in the detailed body
   final ValueNotifier<int> _nbOfItems = ValueNotifier<int>(1);
 
   @override
@@ -52,7 +64,10 @@ class _DetailedScreenState extends State<DetailedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(value: _detailedBloc, child: _buildScaffold());
+    return BlocProvider.value(
+      value: _detailedBloc,
+      child: _buildScaffold(),
+    );
   }
 
   Scaffold _buildScaffold() {
@@ -94,8 +109,14 @@ class _DetailedScreenState extends State<DetailedScreen> {
         ),
       ),
       bottomNavigationBar: Card(
-        margin: const EdgeInsets.all(0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+        margin: const EdgeInsets.all(
+          0,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            0,
+          ),
+        ),
         elevation: 10,
         child: Row(
           children: [
@@ -113,7 +134,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                   );
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Item added to cart.'),
+                      content: Text(
+                        'Item added to cart.',
+                      ),
                     ),
                   );
                 },

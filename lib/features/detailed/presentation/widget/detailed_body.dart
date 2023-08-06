@@ -119,10 +119,16 @@ class _DetailedBodyState extends State<DetailedBody> {
                       }
                     },
                     child: const Card(
-                      margin: EdgeInsets.all(16),
+                      margin: EdgeInsets.all(
+                        16,
+                      ),
                       child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Text("+"),
+                        padding: EdgeInsets.all(
+                          8,
+                        ),
+                        child: Text(
+                          "+",
+                        ),
                       ),
                     ),
                   ),
@@ -133,7 +139,9 @@ class _DetailedBodyState extends State<DetailedBody> {
               ),
               Text(
                 widget.itemEntity.description,
-                style: const TextStyle(fontSize: 14),
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
               ),
               const SizedBox(
                 height: 16,
@@ -144,8 +152,10 @@ class _DetailedBodyState extends State<DetailedBody> {
                   children: [
                     const Text(
                       "Model :",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                     const SizedBox(
                       height: 4,
@@ -163,7 +173,9 @@ class _DetailedBodyState extends State<DetailedBody> {
                                 pos,
                               ) {
                                 return _buildModel(
-                                    widget.itemEntity.models[pos], pos);
+                                  widget.itemEntity.models[pos],
+                                  pos,
+                                );
                               },
                             ));
                       },
@@ -179,8 +191,10 @@ class _DetailedBodyState extends State<DetailedBody> {
                   children: [
                     const Text(
                       "Color :",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                     ValueListenableBuilder(
                       valueListenable: widget.currentColorIndex,
@@ -195,20 +209,27 @@ class _DetailedBodyState extends State<DetailedBody> {
                                 pos,
                               ) {
                                 return _buildColorItem(
-                                    widget.itemEntity.colors[pos], pos);
+                                  widget.itemEntity.colors[pos],
+                                  pos,
+                                );
                               },
                             ));
                       },
                     ),
                   ],
                 ),
-              const SizedBox(
-                height: 4,
-              ),
-              const Text(
-                "Specifications :",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
+              if (widget.itemEntity.specifications.entries.isNotEmpty) ...[
+                const SizedBox(
+                  height: 4,
+                ),
+                const Text(
+                  "Specifications :",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
               const SizedBox(
                 height: 8,
               ),
@@ -222,51 +243,55 @@ class _DetailedBodyState extends State<DetailedBody> {
     );
   }
 
+  /// Builds the specifications table
   Widget _buildTable() {
-    return Table(
-      border: TableBorder.all(
-        color: Colors.black,
-      ),
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      columnWidths: const {
-        0: FixedColumnWidth(
-          120,
-        ),
-      },
-      children: [
-        for (var entry in widget.itemEntity.specifications.entries)
-          TableRow(
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
+    return widget.itemEntity.specifications.entries.isEmpty
+        ? Container()
+        : Table(
+            border: TableBorder.all(
+              color: Colors.black,
             ),
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            columnWidths: const {
+              0: FixedColumnWidth(
+                120,
+              ),
+            },
             children: [
-              TableCell(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    entry.key,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+              for (var entry in widget.itemEntity.specifications.entries)
+                TableRow(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                  ),
+                  children: [
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          entry.key,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(
+                          8.0,
+                        ),
+                        child: Text(
+                          entry.value,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: const EdgeInsets.all(
-                    8.0,
-                  ),
-                  child: Text(
-                    entry.value,
-                  ),
-                ),
-              ),
             ],
-          ),
-      ],
-    );
+          );
   }
 
+  /// Build the models list
   Widget _buildModel(String name, int index) {
     return Padding(
       padding: const EdgeInsets.all(8),
@@ -274,12 +299,18 @@ class _DetailedBodyState extends State<DetailedBody> {
         onTap: () {
           widget.currentModelIndex.value = index;
         },
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(
+          16,
+        ),
         child: Container(
           width: 80,
-          padding: const EdgeInsets.all(4),
+          padding: const EdgeInsets.all(
+            4,
+          ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(
+              16,
+            ),
             color: index == widget.currentModelIndex.value
                 ? Colors.black
                 : miniItemImageColor,
@@ -288,9 +319,10 @@ class _DetailedBodyState extends State<DetailedBody> {
             child: Text(
               name,
               style: TextStyle(
-                  color: index == widget.currentModelIndex.value
-                      ? Colors.white
-                      : Colors.black),
+                color: index == widget.currentModelIndex.value
+                    ? Colors.white
+                    : Colors.black,
+              ),
             ),
           ),
         ),
@@ -298,6 +330,7 @@ class _DetailedBodyState extends State<DetailedBody> {
     );
   }
 
+  /// Build the colors list
   Widget _buildColorItem(String s, int index) {
     int v = int.parse(s);
     return InkWell(
@@ -305,13 +338,21 @@ class _DetailedBodyState extends State<DetailedBody> {
         widget.currentColorIndex.value = index;
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8.0,
+        ),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(
+            16,
+          ),
           decoration: BoxDecoration(
             border: widget.currentColorIndex.value == index
-                ? Border.all(width: 2)
-                : Border.all(width: 0),
+                ? Border.all(
+                    width: 2,
+                  )
+                : Border.all(
+                    width: 0,
+                  ),
             shape: BoxShape.circle,
             color: Color(v),
           ),

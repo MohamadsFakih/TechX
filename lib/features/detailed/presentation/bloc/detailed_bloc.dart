@@ -19,9 +19,18 @@ class DetailedBloc extends Bloc<DetailedEvent, DetailedState> {
     });
   }
 
+  /// The instance of [DetailedUseCase]
   final DetailedUseCase _detailedUseCase;
-  Future _addToCart(Emitter<DetailedState> emit, MiniItemEntity entity,
-      String id, int quantity, String model, String color) async {
+
+  /// The function used to add an item to the cart
+  Future _addToCart(
+    Emitter<DetailedState> emit,
+    MiniItemEntity entity,
+    String id,
+    int quantity,
+    String model,
+    String color,
+  ) async {
     emit(
       state.copyWith(isLoading: true, error: ''),
     );
@@ -35,11 +44,16 @@ class DetailedBloc extends Bloc<DetailedEvent, DetailedState> {
       );
     } catch (e) {
       emit(
-        state.copyWith(error: e.toString()),
+        state.copyWith(
+          error: e.toString(),
+        ),
       );
     }
     emit(
-      state.copyWith(isLoading: false, error: ''),
+      state.copyWith(
+        isLoading: false,
+        error: '',
+      ),
     );
   }
 }

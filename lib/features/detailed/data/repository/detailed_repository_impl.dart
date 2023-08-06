@@ -7,7 +7,12 @@ import 'package:techx/features/detailed/domain/repository/detailed_repository.da
 @Injectable(as: DetailedRepository)
 class DetailedRepositoryImpl implements DetailedRepository {
   DetailedRepositoryImpl(this._detailedLocalSource);
+
+  /// The instance of [DetailedLocalSource]
   final DetailedLocalSource _detailedLocalSource;
+
+  /// The function to add an item to the cart
+  /// it takes the [item] user [id] and [quantity]
   @override
   Future<void> addToCart(MiniItemEntity item, String id, int quantity,
       String model, String color) async {

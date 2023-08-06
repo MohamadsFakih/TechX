@@ -41,7 +41,9 @@ class DetailedSliverHeader extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.only(
+                bottom: 16,
+              ),
               child: SmoothPageIndicator(
                 controller: pageController,
                 count: imageUrls.length,
