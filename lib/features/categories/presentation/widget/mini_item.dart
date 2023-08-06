@@ -54,11 +54,25 @@ class _MiniItemState extends State<MiniItem> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => DetailedScreen(
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  DetailedScreen(
                 miniItemEntity: widget.itemEntity,
                 id: widget.id,
               ),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = Offset(0.0, 1.0);
+                const end = Offset.zero;
+                final tween = Tween(begin: begin, end: end);
+                final offsetAnimation = animation.drive(tween);
+
+                return SlideTransition(
+                  position: offsetAnimation,
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 600),
             ),
           );
         },
@@ -110,17 +124,25 @@ class _MiniItemState extends State<MiniItem> {
                                 )
                                 .shimmer()
                                 .toggle(
-                                  builder: (context, value, child) => child,
+                                  builder: (
+                                    context,
+                                    value,
+                                    child,
+                                  ) =>
+                                      child,
                                 );
                           },
                         ),
                       ),
                     ),
-                  CachedNetworkImage(
-                    imageUrl: widget.itemEntity.image,
-                    fit: BoxFit.fill,
-                    placeholder: (context, url) => const Image(
-                        image: AssetImage("assets/images/placeholder.jpg")),
+                  Hero(
+                    tag: widget.itemEntity.image,
+                    child: CachedNetworkImage(
+                      imageUrl: widget.itemEntity.image,
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) => const Image(
+                          image: AssetImage("assets/images/placeholder.jpg")),
+                    ),
                   ),
                 ],
               ),

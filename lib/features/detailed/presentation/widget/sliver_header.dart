@@ -24,10 +24,18 @@ class DetailedSliverHeader extends StatelessWidget {
             controller: pageController,
             itemCount: imageUrls.length,
             itemBuilder: (context, index) {
-              return CachedNetworkImage(
-                fit: BoxFit.contain,
-                imageUrl: imageUrls[index],
-              );
+              return index == 0
+                  ? Hero(
+                      tag: imageUrls.first,
+                      child: CachedNetworkImage(
+                        fit: BoxFit.contain,
+                        imageUrl: imageUrls[index],
+                      ),
+                    )
+                  : CachedNetworkImage(
+                      fit: BoxFit.contain,
+                      imageUrl: imageUrls[index],
+                    );
             },
           ),
           Align(
