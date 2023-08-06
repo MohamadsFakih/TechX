@@ -17,9 +17,13 @@ class DefaultScreen extends StatefulWidget {
 }
 
 class _DefaultScreenState extends State<DefaultScreen> {
+  /// The current page index
   final ValueNotifier<int> _currentIndex = ValueNotifier(2);
+
+  /// The instance of [PageController]
   late final PageController _controller;
 
+  /// The list of screens
   late final List<Widget> screens = [
     CartScreen(
       userId: widget.userId,
@@ -68,6 +72,8 @@ class _DefaultScreenState extends State<DefaultScreen> {
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
+
+  /// Build the bottom nav
 
   Widget _buildBottomNavigationBar() {
     return ValueListenableBuilder(
@@ -128,6 +134,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
         });
   }
 
+  /// Build the bottom nav bar selected icon
   Widget _buildSelectedIcon(IconData icon) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -150,6 +157,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
     );
   }
 
+  /// The function called when a nav bar item is pressed
   void _onBottomTapped(int value) {
     _currentIndex.value = value;
     _controller.animateToPage(
