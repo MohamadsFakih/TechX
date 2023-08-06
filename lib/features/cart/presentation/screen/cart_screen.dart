@@ -87,6 +87,8 @@ class _CartScreenState extends State<CartScreen> {
                         CheckOutButton(
                           total: total,
                           cards: state.creditCards,
+                          cartBloc: _cartBloc,
+                          userId: widget.userId,
                         )
                       ],
                     ),
