@@ -18,6 +18,7 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
+  /// The instance of [FavoriteBloc]
   final FavoriteBloc _favoriteBloc = getIt<FavoriteBloc>();
 
   @override
@@ -43,7 +44,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
   Widget _buildPadding() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(
+        8.0,
+      ),
       child: SafeArea(
         child: Column(
           children: [

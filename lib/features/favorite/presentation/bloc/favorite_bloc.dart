@@ -20,8 +20,11 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
       );
     });
   }
+
+  /// The instance of [MiniItemUseCase]
   final MiniItemUseCase _useCase;
 
+  /// The function to get the favorite products
   Future _getFavorites(String uid, Emitter<FavoriteState> emit) async {
     emit(
       state.copyWith(
