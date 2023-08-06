@@ -23,10 +23,16 @@ class CheckOutButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(
+            20,
+          ),
+          topRight: Radius.circular(
+            20,
+          ),
         ),
-        color: redTypeColor.withOpacity(.8),
+        color: redTypeColor.withOpacity(
+          .8,
+        ),
       ),
       child: Row(
         children: [
@@ -38,7 +44,9 @@ class CheckOutButton extends StatelessWidget {
                 }
               },
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(
+                  16.0,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -77,11 +85,15 @@ class CheckOutButton extends StatelessWidget {
           onCardSelected: (selectedCard) {
             if (selectedCard != null) {
               cartBloc.add(
-                ClearCart(userId),
+                ClearCart(
+                  userId,
+                ),
               );
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text("Purchase successful"),
+                  content: Text(
+                    "Purchase successful",
+                  ),
                 ),
               );
             }

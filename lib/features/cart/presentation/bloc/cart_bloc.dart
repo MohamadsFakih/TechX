@@ -12,18 +12,36 @@ part 'cart_bloc.freezed.dart';
 @injectable
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc(this._cartUseCase) : super(CartState.initial()) {
-    on<CartEvent>((event, emit) async {
-      await event.when(
-          getCartItems: (String id) => _getCartItems(emit, id),
-          removeCartItem: (String userId, String itemId) =>
-              _removeCartItem(emit, userId, itemId),
-          clearCart: (String userId) => _clearCart(emit, userId),
-          getCreditCards: () => _getCreditCards(emit));
-    });
+    on<CartEvent>(
+      (event, emit) async {
+        await event.when(
+          getCartItems: (String id) => _getCartItems(
+            emit,
+            id,
+          ),
+          removeCartItem: (
+            String userId,
+            String itemId,
+          ) =>
+              _removeCartItem(
+            emit,
+            userId,
+            itemId,
+          ),
+          clearCart: (String userId) => _clearCart(
+            emit,
+            userId,
+          ),
+          getCreditCards: () => _getCreditCards(emit),
+        );
+      },
+    );
   }
 
+  /// The instance of [CartUseCase]
   final CartUseCase _cartUseCase;
 
+  /// The function used to get the user's cart with [userID]
   Future _getCartItems(Emitter<CartState> emit, String id) async {
     emit(
       state.copyWith(isLoading: true, error: ''),
@@ -44,6 +62,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     );
   }
 
+  /// The function used to remove a cart item with [itemId] from [userId]
   Future _removeCartItem(
       Emitter<CartState> emit, String userId, String itemId) async {
     final result = await _cartUseCase.removeCartItem(itemId, userId);
@@ -56,6 +75,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     );
   }
 
+  /// The function used to clear the cart of the user [userId]
   Future _clearCart(Emitter<CartState> emit, String userId) async {
     final result = await _cartUseCase.clearCart(userId);
     await result.fold(
@@ -67,6 +87,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     );
   }
 
+  /// The function used to get the list of credit cards from [SharedPreferences]
   Future _getCreditCards(Emitter<CartState> emit) async {
     emit(
       state.copyWith(

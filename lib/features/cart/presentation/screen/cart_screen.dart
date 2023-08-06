@@ -19,7 +19,10 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  /// The instance of [CartBloc]
   final CartBloc _cartBloc = getIt<CartBloc>();
+
+  /// The total price of the items in the cart
   int total = 0;
 
   @override
