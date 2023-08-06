@@ -6,8 +6,10 @@ import 'package:techx/features/home/data/model/item_model.dart';
 class HomeService {
   HomeService(this.fireStore);
 
+  /// The instance of [FirebaseFirestore]
   final FirebaseFirestore fireStore;
 
+  /// The function used to fetch the featured products
   Future<List<ItemModel>> getFeatured() async {
     final userCollection = fireStore.collection("featured");
 
@@ -19,6 +21,7 @@ class HomeService {
     return itemList;
   }
 
+  /// The function used to fetch the banners
   Future<List<BannerItem>> getBanners() async {
     final userCollection = fireStore.collection("banners");
 
@@ -30,6 +33,7 @@ class HomeService {
     return itemList;
   }
 
+  /// The function used to fetch the new products
   Future<List<ItemModel>> getNew() async {
     final userCollection = fireStore.collection("new");
 

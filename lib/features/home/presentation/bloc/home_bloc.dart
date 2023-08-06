@@ -19,8 +19,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           getNew: () => _getNew(emit));
     });
   }
+
+  /// The instance of [HomeUseCase]
   final HomeUseCase _homeUseCase;
 
+  /// The function to get the featured products
   Future<void> _getFeatured(Emitter<HomeState> emit) async {
     try {
       await _homeUseCase
@@ -33,6 +36,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
+  /// The function to get the banners
   _getBanners(Emitter<HomeState> emit) async {
     try {
       await _homeUseCase
@@ -47,6 +51,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
+  /// The function to get the new products
   _getNew(Emitter<HomeState> emit) async {
     try {
       await _homeUseCase
@@ -61,6 +66,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
+  /// The function that runs all of the above together
   _fetch(Emitter<HomeState> emit) async {
     emit(state.copyWith(
       isLoading: true,

@@ -12,12 +12,18 @@ class HomeBanner extends StatelessWidget {
         Container(
           height: 200,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(
+              30,
+            ),
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(
+              30,
+            ),
             child: Image(
-              image: NetworkImage(image),
+              image: NetworkImage(
+                image,
+              ),
               fit: BoxFit.fill,
             ),
           ),

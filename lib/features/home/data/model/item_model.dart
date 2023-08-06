@@ -6,9 +6,17 @@ part 'item_model.freezed.dart';
 @freezed
 class ItemModel with _$ItemModel {
   const factory ItemModel({
+    /// The product id
     @Default('') String id,
+
+    /// The product name
     @Default('') String name,
+
+    /// The product price
     @Default('') String price,
+
+    /// The product cover image
+
     @Default('') String image,
   }) = _ItemModel;
 

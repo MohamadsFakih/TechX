@@ -14,18 +14,28 @@ class HomeBrandItem extends StatelessWidget {
       child: Card(
         elevation: 2,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(80),
-          side: const BorderSide(color: Colors.grey),
+          borderRadius: BorderRadius.circular(
+            80,
+          ),
+          side: const BorderSide(
+            color: Colors.grey,
+          ),
         ),
         color: searchBarColor,
         child: InkWell(
-          borderRadius: BorderRadius.circular(80),
+          borderRadius: BorderRadius.circular(
+            80,
+          ),
           onTap: () {},
           child: Center(
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(
+                8,
+              ),
               child: Image(
-                image: AssetImage(image),
+                image: AssetImage(
+                  image,
+                ),
               ),
             ),
           ),

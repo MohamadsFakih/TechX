@@ -6,8 +6,11 @@ import 'package:techx/features/home/data/model/item_model.dart';
 import 'package:techx/features/home/presentation/widgets/home_banner.dart';
 
 class ListBanners extends StatefulWidget {
-  const ListBanners(
-      {super.key, required this.pageController, required this.items});
+  const ListBanners({
+    super.key,
+    required this.pageController,
+    required this.items,
+  });
 
   final PageController pageController;
   final List<BannerItem> items;
@@ -17,7 +20,10 @@ class ListBanners extends StatefulWidget {
 }
 
 class _ListBannersState extends State<ListBanners> {
+  /// The timer for the auto banner scroll
   late Timer _timer;
+
+  /// The current banner index in the list
   int _currentPage = 0;
 
   @override
@@ -46,7 +52,9 @@ class _ListBannersState extends State<ListBanners> {
                 _currentPage = pos;
                 _timer.cancel();
                 startTime();
-                return HomeBanner(image: widget.items[pos].image);
+                return HomeBanner(
+                  image: widget.items[pos].image,
+                );
               }),
         ),
         const SizedBox(
@@ -64,18 +72,24 @@ class _ListBannersState extends State<ListBanners> {
     );
   }
 
+  /// Starts the timer for the auto banner scroll
   void startTime() {
-    _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
-      if (_currentPage < widget.items.length - 1) {
-        _currentPage++;
-      } else {
-        _currentPage = 0;
-      }
-      widget.pageController.animateToPage(
-        _currentPage,
-        duration: const Duration(milliseconds: 350),
-        curve: Curves.easeIn,
-      );
-    });
+    _timer = Timer.periodic(
+      const Duration(seconds: 5),
+      (Timer timer) {
+        if (_currentPage < widget.items.length - 1) {
+          _currentPage++;
+        } else {
+          _currentPage = 0;
+        }
+        widget.pageController.animateToPage(
+          _currentPage,
+          duration: const Duration(
+            milliseconds: 350,
+          ),
+          curve: Curves.easeIn,
+        );
+      },
+    );
   }
 }

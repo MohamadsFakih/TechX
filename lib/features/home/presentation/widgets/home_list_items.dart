@@ -38,14 +38,16 @@ class HomeListItems extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return FeaturedItem(
-                      image: items[index].image,
-                      name: items[index].name,
-                      price: items[index].price);
-                }),
+              scrollDirection: Axis.horizontal,
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                return FeaturedItem(
+                  image: items[index].image,
+                  name: items[index].name,
+                  price: items[index].price,
+                );
+              },
+            ),
           ),
         ],
       ),

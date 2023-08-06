@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:techx/core/utils/mds.dart';
 
 class FeaturedItem extends StatelessWidget {
-  const FeaturedItem(
-      {super.key,
-      required this.image,
-      required this.name,
-      required this.price});
+  const FeaturedItem({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.price,
+  });
 
   final String image;
   final String name;
@@ -22,10 +23,14 @@ class FeaturedItem extends StatelessWidget {
             elevation: 2,
             color: cardColor,
             child: InkWell(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(
+                15,
+              ),
               onTap: () {},
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(
+                  8.0,
+                ),
                 child: Column(
                   children: [
                     SizedBox(
@@ -42,7 +47,9 @@ class FeaturedItem extends StatelessWidget {
                       child: Text(
                         name,
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     const Spacer(),
@@ -52,9 +59,10 @@ class FeaturedItem extends StatelessWidget {
                         Text(
                           "\$$price",
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: redTypeColor,
-                              fontSize: 26),
+                            fontWeight: FontWeight.bold,
+                            color: redTypeColor,
+                            fontSize: 26,
+                          ),
                         ),
                         const Icon(
                           Icons.shopping_cart,
@@ -68,7 +76,9 @@ class FeaturedItem extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(
+              16.0,
+            ),
             child: Align(
               alignment: Alignment.topRight,
               child: Icon(

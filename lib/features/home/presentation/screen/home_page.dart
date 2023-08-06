@@ -21,11 +21,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
+  /// To keep the page alive
   @override
   bool get wantKeepAlive => true;
 
+  /// The instance of [HomeBloc]
   final HomeBloc _bloc = getIt<HomeBloc>();
+
+  /// The list of featured products
   List<ItemModel> featuredList = [];
+
+  /// The controller for the banners
   final PageController _pageController = PageController(initialPage: 0);
 
   @override
