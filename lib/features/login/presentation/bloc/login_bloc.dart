@@ -35,8 +35,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     });
   }
 
+  /// The instance of [LoginUseCase]
   final LoginUseCase _loginUseCase;
 
+  /// The saved login credentials (locally)
   Future<void> _signIn(
       LoginCredentials loginCredentials, Emitter<LoginState> emit) async {
     emit(
@@ -82,6 +84,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     );
   }
 
+  /// The event called to save the user's credentials
   Future _rememberMe(Emitter<LoginState> emit, String email, String password,
       bool toggleValue) async {
     await _loginUseCase.rememberMe(
@@ -91,6 +94,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     );
   }
 
+  /// The event called to get the user's saved credentials
   Future _getLoginCredentials(Emitter<LoginState> emit) async {
     emit(
       state.copyWith(
@@ -108,6 +112,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     );
   }
 
+  /// The event to send a password reset email
   Future _sendPasswordReset(Emitter<LoginState> emit, String email) async {
     emit(
       state.copyWith(

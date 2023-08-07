@@ -21,12 +21,23 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
+  /// The controller for the email text field
   final TextEditingController emailController = TextEditingController();
+
+  /// The controller for the password text field
   final TextEditingController passwordController = TextEditingController();
+
+  /// The controller for the loading animation
   late AnimationController animationController =
       AnimationController(vsync: this);
+
+  /// The instance of [LoginBloc]
   final LoginBloc _loginBloc = getIt<LoginBloc>();
+
+  /// The bool to check if the remember me box is ticked
   ValueNotifier<bool> _isChecked = ValueNotifier(false);
+
+  /// Checks if the user already entered the page
   bool firstEnter = false;
 
   @override
