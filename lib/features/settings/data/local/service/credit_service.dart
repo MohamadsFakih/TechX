@@ -6,6 +6,7 @@ import 'package:techx/features/common/data/model/credit_model.dart';
 
 @injectable
 class CreditService {
+  /// The function that gets the stored credit cards in the shared preferences
   Future<List<CreditCardModel>> getCreditCard() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final cardsJson = prefs.getStringList('creditCards');
@@ -20,6 +21,7 @@ class CreditService {
     return creditCards;
   }
 
+  /// The function that adds a credit card to the shared preferences
   Future<void> addCreditCard(CreditCardModel creditCard) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<CreditCardModel> existingCards = await getCreditCard();
@@ -32,6 +34,7 @@ class CreditService {
     await prefs.setStringList('creditCards', cardsJson);
   }
 
+  /// The function that deletes a credit card
   Future<void> deleteCreditCard(String cardNumber) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<CreditCardModel> existingCards = await getCreditCard();
