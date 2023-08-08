@@ -10,6 +10,8 @@ class CreditRepositoryImpl implements CreditRepository {
   CreditRepositoryImpl(this._creditSource);
   final CreditSource _creditSource;
 
+  /// The function that adds a credit card to the shared preferences
+  /// Returns either an error [String] or nothing
   @override
   Future<Either<String, Unit>> addCreditCard(CreditEntity creditCard) async {
     try {
@@ -30,12 +32,16 @@ class CreditRepositoryImpl implements CreditRepository {
     }
   }
 
+  /// The function that gets the stored credit cards in the shared preferences
+  /// Return a list of [CreditEntity]
   @override
   Future<List<CreditEntity>> getCreditCard() async {
     final result = await _creditSource.getCreditCard();
     return result.map((e) => CreditEntity.fromModel(e)).toList();
   }
 
+  /// The function that deletes a credit card
+  /// Returns either an error [String] or nothing
   @override
   Future<Either<String, Unit>> deleteCreditCard(String cardNumber) async {
     try {
