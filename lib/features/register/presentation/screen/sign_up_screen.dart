@@ -21,18 +21,24 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen>
     with TickerProviderStateMixin {
+  /// The controller of the email text field
   final TextEditingController emailController = TextEditingController();
 
+  /// The controller of the name text field
   final TextEditingController nameController = TextEditingController();
 
+  /// The controller of the password text field
   final TextEditingController passwordController = TextEditingController();
 
+  /// The controller of the email verify password text field
   final TextEditingController verifyPasswordController =
       TextEditingController();
 
+  /// The controller for the loading animation
   late AnimationController animationController =
       AnimationController(vsync: this);
 
+  /// The instance of [RegisterBloc]
   final RegisterBloc _registerBloc = getIt<RegisterBloc>();
 
   @override
@@ -58,164 +64,193 @@ class _SignUpScreenState extends State<SignUpScreen>
   Widget _buildRegister() {
     return Scaffold(
       body: Container(
-        color: Colors.black.withOpacity(.6),
+        color: Colors.black.withOpacity(
+          0.6,
+        ),
         child: Center(
           child: SingleChildScrollView(
-            child: SafeArea(child: BlocBuilder<RegisterBloc, RegisterState>(
-              builder: (context, state) {
-                if (state.error.isNotEmpty) {
-                  SchedulerBinding.instance.addPostFrameCallback((_) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      CustomSnackAlert.showErrorSnackBar(state.error),
+            child: SafeArea(
+              child: BlocBuilder<RegisterBloc, RegisterState>(
+                builder: (context, state) {
+                  if (state.error.isNotEmpty) {
+                    SchedulerBinding.instance.addPostFrameCallback(
+                      (_) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          CustomSnackAlert.showErrorSnackBar(
+                            state.error,
+                          ),
+                        );
+                      },
                     );
-                  });
-                }
-                if (state.signedIn) {
-                  SchedulerBinding.instance.addPostFrameCallback((_) {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()),
-                        (route) => false);
-                  });
-                }
-                if (state.isLoading) {
-                  animationController.repeat(
-                      period: const Duration(milliseconds: 500));
-                } else {
-                  animationController.reset();
-                }
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    color: Colors.white,
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        children: [
-                          const Text(
-                            "TechX",
-                            style: TextStyle(
+                  }
+                  if (state.signedIn) {
+                    SchedulerBinding.instance.addPostFrameCallback(
+                      (_) {
+                        Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                          (route) => false,
+                        );
+                      },
+                    );
+                  }
+                  if (state.isLoading) {
+                    animationController.repeat(
+                      period: const Duration(
+                        milliseconds: 500,
+                      ),
+                    );
+                  } else {
+                    animationController.reset();
+                  }
+                  return Padding(
+                    padding: const EdgeInsets.all(
+                      8.0,
+                    ),
+                    child: Card(
+                      color: Colors.white,
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(
+                          16,
+                        ),
+                        child: Column(
+                          children: [
+                            const Text(
+                              "TechX",
+                              style: TextStyle(
                                 color: mainColor,
                                 fontSize: 35,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 32,
-                          ),
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Login to your account",
-                              style: TextStyle(
-                                color: textColor,
-                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          LoginTextField(
-                            controller: nameController,
-                            hint: "Name",
-                            inputType: TextInputType.text,
-                            obscure: false,
-                            enabled: !state.isLoading,
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          LoginTextField(
-                            controller: emailController,
-                            hint: "Email",
-                            inputType: TextInputType.emailAddress,
-                            obscure: false,
-                            enabled: !state.isLoading,
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          LoginTextField(
-                            controller: passwordController,
-                            hint: "Password",
-                            inputType: TextInputType.text,
-                            obscure: true,
-                            enabled: !state.isLoading,
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          LoginTextField(
-                            controller: verifyPasswordController,
-                            hint: "Verify Password",
-                            inputType: TextInputType.text,
-                            obscure: true,
-                            enabled: !state.isLoading,
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          if (state.error.isNotEmpty)
-                            Padding(
-                              padding: const EdgeInsets.all(8),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            const Align(
+                              alignment: Alignment.centerLeft,
                               child: Text(
-                                state.error.replaceAll("firebase_auth/", ""),
-                                style: const TextStyle(
-                                  color: Colors.red,
+                                "Login to your account",
+                                style: TextStyle(
+                                  color: textColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                          Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed('login');
-                                  },
-                                  child: const Text(
-                                    "Already have an account?",
-                                    style: TextStyle(color: mainColor),
-                                  ),
-                                ),
-                                const Spacer(),
-                              ],
+                            const SizedBox(
+                              height: 16,
                             ),
-                          ),
-                          GlobalButton(
-                            text: "Sign Up",
-                            onTap: () {
-                              _registerBloc.add(
-                                Register(
-                                  RegisterEntity(
-                                    name: nameController.text.trim(),
-                                    email: emailController.text.trim(),
-                                    password: passwordController.text.trim(),
-                                    retryPassword:
-                                        verifyPasswordController.text.trim(),
+                            LoginTextField(
+                              controller: nameController,
+                              hint: "Name",
+                              inputType: TextInputType.text,
+                              obscure: false,
+                              enabled: !state.isLoading,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            LoginTextField(
+                              controller: emailController,
+                              hint: "Email",
+                              inputType: TextInputType.emailAddress,
+                              obscure: false,
+                              enabled: !state.isLoading,
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            LoginTextField(
+                              controller: passwordController,
+                              hint: "Password",
+                              inputType: TextInputType.text,
+                              obscure: true,
+                              enabled: !state.isLoading,
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            LoginTextField(
+                              controller: verifyPasswordController,
+                              hint: "Verify Password",
+                              inputType: TextInputType.text,
+                              obscure: true,
+                              enabled: !state.isLoading,
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            if (state.error.isNotEmpty)
+                              Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Text(
+                                  state.error.replaceAll(
+                                    "firebase_auth/",
+                                    "",
+                                  ),
+                                  style: const TextStyle(
+                                    color: Colors.red,
                                   ),
                                 ),
-                              );
-                            },
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          const SocialButton(
-                            isLogin: false,
-                          ),
-                        ],
+                              ),
+                            Padding(
+                              padding: const EdgeInsets.all(
+                                12.0,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).pushNamed(
+                                        'login',
+                                      );
+                                    },
+                                    child: const Text(
+                                      "Already have an account?",
+                                      style: TextStyle(color: mainColor),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                ],
+                              ),
+                            ),
+                            GlobalButton(
+                              text: "Sign Up",
+                              onTap: () {
+                                _registerBloc.add(
+                                  Register(
+                                    RegisterEntity(
+                                      name: nameController.text.trim(),
+                                      email: emailController.text.trim(),
+                                      password: passwordController.text.trim(),
+                                      retryPassword:
+                                          verifyPasswordController.text.trim(),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            const SocialButton(
+                              isLogin: false,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ).animate().slideY(
-                        duration: const Duration(milliseconds: 500),
-                      ),
-                ).animate(controller: animationController).shimmer();
-              },
-            )),
+                    ).animate().slideY(
+                          duration: const Duration(
+                            milliseconds: 500,
+                          ),
+                        ),
+                  ).animate(controller: animationController).shimmer();
+                },
+              ),
+            ),
           ),
         ),
       ),

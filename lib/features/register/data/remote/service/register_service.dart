@@ -6,11 +6,17 @@ import 'package:techx/features/register/data/model/register_params.dart';
 @injectable
 class RegisterService {
   RegisterService(this.auth, this.fireStore);
+
+  /// The instance of [FirebaseAuth]
   final FirebaseAuth auth;
+
+  /// The instance of [FirebaseFirestore]
   final FirebaseFirestore fireStore;
 
+  /// Returns the current user's id
   Future<String> _getCurrentUid() async => auth.currentUser!.uid;
 
+  /// Teh function that creates a user in the database
   Future<void> _createUser(RegisterSavedParams registerSavedParams) async {
     final userCollection = fireStore.collection("users");
     final uid = await _getCurrentUid();
@@ -27,6 +33,7 @@ class RegisterService {
     });
   }
 
+  /// The function to sign a user up
   Future<void> signUp(RegisterParams registerParams) async {
     await auth
         .createUserWithEmailAndPassword(

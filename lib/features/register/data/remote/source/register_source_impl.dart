@@ -7,8 +7,10 @@ import 'package:techx/features/register/data/remote/source/register_source.dart'
 class RegisterSourceImpl implements RegisterSource {
   RegisterSourceImpl(this._registerService);
 
+  /// The instance of [RegisterService]
   final RegisterService _registerService;
 
+  /// The function to sign a user up
   @override
   Future<void> signUp(RegisterParams registerParams) =>
       _registerService.signUp(registerParams);

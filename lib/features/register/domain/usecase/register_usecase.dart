@@ -6,8 +6,12 @@ import 'package:techx/features/register/domain/repository/register_repository.da
 @injectable
 class RegisterUseCase {
   RegisterUseCase(this._registerRepository);
+
+  /// The instance of [RegisterRepository]
   final RegisterRepository _registerRepository;
 
-  Future<Either<String,Unit>> signUp(RegisterEntity registerEntity) =>
+  /// The function to sign a user up
+  /// Returns either an error [String] or nothing
+  Future<Either<String, Unit>> signUp(RegisterEntity registerEntity) =>
       _registerRepository.signUp(registerEntity);
 }

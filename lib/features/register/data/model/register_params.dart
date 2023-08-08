@@ -5,8 +5,13 @@ part 'register_params.freezed.dart';
 @freezed
 class RegisterParams with _$RegisterParams {
   const factory RegisterParams({
+    /// The name of the user
     @Default('') String name,
+
+    /// The email of the user
     @Default('') String email,
+
+    /// The password of the user
     @Default('') String password,
   }) = _RegisterParams;
 }

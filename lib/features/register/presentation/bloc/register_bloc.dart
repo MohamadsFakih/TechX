@@ -21,8 +21,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     });
   }
 
+  /// The instance of [RegisterUseCase]
   final RegisterUseCase _registerUseCase;
 
+  /// The function to sign a user up
   Future<void> _signUp(
       RegisterEntity registerEntity, Emitter<RegisterState> emit) async {
     emit(

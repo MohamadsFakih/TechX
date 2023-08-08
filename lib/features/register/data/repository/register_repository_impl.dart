@@ -9,8 +9,10 @@ import 'package:techx/features/register/domain/repository/register_repository.da
 class RegisterRepositoryImpl implements RegisterRepository {
   RegisterRepositoryImpl(this._registerSource);
 
+  /// The instance of [RegisterSource]
   final RegisterSource _registerSource;
 
+  /// The function to sign a user up
   @override
   Future<Either<String, Unit>> signUp(RegisterEntity registerEntity) async {
     try {
