@@ -17,6 +17,7 @@ class SettingsMainScreen extends StatefulWidget {
 }
 
 class _SettingsMainScreenState extends State<SettingsMainScreen> {
+  /// Has the url launcher functions
   final ConstantFunctions _urlLauncher = ConstantFunctions();
 
   @override

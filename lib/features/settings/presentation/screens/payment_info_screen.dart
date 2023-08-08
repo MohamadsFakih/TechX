@@ -23,28 +23,48 @@ class PaymentInfoScreen extends StatefulWidget {
 }
 
 class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
+  /// The instance of [SettingsBloc]
   final SettingsBloc _settingsBloc = getIt<SettingsBloc>();
 
+  /// The controller for the card number text field
   final TextEditingController _cardNumberController = TextEditingController();
+
+  /// The controller for the card holder text field
   final TextEditingController _cardHolderController = TextEditingController();
+
+  /// The controller for the cvv text field
   final TextEditingController _cardCvvController = TextEditingController();
+
+  /// The controller for the expiry date text field
   final TextEditingController _cardDateController = TextEditingController();
 
+  /// The page controller for the horizontal card scrolling
   final PageController _pageController = PageController(initialPage: 0);
 
+  /// The stream controller to keep the cards updated
   final StreamController<void> _streamController =
       StreamController<void>.broadcast();
 
   Stream<void> get _cardStream => _streamController.stream;
 
+  /// The current card type
   ValueNotifier<MyCardType> cardType = ValueNotifier(MyCardType.invalid);
 
+  /// The list of cards
   List<CreditEntity> _list = [];
 
+  /// A function that gets the card type from the card number
   void getCardTypeFromNumber() {
-    _pageController.animateToPage(_list.length - 1,
-        duration: const Duration(milliseconds: 200), curve: Curves.ease);
+    // Go to the last card (the one being edited)
+    _pageController.animateToPage(
+      _list.length - 1,
+      duration: const Duration(
+        milliseconds: 200,
+      ),
+      curve: Curves.ease,
+    );
 
+    // Check the card number and get the type
     if (_cardNumberController.text.length <= 6) {
       String cardNum = CardUtils.getCleanedNumber(_cardNumberController.text);
       MyCardType type = CardUtils.getCardTypeFrmNumber(cardNum);

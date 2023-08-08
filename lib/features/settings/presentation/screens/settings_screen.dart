@@ -88,13 +88,17 @@ class _SettingsScreenState extends State<SettingsScreen>
           fontWeight: FontWeight.bold,
         ),
       ),
-      subtitle: Text("Beirut, Lebanon"),
+      subtitle: Text(
+        "Beirut, Lebanon",
+      ),
     );
   }
 
   Widget _divider() {
     return const Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(
+        8.0,
+      ),
       child: Divider(
         thickness: 1.5,
       ),

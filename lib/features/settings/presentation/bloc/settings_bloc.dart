@@ -27,7 +27,11 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       );
     });
   }
+
+  /// The instance of [CreditUseCase]
   final CreditUseCase _creditUseCase;
+
+  /// The function that gets the saved credit cards
   Future _getCreditCards(Emitter<SettingsState> emit) async {
     emit(
       state.copyWith(
@@ -53,6 +57,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     }
   }
 
+  /// The function that adds a credit card
   Future _addCreditCard(
       Emitter<SettingsState> emit, CreditEntity creditEntity) async {
     final result = await _creditUseCase.addCreditCard(
@@ -68,6 +73,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     );
   }
 
+  /// The function to delete a credit card
   Future _deleteCreditCard(
       Emitter<SettingsState> emit, String cardNumber) async {
     final result = await _creditUseCase.deleteCreditCard(

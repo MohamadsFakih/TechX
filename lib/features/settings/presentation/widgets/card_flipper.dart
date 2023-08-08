@@ -17,9 +17,13 @@ class CreditCardFlipper extends StatefulWidget {
 
 class _CreditCardFlipperState extends State<CreditCardFlipper>
     with SingleTickerProviderStateMixin {
+  /// The controller to cntrol the animation
   late AnimationController _animationController;
+
+  /// The animation
   late Animation<double> _animation;
 
+  /// To check which side to show
   bool _isFrontVisible = true;
 
   @override
@@ -62,7 +66,9 @@ class _CreditCardFlipperState extends State<CreditCardFlipper>
         alignment: Alignment.center,
         transform: Matrix4.identity()
           ..setEntry(3, 2, 0.002)
-          ..rotateY(_animation.value * math.pi),
+          ..rotateY(
+            _animation.value * math.pi,
+          ),
         child: _isFrontVisible ? widget.frontWidget : widget.backWidget,
       ),
     );
