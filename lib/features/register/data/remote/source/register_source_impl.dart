@@ -12,6 +12,6 @@ class RegisterSourceImpl implements RegisterSource {
 
   /// The function to sign a user up
   @override
-  Future<void> signUp(RegisterParams registerParams) =>
+  Future<String> signUp(RegisterParams registerParams) =>
       _registerService.signUp(registerParams);
 }

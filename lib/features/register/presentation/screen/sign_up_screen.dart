@@ -8,7 +8,7 @@ import 'package:techx/features/common/domain/entity/snackbar.dart';
 import 'package:techx/features/common/presentation/widget/global_button.dart';
 import 'package:techx/features/common/presentation/widget/login_text_field.dart';
 import 'package:techx/features/common/presentation/widget/social_button.dart';
-import 'package:techx/features/home/presentation/screen/home_page.dart';
+import 'package:techx/features/default/presentation/screen/default_screen.dart';
 import 'package:techx/features/register/domain/entity/register_entity.dart';
 import 'package:techx/features/register/presentation/bloc/register_bloc.dart';
 
@@ -88,7 +88,9 @@ class _SignUpScreenState extends State<SignUpScreen>
                       (_) {
                         Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                            builder: (context) => const HomePage(),
+                            builder: (context) => DefaultScreen(
+                              userId: state.userId,
+                            ),
                           ),
                           (route) => false,
                         );

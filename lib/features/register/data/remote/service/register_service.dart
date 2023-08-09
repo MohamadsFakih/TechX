@@ -34,15 +34,19 @@ class RegisterService {
   }
 
   /// The function to sign a user up
-  Future<void> signUp(RegisterParams registerParams) async {
+  /// Returns the user Id
+  Future<String> signUp(RegisterParams registerParams) async {
+    String id = "";
     await auth
         .createUserWithEmailAndPassword(
             email: registerParams.email, password: registerParams.password)
         .then((value) {
+      id = value.user!.uid;
       _createUser(RegisterSavedParams(
           uid: value.user!.uid,
           email: registerParams.email,
           name: registerParams.name));
     });
+    return id;
   }
 }
