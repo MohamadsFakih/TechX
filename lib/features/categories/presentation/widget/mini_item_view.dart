@@ -57,7 +57,9 @@ class _MiniItemViewState extends State<MiniItemView> {
 
   Widget _buildPadding() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(
+        8.0,
+      ),
       child: Column(
         children: [
           HomeSearchBar(
@@ -133,7 +135,7 @@ class _MiniItemViewState extends State<MiniItemView> {
                               gridDelegate:
                                   const SliverGridDelegateWithMaxCrossAxisExtent(
                                 maxCrossAxisExtent: 200,
-                                childAspectRatio: 0.6,
+                                childAspectRatio: 0.59,
                                 crossAxisSpacing: 20,
                                 mainAxisSpacing: 20,
                               ),
@@ -147,6 +149,7 @@ class _MiniItemViewState extends State<MiniItemView> {
                                   type: widget.itemType.name,
                                   liked: isLiked,
                                   id: widget.userId,
+                                  fromScreen: "categories",
                                 );
                               },
                             ).animate().scale();

@@ -8,10 +8,12 @@ class DetailedSliverHeader extends StatelessWidget {
     Key? key,
     required this.imageUrls,
     required this.pageController,
+    required this.fromScreen,
   }) : super(key: key);
 
   final List<String> imageUrls;
   final PageController pageController;
+  final String fromScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class DetailedSliverHeader extends StatelessWidget {
             itemBuilder: (context, index) {
               return index == 0
                   ? Hero(
-                      tag: imageUrls.first,
+                      tag: imageUrls.first + fromScreen,
                       child: CachedNetworkImage(
                         fit: BoxFit.contain,
                         imageUrl: imageUrls[index],

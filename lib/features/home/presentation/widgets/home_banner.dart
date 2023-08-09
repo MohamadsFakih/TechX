@@ -7,28 +7,24 @@ class HomeBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 200,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              30,
-            ),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(
-              30,
-            ),
-            child: Image(
-              image: NetworkImage(
-                image,
-              ),
-              fit: BoxFit.fill,
-            ),
-          ),
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          30,
         ),
-      ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          30,
+        ),
+        child: Image(
+          image: NetworkImage(
+            image,
+          ),
+          fit: BoxFit.fill,
+        ),
+      ),
     );
   }
 }

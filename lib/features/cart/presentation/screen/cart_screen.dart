@@ -67,22 +67,24 @@ class _CartScreenState extends State<CartScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: GestureDetector(
-                            onTap: () {
-                              _cartBloc.add(
-                                ClearCart(
-                                  widget.userId,
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Clear all",
-                              style: TextStyle(color: Colors.red, fontSize: 16),
+                        if (state.items.isNotEmpty)
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: GestureDetector(
+                              onTap: () {
+                                _cartBloc.add(
+                                  ClearCart(
+                                    widget.userId,
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                "Clear all",
+                                style:
+                                    TextStyle(color: Colors.red, fontSize: 16),
+                              ),
                             ),
                           ),
-                        ),
                         state.items.isEmpty
                             ? Expanded(
                                 child: Center(

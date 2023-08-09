@@ -87,6 +87,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                   liked: isLiked,
                                   showHeart: false,
                                   id: widget.userId,
+                                  fromScreen: "favorites",
                                 );
                               },
                             ).animate().scale(),
