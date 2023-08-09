@@ -9,11 +9,15 @@ import 'package:techx/features/detailed/presentation/widget/sliver_header.dart';
 
 class DetailedScreen extends StatefulWidget {
   const DetailedScreen(
-      {Key? key, required this.miniItemEntity, required this.id})
+      {Key? key,
+      required this.miniItemEntity,
+      required this.id,
+      required this.fromScreen})
       : super(key: key);
 
   final MiniItemEntity miniItemEntity;
   final String id;
+  final String fromScreen;
 
   @override
   State<DetailedScreen> createState() => _DetailedScreenState();
@@ -86,6 +90,7 @@ class _DetailedScreenState extends State<DetailedScreen> {
                   expandedHeight: 250,
                   flexibleSpace: FlexibleSpaceBar(
                     background: DetailedSliverHeader(
+                      fromScreen: widget.fromScreen,
                       imageUrls: widget.miniItemEntity.imageLinks,
                       pageController: _pageController,
                     ),
