@@ -125,6 +125,8 @@ class _CartScreenState extends State<CartScreen> {
             quantity: item.quantity,
             cartBloc: _cartBloc,
             userId: widget.userId,
+            color: item.color,
+            model: item.model,
           );
         },
       ).animate().scale(),

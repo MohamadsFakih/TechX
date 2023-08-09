@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
@@ -11,12 +12,16 @@ class CartItem extends StatelessWidget {
     required this.item,
     required this.cartBloc,
     required this.userId,
+    required this.color,
+    required this.model,
   });
 
   final CartModel item;
   final int quantity;
   final CartBloc cartBloc;
   final String userId;
+  final String color;
+  final String model;
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +89,17 @@ class CartItem extends StatelessWidget {
                         Text(
                           "x$quantity",
                         ),
+                        Spacer(),
+                        Text(
+                          model,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        _buildColorItem(
+                          color,
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -95,6 +111,26 @@ class CartItem extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildColorItem(String s) {
+    int v = int.parse(s);
+    return InkWell(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8.0,
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(
+            16,
+          ),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(v),
+          ),
+        ).animate(autoPlay: true).shimmer(),
       ),
     );
   }
