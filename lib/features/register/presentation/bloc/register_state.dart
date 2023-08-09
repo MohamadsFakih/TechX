@@ -9,6 +9,9 @@ class RegisterState with _$RegisterState {
     /// Used to catch errors
     @Default('') String error,
 
+    /// The user id
+    @Default('') String userId,
+
     /// Checks if the user is signed in
     @Default(false) bool signedIn,
   }) = _Initial;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LoginTextField extends StatefulWidget {
+class LoginTextField extends StatelessWidget {
   const LoginTextField({
     super.key,
     required this.controller,
@@ -8,6 +8,7 @@ class LoginTextField extends StatefulWidget {
     required this.inputType,
     required this.obscure,
     this.enabled = true,
+    this.suffix = const SizedBox(),
   });
 
   final TextEditingController controller;
@@ -15,12 +16,8 @@ class LoginTextField extends StatefulWidget {
   final TextInputType inputType;
   final bool obscure;
   final bool enabled;
+  final Widget suffix;
 
-  @override
-  State<LoginTextField> createState() => _LoginTextFieldState();
-}
-
-class _LoginTextFieldState extends State<LoginTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,25 +26,28 @@ class _LoginTextFieldState extends State<LoginTextField> {
       ),
       height: 55,
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(
-            8,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(
-                0.1,
-              ),
-              blurRadius: 7,
-            )
-          ]),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(
+          8,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(
+              0.1,
+            ),
+            blurRadius: 7,
+          )
+        ],
+      ),
       child: TextFormField(
-        keyboardType: widget.inputType,
-        controller: widget.controller,
-        obscureText: widget.obscure,
-        enabled: widget.enabled,
+        textAlignVertical: TextAlignVertical.center,
+        keyboardType: inputType,
+        controller: controller,
+        obscureText: obscure,
+        enabled: enabled,
         decoration: InputDecoration(
-          hintText: widget.hint,
+          suffixIcon: suffix,
+          hintText: hint,
           border: InputBorder.none,
           contentPadding: EdgeInsets.zero,
           hintStyle: const TextStyle(

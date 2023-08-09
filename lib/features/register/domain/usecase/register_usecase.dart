@@ -11,7 +11,7 @@ class RegisterUseCase {
   final RegisterRepository _registerRepository;
 
   /// The function to sign a user up
-  /// Returns either an error [String] or nothing
-  Future<Either<String, Unit>> signUp(RegisterEntity registerEntity) =>
+  /// Returns either an error or the user Id both of type [String]
+  Future<Either<String, String>> signUp(RegisterEntity registerEntity) =>
       _registerRepository.signUp(registerEntity);
 }

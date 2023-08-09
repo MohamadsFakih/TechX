@@ -45,6 +45,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           (r) => emit(
             state.copyWith(
               signedIn: true,
+              userId: r,
             ),
           ),
         );

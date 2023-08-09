@@ -14,16 +14,16 @@ class RegisterRepositoryImpl implements RegisterRepository {
 
   /// The function to sign a user up
   @override
-  Future<Either<String, Unit>> signUp(RegisterEntity registerEntity) async {
+  Future<Either<String, String>> signUp(RegisterEntity registerEntity) async {
     try {
-      await _registerSource.signUp(
+      final result = await _registerSource.signUp(
         RegisterParams(
           name: registerEntity.name,
           email: registerEntity.email,
           password: registerEntity.password,
         ),
       );
-      return right(unit);
+      return right(result);
     } catch (e) {
       return left(e.toString());
     }

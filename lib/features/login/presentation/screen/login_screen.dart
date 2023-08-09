@@ -40,6 +40,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   /// Checks if the user already entered the page
   bool firstEnter = false;
 
+  /// To show or obscure the password field
+  ValueNotifier<bool> _obscure = ValueNotifier(true);
+
   @override
   void initState() {
     super.initState();
@@ -79,16 +82,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             });
           }
           if (state.signedIn) {
-            SchedulerBinding.instance.addPostFrameCallback((_) {
-              Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(
-                  builder: (context) => DefaultScreen(
-                    userId: state.userId,
+            SchedulerBinding.instance.addPostFrameCallback(
+              (_) {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => DefaultScreen(
+                      userId: state.userId,
+                    ),
                   ),
-                ),
-                (route) => false,
-              );
-            });
+                  (route) => false,
+                );
+              },
+            );
           }
           if (state.isLoading) {
             animationController.repeat(
@@ -163,12 +168,27 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             const SizedBox(
                               height: 12,
                             ),
-                            LoginTextField(
-                              controller: passwordController,
-                              hint: "Password",
-                              inputType: TextInputType.text,
-                              obscure: true,
-                              enabled: !state.isLoading,
+                            ValueListenableBuilder(
+                              valueListenable: _obscure,
+                              builder: (context, value, _) {
+                                return LoginTextField(
+                                  controller: passwordController,
+                                  hint: "Password",
+                                  suffix: IconButton(
+                                    onPressed: () {
+                                      _obscure.value = !_obscure.value;
+                                    },
+                                    icon: Icon(
+                                      !value
+                                          ? Icons.remove_red_eye_outlined
+                                          : Icons.remove_red_eye,
+                                    ),
+                                  ),
+                                  inputType: TextInputType.text,
+                                  obscure: value,
+                                  enabled: !state.isLoading,
+                                );
+                              },
                             ),
                             const SizedBox(
                               height: 8,
