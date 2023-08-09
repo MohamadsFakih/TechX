@@ -16,6 +16,7 @@ class MiniItem extends StatefulWidget {
     required this.liked,
     this.showHeart = true,
     required this.id,
+    required this.fromScreen,
   });
 
   final MiniItemEntity itemEntity;
@@ -23,6 +24,7 @@ class MiniItem extends StatefulWidget {
   final bool liked;
   final bool showHeart;
   final String id;
+  final String fromScreen;
 
   @override
   State<MiniItem> createState() => _MiniItemState();
@@ -61,6 +63,7 @@ class _MiniItemState extends State<MiniItem> {
                   DetailedScreen(
                 miniItemEntity: widget.itemEntity,
                 id: widget.id,
+                fromScreen: widget.fromScreen,
               ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
@@ -69,21 +72,32 @@ class _MiniItemState extends State<MiniItem> {
                   child: child,
                 );
               },
-              transitionDuration: const Duration(milliseconds: 600),
+              transitionDuration: const Duration(
+                milliseconds: 600,
+              ),
             ),
           );
         },
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(
+          12,
+        ),
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(
+                8,
+              ),
               decoration: const BoxDecoration(
-                  color: miniItemImageColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
-                  )),
+                color: miniItemImageColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(
+                    12,
+                  ),
+                  topRight: Radius.circular(
+                    12,
+                  ),
+                ),
+              ),
               child: Column(
                 children: [
                   if (widget.showHeart)
@@ -92,7 +106,10 @@ class _MiniItemState extends State<MiniItem> {
                       child: GestureDetector(
                         onTap: () {
                           _userBloc.add(
-                            AddLike(widget.itemEntity, widget.type),
+                            AddLike(
+                              widget.itemEntity,
+                              widget.type,
+                            ),
                           );
                           _liked.value = !_liked.value;
                         },
@@ -133,12 +150,15 @@ class _MiniItemState extends State<MiniItem> {
                       ),
                     ),
                   Hero(
-                    tag: widget.itemEntity.image,
+                    tag: widget.itemEntity.image + widget.fromScreen,
                     child: CachedNetworkImage(
                       imageUrl: widget.itemEntity.image,
                       fit: BoxFit.fill,
                       placeholder: (context, url) => const Image(
-                          image: AssetImage("assets/images/placeholder.jpg")),
+                        image: AssetImage(
+                          "assets/images/placeholder.jpg",
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -146,7 +166,9 @@ class _MiniItemState extends State<MiniItem> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(
+                  8.0,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -165,9 +187,10 @@ class _MiniItemState extends State<MiniItem> {
                     Text(
                       "\$${widget.itemEntity.price}",
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontSize: 22),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 22,
+                      ),
                     ),
                   ],
                 ),
