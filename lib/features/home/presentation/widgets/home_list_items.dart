@@ -10,8 +10,8 @@ class HomeListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 3 / 2,
+    return SizedBox(
+      height: 250,
       child: Column(
         children: [
           Row(

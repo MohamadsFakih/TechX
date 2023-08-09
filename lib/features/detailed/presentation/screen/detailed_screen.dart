@@ -166,30 +166,6 @@ class _DetailedScreenState extends State<DetailedScreen> {
                 ),
               ),
             ),
-            Expanded(
-              child: InkWell(
-                onTap: () {},
-                child: const Padding(
-                  padding: EdgeInsets.all(
-                    24.0,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.favorite_border,
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "Add to Favorites",
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

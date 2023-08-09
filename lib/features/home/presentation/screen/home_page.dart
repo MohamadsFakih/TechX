@@ -9,7 +9,6 @@ import 'package:techx/features/common/presentation/widget/custom_app_bar.dart';
 import 'package:techx/features/home/data/model/item_model.dart';
 import 'package:techx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:techx/features/home/presentation/widgets/list_banners.dart';
-import 'package:techx/features/home/presentation/widgets/list_brands.dart';
 import 'package:techx/features/home/presentation/widgets/home_list_items.dart';
 
 class HomePage extends StatefulWidget {
@@ -81,10 +80,6 @@ class _HomePageState extends State<HomePage>
                           pageController: _pageController,
                           items: state.banners,
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        const ListBrands(),
                         const SizedBox(
                           height: 16,
                         ),
