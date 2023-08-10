@@ -3,10 +3,15 @@ import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/home/presentation/widgets/featured_item.dart';
 
 class HomeListItems extends StatelessWidget {
-  const HomeListItems({super.key, required this.label, required this.items});
+  const HomeListItems(
+      {super.key,
+      required this.label,
+      required this.items,
+      required this.userId});
 
   final List<MiniItemEntity> items;
   final String label;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +49,7 @@ class HomeListItems extends StatelessWidget {
                 return FeaturedItem(
                   itemEntity: items[index],
                   fromScreen: "home",
+                  id: userId,
                 );
               },
             ),

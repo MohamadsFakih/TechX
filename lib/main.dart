@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
-import 'package:techx/features/home/presentation/screen/home_page.dart';
 import 'package:techx/features/login/presentation/screen/login_screen.dart';
 import 'package:techx/features/register/presentation/screen/sign_up_screen.dart';
 import 'package:techx/features/splash/presentation/screen/splash_screen.dart';
@@ -59,10 +58,6 @@ class MyApp extends StatelessWidget {
           case "signUp":
             return MaterialPageRoute(builder: (context) {
               return const SignUpScreen();
-            });
-          case "home":
-            return MaterialPageRoute(builder: (context) {
-              return const HomePage();
             });
         }
         return MaterialPageRoute(builder: (BuildContext context) {

@@ -12,7 +12,9 @@ import 'package:techx/features/home/presentation/widgets/list_banners.dart';
 import 'package:techx/features/home/presentation/widgets/home_list_items.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.userId});
+
+  final String userId;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -86,6 +88,7 @@ class _HomePageState extends State<HomePage>
                         HomeListItems(
                           items: state.featured,
                           label: "Featured",
+                          userId: widget.userId,
                         ),
                         const SizedBox(
                           height: 16,
@@ -93,6 +96,7 @@ class _HomePageState extends State<HomePage>
                         HomeListItems(
                           items: state.newList,
                           label: "New",
+                          userId: widget.userId,
                         ),
                       ],
                     ),
