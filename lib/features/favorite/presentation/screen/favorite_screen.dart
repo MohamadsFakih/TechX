@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
-import 'package:techx/features/categories/presentation/widget/mini_item.dart';
+import 'package:techx/features/common/presentation/widget/mini_item.dart';
 import 'package:techx/features/common/presentation/widget/custom_app_bar.dart';
 import 'package:techx/features/favorite/presentation/bloc/favorite_bloc.dart';
 

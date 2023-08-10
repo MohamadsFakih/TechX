@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/home/data/model/item_model.dart';
 import 'package:techx/features/home/domain/usecases/home_usecase.dart';
 

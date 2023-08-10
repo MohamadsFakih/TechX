@@ -4,10 +4,10 @@ part of 'home_bloc.dart';
 class HomeState with _$HomeState {
   const factory HomeState({
     /// The list of featured products
-    @Default([]) List<ItemModel> featured,
+    @Default([]) List<MiniItemEntity> featured,
 
     /// The list of new products
-    @Default([]) List<ItemModel> newList,
+    @Default([]) List<MiniItemEntity> newList,
 
     /// The list of banners
     @Default([]) List<BannerItem> banners,

@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techx/core/data/model/enums.dart';
 import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
-import 'package:techx/features/categories/presentation/widget/mini_item.dart';
+import 'package:techx/features/common/presentation/widget/mini_item.dart';
 import 'package:techx/features/categories/presentation/widget/search_bar.dart';
 import 'package:techx/features/categories/presentation/widget/sorting_bottom_sheet.dart';
 

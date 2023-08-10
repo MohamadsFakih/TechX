@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:techx/features/home/data/model/item_model.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/home/presentation/widgets/featured_item.dart';
 
 class HomeListItems extends StatelessWidget {
   const HomeListItems({super.key, required this.label, required this.items});
 
-  final List<ItemModel> items;
+  final List<MiniItemEntity> items;
   final String label;
 
   @override
@@ -42,9 +42,8 @@ class HomeListItems extends StatelessWidget {
               itemCount: items.length,
               itemBuilder: (context, index) {
                 return FeaturedItem(
-                  image: items[index].image,
-                  name: items[index].name,
-                  price: items[index].price,
+                  itemEntity: items[index],
+                  fromScreen: "home",
                 );
               },
             ),

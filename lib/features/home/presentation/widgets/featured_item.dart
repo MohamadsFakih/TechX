@@ -1,93 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:techx/core/utils/mds.dart';
+import 'package:techx/features/categories/domain/entity/item_entity.dart';
 
 class FeaturedItem extends StatelessWidget {
   const FeaturedItem({
     super.key,
-    required this.image,
-    required this.name,
-    required this.price,
+    required this.itemEntity,
+    required this.fromScreen,
   });
 
-  final String image;
-  final String name;
-  final String price;
+  final MiniItemEntity itemEntity;
+  final String fromScreen;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 210,
-      child: Stack(
-        children: [
-          Card(
-            elevation: 2,
-            color: cardColor,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(
-                15,
-              ),
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.all(
-                  8.0,
+      child: Card(
+        elevation: 2,
+        color: cardColor,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(
+            15,
+          ),
+          onTap: () {},
+          child: Padding(
+            padding: const EdgeInsets.all(
+              8.0,
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 126,
+                  child: Image(
+                    image: NetworkImage(
+                      itemEntity.image,
+                    ),
+                  ),
                 ),
-                child: Column(
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    itemEntity.name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: 126,
-                      child: Image(
-                        image: NetworkImage(
-                          image,
-                        ),
+                    Text(
+                      "\$${itemEntity.price}",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: redTypeColor,
+                        fontSize: 26,
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "\$$price",
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: redTypeColor,
-                            fontSize: 26,
-                          ),
-                        ),
-                        const Icon(
-                          Icons.shopping_cart,
-                          color: redTypeColor,
-                        )
-                      ],
-                    ),
+                    const Icon(
+                      Icons.shopping_cart,
+                      color: redTypeColor,
+                    )
                   ],
                 ),
-              ),
+              ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(
-              16.0,
-            ),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Icon(
-                Icons.favorite_border,
-                color: redTypeColor,
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
