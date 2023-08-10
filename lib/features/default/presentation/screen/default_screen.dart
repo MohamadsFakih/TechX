@@ -31,7 +31,9 @@ class _DefaultScreenState extends State<DefaultScreen> {
     FavoriteScreen(
       userId: widget.userId,
     ),
-    const HomePage(),
+    HomePage(
+      userId: widget.userId,
+    ),
     CategoriesScreen(
       userId: widget.userId,
     ),
