@@ -42,7 +42,7 @@ class SettingsFaqScreen extends StatelessWidget {
                   Icons.monetization_on,
                   color: whiteColor,
                 ),
-                headerBackgroundColor: Colors.grey,
+                headerBackgroundColor: greyColor,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'Can I pay in cash?',
@@ -64,7 +64,7 @@ class SettingsFaqScreen extends StatelessWidget {
                   Icons.insights_rounded,
                   color: whiteColor,
                 ),
-                headerBackgroundColor: Colors.grey,
+                headerBackgroundColor: greyColor,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'Can I return a product after purchasing?',
@@ -87,7 +87,7 @@ class SettingsFaqScreen extends StatelessWidget {
                   Icons.insights_rounded,
                   color: whiteColor,
                 ),
-                headerBackgroundColor: Colors.grey,
+                headerBackgroundColor: greyColor,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'Can I return a product after purchasing?',
@@ -110,7 +110,7 @@ class SettingsFaqScreen extends StatelessWidget {
                   Icons.insights_rounded,
                   color: whiteColor,
                 ),
-                headerBackgroundColor: Colors.grey,
+                headerBackgroundColor: greyColor,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'How much are the delivery fees?',
@@ -133,7 +133,7 @@ class SettingsFaqScreen extends StatelessWidget {
                   Icons.insights_rounded,
                   color: whiteColor,
                 ),
-                headerBackgroundColor: Colors.grey,
+                headerBackgroundColor: greyColor,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'What information are you collecting about devices in the program, and how do you use it?',

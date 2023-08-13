@@ -16,6 +16,7 @@ const Color greyColor = Color(0xFF939B9F);
 const Color orangeColor = Color(0xFFDF7B3E);
 const Color whiteColor = Colors.white;
 const Color blackColor = Colors.black;
+const Color grey = Colors.grey;
 
 const TextStyle creditCardStyle = TextStyle(
   color: whiteColor,
