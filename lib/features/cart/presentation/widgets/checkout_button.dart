@@ -52,7 +52,7 @@ class CheckOutButton extends StatelessWidget {
                   children: [
                     const Icon(
                       Icons.add_shopping_cart_outlined,
-                      color: Colors.white,
+                      color: whiteColor,
                     ),
                     const SizedBox(
                       width: 4,
@@ -60,7 +60,7 @@ class CheckOutButton extends StatelessWidget {
                     Text(
                       "Checkout \$$total",
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: whiteColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

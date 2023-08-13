@@ -18,7 +18,7 @@ class HomeBrandItem extends StatelessWidget {
             80,
           ),
           side: const BorderSide(
-            color: Colors.grey,
+            color: greyColor,
           ),
         ),
         color: searchBarColor,

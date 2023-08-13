@@ -14,9 +14,12 @@ const Color miniItemImageColor = Color(0xFFDEDFE9);
 const Color masterCardColor = Color(0xFF234F7C);
 const Color greyColor = Color(0xFF939B9F);
 const Color orangeColor = Color(0xFFDF7B3E);
+const Color whiteColor = Colors.white;
+const Color blackColor = Colors.black;
+const Color grey = Colors.grey;
 
 const TextStyle creditCardStyle = TextStyle(
-  color: Colors.white,
+  color: whiteColor,
   fontWeight: FontWeight.bold,
   fontSize: 20,
 );

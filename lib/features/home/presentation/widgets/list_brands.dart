@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/home/presentation/widgets/home_brand_item.dart';
 
 class ListBrands extends StatelessWidget {
@@ -14,14 +15,14 @@ class ListBrands extends StatelessWidget {
             Text(
               "Brands",
               style: TextStyle(
-                color: Colors.black,
+                color: blackColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               "See All",
               style: TextStyle(
-                color: Colors.black,
+                color: blackColor,
                 fontWeight: FontWeight.bold,
               ),
             ),

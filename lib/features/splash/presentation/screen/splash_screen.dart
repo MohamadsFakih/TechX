@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Text(
               'TechX',
               style: TextStyle(
-                color: Colors.white,
+                color: whiteColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
               ),

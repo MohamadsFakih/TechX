@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techx/core/utils/mds.dart';
 
 class CreditCardField extends StatelessWidget {
   const CreditCardField({super.key, required this.textFormField});
@@ -13,13 +14,13 @@ class CreditCardField extends StatelessWidget {
       ),
       height: 55,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: whiteColor,
         borderRadius: BorderRadius.circular(
           8,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(
+            color: blackColor.withOpacity(
               0.1,
             ),
             blurRadius: 7,

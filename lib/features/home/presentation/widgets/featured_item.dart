@@ -77,7 +77,7 @@ class FeaturedItem extends StatelessWidget {
                     itemEntity.name,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: blackColor,
                     ),
                   ),
                 ),

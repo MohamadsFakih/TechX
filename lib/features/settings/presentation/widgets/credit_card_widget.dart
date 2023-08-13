@@ -34,7 +34,9 @@ class CreditCardWidget extends StatelessWidget {
       frontWidget: Card(
         color: creditCardColor,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(
+            8.0,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -58,7 +60,9 @@ class CreditCardWidget extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     cardNumber,
-                    style: creditCardStyle.copyWith(fontSize: 28),
+                    style: creditCardStyle.copyWith(
+                      fontSize: 28,
+                    ),
                   ),
                 ),
               ),
@@ -68,13 +72,16 @@ class CreditCardWidget extends StatelessWidget {
                   Text(
                     "CARDHOLDER",
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: greyColor,
                       fontSize: 12,
                     ),
                   ),
                   Text(
                     "VALID THRU",
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                    style: TextStyle(
+                      color: greyColor,
+                      fontSize: 12,
+                    ),
                   ),
                 ],
               ),
@@ -97,22 +104,27 @@ class CreditCardWidget extends StatelessWidget {
       ),
       backWidget: Transform(
         alignment: Alignment.center,
-        transform:
-            Matrix4.rotationY(math.pi), // Rotate by 180 degrees (pi radians)
+        transform: Matrix4.rotationY(
+          math.pi,
+        ), // Rotate by 180 degrees (pi radians)
         child: Card(
           color: creditCardColor,
           child: Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(
+              top: 8.0,
+            ),
             child: Column(
               children: [
                 AspectRatio(
                   aspectRatio: 5,
                   child: Container(
-                    color: Colors.black,
+                    color: blackColor,
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -133,30 +145,41 @@ class CreditCardWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(
+                  height: 8,
+                ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                  ),
                   child: AspectRatio(
                     aspectRatio: 8,
                     child: Container(
-                      color: Colors.white,
+                      color: whiteColor,
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(
+                            8.0,
+                          ),
                           child: Text(
                             cardCVV,
-                            style:
-                                creditCardStyle.copyWith(color: Colors.black),
+                            style: creditCardStyle.copyWith(
+                              color: blackColor,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(
+                  height: 20,
+                ),
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                  ),
                   child: Text(
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
                     style: TextStyle(
@@ -168,7 +191,9 @@ class CreditCardWidget extends StatelessWidget {
                 ),
                 if (!isEditing)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                    ),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: GestureDetector(

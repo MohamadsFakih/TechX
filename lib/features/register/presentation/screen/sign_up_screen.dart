@@ -64,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen>
   Widget _buildRegister() {
     return Scaffold(
       body: Container(
-        color: Colors.black.withOpacity(
+        color: blackColor.withOpacity(
           0.6,
         ),
         child: Center(
@@ -111,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen>
                       8.0,
                     ),
                     child: Card(
-                      color: Colors.white,
+                      color: whiteColor,
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(

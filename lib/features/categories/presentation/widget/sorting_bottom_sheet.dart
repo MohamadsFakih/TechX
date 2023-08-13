@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techx/core/utils/mds.dart';
 
 class SortingBottomSheet extends StatefulWidget {
   const SortingBottomSheet({
@@ -69,7 +70,7 @@ class _SortingBottomSheetState extends State<SortingBottomSheet> {
                 child: const Text(
                   "Filter",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: whiteColor,
                   ),
                 ),
               ),

@@ -88,7 +88,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
             backgroundColor: Colors.transparent,
             type: BottomNavigationBarType.fixed,
             unselectedItemColor: bottomBarItemColor,
-            selectedItemColor: Colors.white,
+            selectedItemColor: whiteColor,
             currentIndex: _currentIndex.value,
             selectedFontSize: 0,
             onTap: (index) => _onBottomTapped(index),
@@ -145,7 +145,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
         backgroundColor: redColor,
         child: Icon(
           icon,
-          color: Colors.white,
+          color: whiteColor,
         ),
       )
           .animate()

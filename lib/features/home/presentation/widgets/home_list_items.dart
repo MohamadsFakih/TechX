@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/home/presentation/widgets/featured_item.dart';
 
@@ -25,14 +26,14 @@ class HomeListItems extends StatelessWidget {
               Text(
                 label,
                 style: const TextStyle(
-                  color: Colors.black,
+                  color: blackColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const Text(
                 "See All",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: blackColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

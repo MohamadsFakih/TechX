@@ -90,7 +90,7 @@ class _MiniItemViewState extends State<MiniItemView> {
                     borderRadius: BorderRadius.circular(
                       12,
                     ),
-                    color: Colors.white,
+                    color: whiteColor,
                   ),
                   child: Row(
                     children: [
@@ -116,7 +116,7 @@ class _MiniItemViewState extends State<MiniItemView> {
             child: widget.isLoading
                 ? const Center(
                     child: SpinKitFadingCircle(
-                      color: Colors.black,
+                      color: blackColor,
                       size: 50.0,
                     ),
                   )

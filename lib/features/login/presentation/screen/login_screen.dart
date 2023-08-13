@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   Widget _buildLogin() {
     return Scaffold(
       body: Container(
-        color: Colors.black.withOpacity(
+        color: blackColor.withOpacity(
           .6,
         ),
         child: Center(
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       8.0,
                     ),
                     child: Card(
-                      color: Colors.white,
+                      color: whiteColor,
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(
@@ -137,9 +137,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             const Text(
                               "TechX",
                               style: TextStyle(
-                                  color: mainColor,
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold),
+                                color: mainColor,
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             const SizedBox(
                               height: 32,
