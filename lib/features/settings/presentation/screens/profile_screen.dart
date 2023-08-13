@@ -19,7 +19,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
           onPressed: () {
             widget.controller.jumpToPage(
               0,
@@ -65,7 +67,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(
             height: 32,
           ),
-          const GlobalButton(text: "Update"),
+          const GlobalButton(
+            text: "Update",
+          ),
         ],
       ),
     );
