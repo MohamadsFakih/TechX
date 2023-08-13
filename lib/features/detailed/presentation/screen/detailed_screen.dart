@@ -142,6 +142,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                       content: Text(
                         'Item added to cart.',
                       ),
+                      duration: Duration(
+                        milliseconds: 1500,
+                      ),
                     ),
                   );
                 },

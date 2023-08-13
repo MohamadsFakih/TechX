@@ -90,7 +90,7 @@ class FeaturedItem extends StatelessWidget {
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: redTypeColor,
-                        fontSize: 26,
+                        fontSize: 24,
                       ),
                     ),
                     const Icon(

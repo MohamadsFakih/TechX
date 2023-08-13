@@ -84,18 +84,34 @@ class CheckOutButton extends StatelessWidget {
           total: total.toString(),
           onCardSelected: (selectedCard) {
             if (selectedCard != null) {
-              cartBloc.add(
-                ClearCart(
-                  userId,
-                ),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text(
-                    "Purchase successful",
+              if (selectedCard.cardNumber.isNotEmpty) {
+                cartBloc.add(
+                  ClearCart(
+                    userId,
                   ),
-                ),
-              );
+                );
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      "Purchase successful",
+                    ),
+                    duration: Duration(
+                      milliseconds: 1500,
+                    ),
+                  ),
+                );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      "You must add a credit card in the settings screen",
+                    ),
+                    duration: Duration(
+                      milliseconds: 1500,
+                    ),
+                  ),
+                );
+              }
             }
           },
           creditCards: cards,

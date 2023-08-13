@@ -98,9 +98,10 @@ class CartItem extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        _buildColorItem(
-                          color,
-                        ),
+                        if (item.color.isNotEmpty)
+                          _buildColorItem(
+                            color,
+                          ),
                       ],
                     ),
                     const SizedBox(
@@ -108,7 +109,7 @@ class CartItem extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -75,11 +75,13 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             firstEnter = true;
           }
           if (state.error.isNotEmpty) {
-            SchedulerBinding.instance.addPostFrameCallback((_) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                CustomSnackAlert.showErrorSnackBar(state.error),
-              );
-            });
+            SchedulerBinding.instance.addPostFrameCallback(
+              (_) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  CustomSnackAlert.showErrorSnackBar(state.error),
+                );
+              },
+            );
           }
           if (state.signedIn) {
             SchedulerBinding.instance.addPostFrameCallback(

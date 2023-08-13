@@ -253,25 +253,43 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                             if (cardExists) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text("Card already exits"),
+                                  content: Text(
+                                    "Card already exits",
+                                  ),
+                                  duration: Duration(
+                                    milliseconds: 1500,
+                                  ),
                                 ),
                               );
                             } else if (checkCardNum != '') {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(checkCardNum),
+                                  duration: Duration(
+                                    milliseconds: 1500,
+                                  ),
                                 ),
                               );
                             } else if (checkCardCvv != '') {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(checkCardCvv),
+                                  content: Text(
+                                    checkCardCvv,
+                                  ),
+                                  duration: Duration(
+                                    milliseconds: 1500,
+                                  ),
                                 ),
                               );
                             } else if (checkCardDate != '') {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(checkCardDate),
+                                  content: Text(
+                                    checkCardDate,
+                                  ),
+                                  duration: Duration(
+                                    milliseconds: 1500,
+                                  ),
                                 ),
                               );
                             } else {
@@ -288,7 +306,12 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                               );
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text("Card added successfully"),
+                                  content: Text(
+                                    "Card added successfully",
+                                  ),
+                                  duration: Duration(
+                                    milliseconds: 1500,
+                                  ),
                                 ),
                               );
                               _cardNumberController.text = "";
@@ -300,7 +323,9 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                           },
                           child: const Text(
                             "Add card",
-                            style: TextStyle(color: whiteColor),
+                            style: TextStyle(
+                              color: whiteColor,
+                            ),
                           ),
                         ),
                       ),
