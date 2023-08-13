@@ -28,11 +28,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 32,
+        ),
         physics: const BouncingScrollPhysics(),
         children: [
           const CircleAvatar(
-            backgroundImage: AssetImage("assets/images/mohamad_avatar.png"),
+            child: ClipOval(
+              child: Image(
+                image: AssetImage(
+                  "assets/images/mohamad_avatar.png",
+                ),
+                fit: BoxFit.fill,
+              ),
+            ),
             radius: 60,
           ),
           const SizedBox(
