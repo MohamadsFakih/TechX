@@ -139,7 +139,7 @@ class CreditCardWidget extends StatelessWidget {
                   child: AspectRatio(
                     aspectRatio: 8,
                     child: Container(
-                      color: Colors.white,
+                      color: whiteColor,
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: Padding(

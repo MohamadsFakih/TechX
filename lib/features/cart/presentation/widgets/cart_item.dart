@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
 
@@ -49,7 +50,7 @@ class CartItem extends StatelessWidget {
                 backgroundColor: const Color(
                   0xFFFE4A49,
                 ),
-                foregroundColor: Colors.white,
+                foregroundColor: whiteColor,
                 icon: Icons.delete,
                 label: 'Remove',
               ),

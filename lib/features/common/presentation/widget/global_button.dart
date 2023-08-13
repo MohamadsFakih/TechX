@@ -28,7 +28,7 @@ class GlobalButton extends StatelessWidget {
         child: Text(
           text,
           style: const TextStyle(
-            color: Colors.white,
+            color: whiteColor,
             fontWeight: FontWeight.w600,
           ),
         ),

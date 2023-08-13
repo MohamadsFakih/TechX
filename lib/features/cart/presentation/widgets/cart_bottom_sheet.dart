@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techx/core/utils/card_utilis.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/common/domain/entity/credit_entity.dart';
 
 class CreditCardSelectionSheet extends StatefulWidget {
@@ -92,7 +93,7 @@ class _CreditCardSelectionSheetState extends State<CreditCardSelectionSheet> {
                 child: const Text(
                   "Proceed to Checkout",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: whiteColor,
                   ),
                 ),
               ),

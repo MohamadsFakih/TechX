@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:techx/core/utils/card_type.dart';
 import 'package:techx/core/utils/card_utilis.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/domain/entity/credit_entity.dart';
 import 'package:techx/features/settings/presentation/bloc/settings_bloc.dart';
@@ -299,7 +300,7 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
                           },
                           child: const Text(
                             "Add card",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: whiteColor),
                           ),
                         ),
                       ),

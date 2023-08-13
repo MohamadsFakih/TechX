@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:techx/core/data/model/enums.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/categories/presentation/bloc/category_bloc.dart';
 
 class CategoryItem extends StatefulWidget {
@@ -93,7 +94,7 @@ class _CategoryItemState extends State<CategoryItem> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     widget.name,
-                    style: const TextStyle(fontSize: 25, color: Colors.white),
+                    style: const TextStyle(fontSize: 25, color: whiteColor),
                   ),
                 ),
               )

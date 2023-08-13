@@ -38,14 +38,18 @@ class SettingsFaqScreen extends StatelessWidget {
             children: [
               AccordionSection(
                 isOpen: true,
-                leftIcon:
-                    const Icon(Icons.monetization_on, color: Colors.white),
+                leftIcon: const Icon(
+                  Icons.monetization_on,
+                  color: whiteColor,
+                ),
                 headerBackgroundColor: Colors.grey,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'Can I pay in cash?',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+                    fontWeight: FontWeight.bold,
+                    color: whiteColor,
+                  ),
                 ),
                 content: const Text(
                   "Unfortunately, we only support online payment through credit card or prepaid cards.",
@@ -56,14 +60,18 @@ class SettingsFaqScreen extends StatelessWidget {
               ),
               AccordionSection(
                 isOpen: true,
-                leftIcon:
-                    const Icon(Icons.insights_rounded, color: Colors.white),
+                leftIcon: const Icon(
+                  Icons.insights_rounded,
+                  color: whiteColor,
+                ),
                 headerBackgroundColor: Colors.grey,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'Can I return a product after purchasing?',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+                    fontWeight: FontWeight.bold,
+                    color: whiteColor,
+                  ),
                 ),
                 content: const Text(
                   "Yes you may have a refund and return the product withing 30 days "
@@ -75,14 +83,18 @@ class SettingsFaqScreen extends StatelessWidget {
               ),
               AccordionSection(
                 isOpen: true,
-                leftIcon:
-                    const Icon(Icons.insights_rounded, color: Colors.white),
+                leftIcon: const Icon(
+                  Icons.insights_rounded,
+                  color: whiteColor,
+                ),
                 headerBackgroundColor: Colors.grey,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'Can I return a product after purchasing?',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+                    fontWeight: FontWeight.bold,
+                    color: whiteColor,
+                  ),
                 ),
                 content: const Text(
                   "Yes you may have a refund and return the product withing 30 days "
@@ -94,14 +106,18 @@ class SettingsFaqScreen extends StatelessWidget {
               ),
               AccordionSection(
                 isOpen: true,
-                leftIcon:
-                    const Icon(Icons.insights_rounded, color: Colors.white),
+                leftIcon: const Icon(
+                  Icons.insights_rounded,
+                  color: whiteColor,
+                ),
                 headerBackgroundColor: Colors.grey,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'How much are the delivery fees?',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+                    fontWeight: FontWeight.bold,
+                    color: whiteColor,
+                  ),
                 ),
                 content: const Text(
                   "Yes you may have a refund and return the product withing 30 days "
@@ -113,14 +129,18 @@ class SettingsFaqScreen extends StatelessWidget {
               ),
               AccordionSection(
                 isOpen: true,
-                leftIcon:
-                    const Icon(Icons.insights_rounded, color: Colors.white),
+                leftIcon: const Icon(
+                  Icons.insights_rounded,
+                  color: whiteColor,
+                ),
                 headerBackgroundColor: Colors.grey,
                 headerBackgroundColorOpened: redColor,
                 header: const Text(
                   'What information are you collecting about devices in the program, and how do you use it?',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+                    fontWeight: FontWeight.bold,
+                    color: whiteColor,
+                  ),
                 ),
                 content: const Text(
                   "We collect information about your use of your device, including your device’s system and stability, applications and services on the device, and your device’s interaction with software, applications, and services on the device. We may be provided this information directly from the device or its manufacturer. We use this information in order to provide, improve, and maintain the operability of our products and services, including the Amazon Widget app.",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techx/core/utils/mds.dart';
 
 class LoginTextField extends StatelessWidget {
   const LoginTextField({
@@ -26,7 +27,7 @@ class LoginTextField extends StatelessWidget {
       ),
       height: 55,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: whiteColor,
         borderRadius: BorderRadius.circular(
           8,
         ),

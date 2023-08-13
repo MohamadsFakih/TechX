@@ -50,7 +50,7 @@ class SocialButton extends StatelessWidget {
       height: 50,
       width: 50,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: whiteColor,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(

@@ -111,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen>
                       8.0,
                     ),
                     child: Card(
-                      color: Colors.white,
+                      color: whiteColor,
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(

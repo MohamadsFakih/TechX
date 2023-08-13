@@ -34,15 +34,16 @@ class _DetailedBodyState extends State<DetailedBody> {
             16,
           ),
           decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(
-                  20,
-                ),
-                topLeft: Radius.circular(
-                  20,
-                ),
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(
+                20,
               ),
-              color: Colors.white),
+              topLeft: Radius.circular(
+                20,
+              ),
+            ),
+            color: whiteColor,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -320,7 +321,7 @@ class _DetailedBodyState extends State<DetailedBody> {
               name,
               style: TextStyle(
                 color: index == widget.currentModelIndex.value
-                    ? Colors.white
+                    ? whiteColor
                     : Colors.black,
               ),
             ),

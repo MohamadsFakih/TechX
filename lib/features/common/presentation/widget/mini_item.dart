@@ -53,7 +53,7 @@ class _MiniItemState extends State<MiniItem> {
 
   Card _buildCard(BuildContext context) {
     return Card(
-      color: Colors.white,
+      color: whiteColor,
       child: InkWell(
         onTap: () {
           Navigator.push(

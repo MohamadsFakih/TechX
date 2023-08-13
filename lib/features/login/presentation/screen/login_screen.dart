@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       8.0,
                     ),
                     child: Card(
-                      color: Colors.white,
+                      color: whiteColor,
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(

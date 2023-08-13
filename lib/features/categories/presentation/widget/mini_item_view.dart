@@ -90,7 +90,7 @@ class _MiniItemViewState extends State<MiniItemView> {
                     borderRadius: BorderRadius.circular(
                       12,
                     ),
-                    color: Colors.white,
+                    color: whiteColor,
                   ),
                   child: Row(
                     children: [
