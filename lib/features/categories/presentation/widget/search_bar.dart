@@ -35,11 +35,11 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
           hintText: "Search Items",
           prefixIcon: Icon(
             Icons.search,
-            color: Colors.black,
+            color: blackColor,
           ),
           suffixIcon: Icon(
             Icons.filter_alt,
-            color: Colors.black,
+            color: blackColor,
           ),
         ),
       ),

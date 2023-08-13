@@ -80,7 +80,7 @@ class _CategoryItemState extends State<CategoryItem> {
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
                         colors: [
-                          Colors.black.withOpacity(0.7),
+                          blackColor.withOpacity(0.7),
                           Colors.transparent,
                         ],
                       ),

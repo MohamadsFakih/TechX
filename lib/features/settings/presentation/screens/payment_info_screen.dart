@@ -135,7 +135,7 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
           return state.isLoading
               ? const Center(
                   child: SpinKitFadingCircle(
-                    color: Colors.black,
+                    color: blackColor,
                     size: 50.0,
                   ),
                 )

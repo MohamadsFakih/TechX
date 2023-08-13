@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/cart/data/model/cart_model.dart';
 import 'package:techx/features/cart/presentation/bloc/cart_bloc.dart';
@@ -58,7 +59,7 @@ class _CartScreenState extends State<CartScreen> {
           return state.isLoading
               ? const Center(
                   child: SpinKitFadingCircle(
-                    color: Colors.black,
+                    color: blackColor,
                     size: 50.0,
                   ),
                 )

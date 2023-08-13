@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techx/core/utils/mds.dart';
 
 class SettingsTile extends StatelessWidget {
   const SettingsTile({
@@ -19,15 +20,22 @@ class SettingsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
-      highlightColor: color.withOpacity(0.1),
+      borderRadius: BorderRadius.circular(
+        20,
+      ),
+      highlightColor: color.withOpacity(
+        0.1,
+      ),
       child: ListTile(
         leading: Container(
           height: 45,
           width: 45,
           decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(18)),
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(
+              18,
+            ),
+          ),
           child: Icon(
             icon,
             color: color,
@@ -35,13 +43,15 @@ class SettingsTile extends StatelessWidget {
         ),
         title: Text(
           text,
-          style: const TextStyle(fontWeight: FontWeight.w600),
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+          ),
         ),
         trailing: hideArrow
             ? const SizedBox.shrink()
             : const Icon(
                 Icons.arrow_forward_ios,
-                color: Colors.black,
+                color: blackColor,
                 size: 24,
               ),
       ),

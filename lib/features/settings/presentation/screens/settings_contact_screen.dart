@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:techx/core/utils/constant_functions.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/features/settings/presentation/widgets/settings_tile.dart';
 
 class SettingsContactScreen extends StatelessWidget {
@@ -54,7 +55,7 @@ class SettingsContactScreen extends StatelessWidget {
             ),
             SettingsTile(
               icon: Icons.arrow_back,
-              color: Colors.black,
+              color: blackColor,
               text: "Back",
               hideArrow: true,
               onTap: () {

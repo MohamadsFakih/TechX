@@ -108,7 +108,7 @@ class CreditCardWidget extends StatelessWidget {
                 AspectRatio(
                   aspectRatio: 5,
                   child: Container(
-                    color: Colors.black,
+                    color: blackColor,
                   ),
                 ),
                 const Padding(
@@ -146,8 +146,9 @@ class CreditCardWidget extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             cardCVV,
-                            style:
-                                creditCardStyle.copyWith(color: Colors.black),
+                            style: creditCardStyle.copyWith(
+                              color: blackColor,
+                            ),
                           ),
                         ),
                       ),

@@ -53,7 +53,7 @@ class SocialButton extends StatelessWidget {
         color: whiteColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(
+            color: blackColor.withOpacity(
               0.1,
             ),
             blurRadius: 10,

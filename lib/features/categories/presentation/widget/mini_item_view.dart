@@ -116,7 +116,7 @@ class _MiniItemViewState extends State<MiniItemView> {
             child: widget.isLoading
                 ? const Center(
                     child: SpinKitFadingCircle(
-                      color: Colors.black,
+                      color: blackColor,
                       size: 50.0,
                     ),
                   )

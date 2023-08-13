@@ -52,7 +52,7 @@ class _DetailedBodyState extends State<DetailedBody> {
                 child: SizedBox(
                   width: 50,
                   child: Divider(
-                    color: Colors.black,
+                    color: blackColor,
                     thickness: 3,
                   ),
                 ),
@@ -250,7 +250,7 @@ class _DetailedBodyState extends State<DetailedBody> {
         ? Container()
         : Table(
             border: TableBorder.all(
-              color: Colors.black,
+              color: blackColor,
             ),
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
             columnWidths: const {
@@ -313,7 +313,7 @@ class _DetailedBodyState extends State<DetailedBody> {
               16,
             ),
             color: index == widget.currentModelIndex.value
-                ? Colors.black
+                ? blackColor
                 : miniItemImageColor,
           ),
           child: Center(
@@ -322,7 +322,7 @@ class _DetailedBodyState extends State<DetailedBody> {
               style: TextStyle(
                 color: index == widget.currentModelIndex.value
                     ? whiteColor
-                    : Colors.black,
+                    : blackColor,
               ),
             ),
           ),

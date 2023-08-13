@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage>
         return state.isLoading
             ? const Center(
                 child: SpinKitFadingCircle(
-                  color: Colors.black,
+                  color: blackColor,
                   size: 50.0,
                 ),
               )
@@ -72,7 +72,9 @@ class _HomePageState extends State<HomePage>
                 body: RefreshIndicator(
                   onRefresh: _refresh,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(
+                      8.0,
+                    ),
                     child: ListView(
                       children: [
                         SizedBox(

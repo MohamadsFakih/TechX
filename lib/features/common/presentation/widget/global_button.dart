@@ -21,7 +21,7 @@ class GlobalButton extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: blackColor.withOpacity(0.1),
                 blurRadius: 10,
               ),
             ]),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:techx/core/utils/mds.dart';
 import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/categories/domain/entity/item_entity.dart';
 import 'package:techx/features/common/presentation/widget/mini_item.dart';
@@ -59,7 +60,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   child: state.isLoading
                       ? const Center(
                           child: SpinKitFadingCircle(
-                            color: Colors.black,
+                            color: blackColor,
                             size: 50.0,
                           ),
                         )

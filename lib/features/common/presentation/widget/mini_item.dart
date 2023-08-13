@@ -188,7 +188,7 @@ class _MiniItemState extends State<MiniItem> {
                       "\$${widget.itemEntity.price}",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: blackColor,
                         fontSize: 22,
                       ),
                     ),

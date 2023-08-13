@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   Widget _buildLogin() {
     return Scaffold(
       body: Container(
-        color: Colors.black.withOpacity(
+        color: blackColor.withOpacity(
           .6,
         ),
         child: Center(
