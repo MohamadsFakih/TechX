@@ -43,7 +43,7 @@ class _SettingsMainScreenState extends State<SettingsMainScreen> {
           SettingsTile(
             icon: Icons.person_outline,
             color: Colors.blue,
-            text: "Redeem Code",
+            text: "Track orders",
             onTap: () {},
           ),
           const SizedBox(

@@ -37,10 +37,6 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
             Icons.search,
             color: blackColor,
           ),
-          suffixIcon: Icon(
-            Icons.filter_alt,
-            color: blackColor,
-          ),
         ),
       ),
     );

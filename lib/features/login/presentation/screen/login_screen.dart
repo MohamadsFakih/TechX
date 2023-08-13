@@ -137,9 +137,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             const Text(
                               "TechX",
                               style: TextStyle(
-                                  color: mainColor,
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold),
+                                color: mainColor,
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             const SizedBox(
                               height: 32,
