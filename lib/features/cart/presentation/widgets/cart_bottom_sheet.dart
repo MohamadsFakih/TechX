@@ -87,7 +87,9 @@ class _CreditCardSelectionSheetState extends State<CreditCardSelectionSheet> {
                 ),
               ElevatedButton(
                 onPressed: () {
-                  widget.onCardSelected(selectedCard.value);
+                  widget.onCardSelected(
+                    selectedCard.value,
+                  );
                   Navigator.of(context).pop();
                 },
                 child: const Text(
