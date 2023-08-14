@@ -16,61 +16,69 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-          ),
-          onPressed: () {
-            widget.controller.jumpToPage(
-              0,
-            );
-          },
-        ),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 32,
-        ),
-        physics: const BouncingScrollPhysics(),
-        children: [
-          const CircleAvatar(
-            child: ClipOval(
-              child: Image(
-                image: AssetImage(
-                  "assets/images/mohamad_avatar.png",
-                ),
-                fit: BoxFit.fill,
-              ),
+    return WillPopScope(
+      onWillPop: () {
+        widget.controller.jumpToPage(
+          0,
+        );
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
             ),
-            radius: 60,
+            onPressed: () {
+              widget.controller.jumpToPage(
+                0,
+              );
+            },
           ),
-          const SizedBox(
-            height: 32,
+        ),
+        body: ListView(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 32,
           ),
-          LoginTextField(
-            controller: _nameController,
-            hint: "Username",
-            inputType: TextInputType.text,
-            obscure: false,
-          ),
-          const SizedBox(
-            height: 32,
-          ),
-          LoginTextField(
-            controller: _nameController,
-            hint: "Address",
-            inputType: TextInputType.text,
-            obscure: false,
-          ),
-          const SizedBox(
-            height: 32,
-          ),
-          const GlobalButton(
-            text: "Update",
-          ),
-        ],
+          physics: const BouncingScrollPhysics(),
+          children: [
+            const CircleAvatar(
+              child: ClipOval(
+                child: Image(
+                  image: AssetImage(
+                    "assets/images/mohamad_avatar.png",
+                  ),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              radius: 60,
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            LoginTextField(
+              controller: _nameController,
+              hint: "Username",
+              inputType: TextInputType.text,
+              obscure: false,
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            LoginTextField(
+              controller: _nameController,
+              hint: "Address",
+              inputType: TextInputType.text,
+              obscure: false,
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            const GlobalButton(
+              text: "Update",
+            ),
+          ],
+        ),
       ),
     );
   }

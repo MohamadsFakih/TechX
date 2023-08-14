@@ -105,234 +105,246 @@ class _PaymentInfoScreenState extends State<PaymentInfoScreen> {
   }
 
   Widget _buildScaffold() {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            widget.controller.jumpToPage(
-              0,
-            );
-          },
+    return WillPopScope(
+      onWillPop: () {
+        widget.controller.jumpToPage(
+          0,
+        );
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              widget.controller.jumpToPage(
+                0,
+              );
+            },
+          ),
         ),
-      ),
-      body: BlocBuilder<SettingsBloc, SettingsState>(
-        builder: (context, state) {
-          _list = List.from(_settingsBloc.state.creditCards);
-          _list.add(
-            const CreditEntity(
-              cardHolder: '',
-              cardNumber: '',
-              cardCvv: '',
-              cardType: MyCardType.invalid,
-              cardDate: '',
-            ),
-          );
+        body: BlocBuilder<SettingsBloc, SettingsState>(
+          builder: (context, state) {
+            _list = List.from(_settingsBloc.state.creditCards);
+            _list.add(
+              const CreditEntity(
+                cardHolder: '',
+                cardNumber: '',
+                cardCvv: '',
+                cardType: MyCardType.invalid,
+                cardDate: '',
+              ),
+            );
 
-          return state.isLoading
-              ? const Center(
-                  child: SpinKitFadingCircle(
-                    color: blackColor,
-                    size: 50.0,
-                  ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView(
-                    children: [
-                      AspectRatio(
-                        aspectRatio: 1.5,
-                        child: PageView.builder(
-                            scrollDirection: Axis.horizontal,
-                            controller: _pageController,
-                            itemCount: _list.length,
-                            itemBuilder: (context, pos) {
-                              CreditEntity cardEntity = _list[pos];
+            return state.isLoading
+                ? const Center(
+                    child: SpinKitFadingCircle(
+                      color: blackColor,
+                      size: 50.0,
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView(
+                      children: [
+                        AspectRatio(
+                          aspectRatio: 1.5,
+                          child: PageView.builder(
+                              scrollDirection: Axis.horizontal,
+                              controller: _pageController,
+                              itemCount: _list.length,
+                              itemBuilder: (context, pos) {
+                                CreditEntity cardEntity = _list[pos];
 
-                              if (pos == _list.length - 1) {
-                                return StreamBuilder(
-                                    stream: _cardStream,
-                                    builder: (context, snapshot) {
-                                      return CreditCardWidget(
-                                        cardType:
-                                            cardType.value.name.toUpperCase(),
-                                        cardNumber: _cardNumberController.text,
-                                        cardHolder: _cardHolderController.text,
-                                        cardDate: _cardDateController.text,
-                                        cardCVV: _cardCvvController.text,
-                                        cardImage: CardUtils.getCardIcon(
-                                            cardType.value),
-                                        settingsBloc: _settingsBloc,
-                                        isEditing: true,
-                                        creditCardColor: CardUtils.getCardColor(
-                                            cardType.value),
-                                      );
-                                    });
-                              }
-                              return CreditCardWidget(
-                                cardType: cardEntity.cardType.name,
-                                cardNumber: CardUtils.getFormattedCardNumber(
-                                  cardEntity.cardNumber,
-                                ),
-                                cardHolder: cardEntity.cardHolder.toUpperCase(),
-                                cardDate: cardEntity.cardDate,
-                                cardCVV: cardEntity.cardCvv,
-                                cardImage:
-                                    CardUtils.getCardIcon(cardEntity.cardType),
-                                creditCardColor:
-                                    CardUtils.getCardColor(cardEntity.cardType),
-                                settingsBloc: _settingsBloc,
+                                if (pos == _list.length - 1) {
+                                  return StreamBuilder(
+                                      stream: _cardStream,
+                                      builder: (context, snapshot) {
+                                        return CreditCardWidget(
+                                          cardType:
+                                              cardType.value.name.toUpperCase(),
+                                          cardNumber:
+                                              _cardNumberController.text,
+                                          cardHolder:
+                                              _cardHolderController.text,
+                                          cardDate: _cardDateController.text,
+                                          cardCVV: _cardCvvController.text,
+                                          cardImage: CardUtils.getCardIcon(
+                                              cardType.value),
+                                          settingsBloc: _settingsBloc,
+                                          isEditing: true,
+                                          creditCardColor:
+                                              CardUtils.getCardColor(
+                                                  cardType.value),
+                                        );
+                                      });
+                                }
+                                return CreditCardWidget(
+                                  cardType: cardEntity.cardType.name,
+                                  cardNumber: CardUtils.getFormattedCardNumber(
+                                    cardEntity.cardNumber,
+                                  ),
+                                  cardHolder:
+                                      cardEntity.cardHolder.toUpperCase(),
+                                  cardDate: cardEntity.cardDate,
+                                  cardCVV: cardEntity.cardCvv,
+                                  cardImage: CardUtils.getCardIcon(
+                                      cardEntity.cardType),
+                                  creditCardColor: CardUtils.getCardColor(
+                                      cardEntity.cardType),
+                                  settingsBloc: _settingsBloc,
+                                );
+                              }),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: SmoothPageIndicator(
+                            controller: _pageController, // PageController
+                            count: _list.length,
+                            effect: const WormEffect(
+                              dotHeight: 10,
+                              dotWidth: 10,
+                            ), // your preferred effect
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        ValueListenableBuilder(
+                            valueListenable: cardType,
+                            builder: (
+                              context,
+                              value,
+                              c,
+                            ) {
+                              return CreditCardForm(
+                                cardNumberController: _cardNumberController,
+                                cardCvvController: _cardCvvController,
+                                cardDateController: _cardDateController,
+                                cardHolderController: _cardHolderController,
+                                cardType: cardType.value,
+                                getCardTypeFromNumber: getCardTypeFromNumber,
                               );
                             }),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: SmoothPageIndicator(
-                          controller: _pageController, // PageController
-                          count: _list.length,
-                          effect: const WormEffect(
-                            dotHeight: 10,
-                            dotWidth: 10,
-                          ), // your preferred effect
+                        const SizedBox(
+                          height: 32,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 32,
-                      ),
-                      ValueListenableBuilder(
-                          valueListenable: cardType,
-                          builder: (
-                            context,
-                            value,
-                            c,
-                          ) {
-                            return CreditCardForm(
-                              cardNumberController: _cardNumberController,
-                              cardCvvController: _cardCvvController,
-                              cardDateController: _cardDateController,
-                              cardHolderController: _cardHolderController,
-                              cardType: cardType.value,
-                              getCardTypeFromNumber: getCardTypeFromNumber,
-                            );
-                          }),
-                      const SizedBox(
-                        height: 32,
-                      ),
-                      OutlinedButton.icon(
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          "assets/images/creditCard/scan.svg",
+                        OutlinedButton.icon(
+                          onPressed: () {},
+                          icon: SvgPicture.asset(
+                            "assets/images/creditCard/scan.svg",
+                          ),
+                          label: const Text("Scan Card"),
                         ),
-                        label: const Text("Scan Card"),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            String checkCardNum = CardUtils.validateCardNum(
-                                    _cardNumberController.text) ??
-                                '';
-                            String checkCardCvv = CardUtils.validateCVV(
-                                    _cardCvvController.text) ??
-                                '';
-                            String checkCardDate = CardUtils.validateDate(
-                                    _cardDateController.text) ??
-                                '';
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              String checkCardNum = CardUtils.validateCardNum(
+                                      _cardNumberController.text) ??
+                                  '';
+                              String checkCardCvv = CardUtils.validateCVV(
+                                      _cardCvvController.text) ??
+                                  '';
+                              String checkCardDate = CardUtils.validateDate(
+                                      _cardDateController.text) ??
+                                  '';
 
-                            bool cardExists = _settingsBloc.state.creditCards
-                                .any((cardEntity) {
-                              return cardEntity.cardNumber ==
-                                  _cardNumberController.text;
-                            });
-                            if (cardExists) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    "Card already exits",
+                              bool cardExists = _settingsBloc.state.creditCards
+                                  .any((cardEntity) {
+                                return cardEntity.cardNumber ==
+                                    _cardNumberController.text;
+                              });
+                              if (cardExists) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      "Card already exits",
+                                    ),
+                                    duration: Duration(
+                                      milliseconds: 1500,
+                                    ),
                                   ),
-                                  duration: Duration(
-                                    milliseconds: 1500,
+                                );
+                              } else if (checkCardNum != '') {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(checkCardNum),
+                                    duration: Duration(
+                                      milliseconds: 1500,
+                                    ),
                                   ),
-                                ),
-                              );
-                            } else if (checkCardNum != '') {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(checkCardNum),
-                                  duration: Duration(
-                                    milliseconds: 1500,
+                                );
+                              } else if (checkCardCvv != '') {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      checkCardCvv,
+                                    ),
+                                    duration: Duration(
+                                      milliseconds: 1500,
+                                    ),
                                   ),
-                                ),
-                              );
-                            } else if (checkCardCvv != '') {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    checkCardCvv,
+                                );
+                              } else if (checkCardDate != '') {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      checkCardDate,
+                                    ),
+                                    duration: Duration(
+                                      milliseconds: 1500,
+                                    ),
                                   ),
-                                  duration: Duration(
-                                    milliseconds: 1500,
+                                );
+                              } else {
+                                _settingsBloc.add(
+                                  AddCreditCard(
+                                    CreditEntity(
+                                      cardHolder: _cardHolderController.text,
+                                      cardNumber: _cardNumberController.text,
+                                      cardType: cardType.value,
+                                      cardCvv: _cardCvvController.text,
+                                      cardDate: _cardDateController.text,
+                                    ),
                                   ),
-                                ),
-                              );
-                            } else if (checkCardDate != '') {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    checkCardDate,
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      "Card added successfully",
+                                    ),
+                                    duration: Duration(
+                                      milliseconds: 1500,
+                                    ),
                                   ),
-                                  duration: Duration(
-                                    milliseconds: 1500,
-                                  ),
-                                ),
-                              );
-                            } else {
-                              _settingsBloc.add(
-                                AddCreditCard(
-                                  CreditEntity(
-                                    cardHolder: _cardHolderController.text,
-                                    cardNumber: _cardNumberController.text,
-                                    cardType: cardType.value,
-                                    cardCvv: _cardCvvController.text,
-                                    cardDate: _cardDateController.text,
-                                  ),
-                                ),
-                              );
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    "Card added successfully",
-                                  ),
-                                  duration: Duration(
-                                    milliseconds: 1500,
-                                  ),
-                                ),
-                              );
-                              _cardNumberController.text = "";
-                              _cardCvvController.text = "";
-                              _cardDateController.text = "";
-                              _cardHolderController.text = "";
-                              cardType.value = MyCardType.invalid;
-                            }
-                          },
-                          child: const Text(
-                            "Add card",
-                            style: TextStyle(
-                              color: whiteColor,
+                                );
+                                _cardNumberController.text = "";
+                                _cardCvvController.text = "";
+                                _cardDateController.text = "";
+                                _cardHolderController.text = "";
+                                cardType.value = MyCardType.invalid;
+                              }
+                            },
+                            child: const Text(
+                              "Add card",
+                              style: TextStyle(
+                                color: whiteColor,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-        },
+                      ],
+                    ),
+                  );
+          },
+        ),
       ),
     );
   }
