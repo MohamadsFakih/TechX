@@ -90,7 +90,7 @@ dependency_overrides:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/techx_icon.png"
+  image_path: "assets/images/techx_logo.png"
 
 flutter:
 
