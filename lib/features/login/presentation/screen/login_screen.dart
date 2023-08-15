@@ -7,7 +7,6 @@ import 'package:techx/di/injection_container.dart';
 import 'package:techx/features/common/domain/entity/snackbar.dart';
 import 'package:techx/features/common/presentation/widget/global_button.dart';
 import 'package:techx/features/common/presentation/widget/login_text_field.dart';
-import 'package:techx/features/common/presentation/widget/social_button.dart';
 import 'package:techx/features/default/presentation/screen/default_screen.dart';
 
 import 'package:techx/features/login/data/model/login_credentials.dart';
@@ -139,7 +138,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             const Text(
                               "TechX",
                               style: TextStyle(
-                                color: mainColor,
+                                color: redColor,
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -261,9 +260,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                               ),
                             ),
                             const SizedBox(
-                              height: 16,
+                              height: 4,
                             ),
-                            const SocialButton(),
                           ],
                         ),
                       ),

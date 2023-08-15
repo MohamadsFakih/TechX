@@ -15,13 +15,15 @@ class GlobalButton extends StatelessWidget {
         alignment: Alignment.center,
         height: 55,
         decoration: BoxDecoration(
-            color: mainColor,
+            color: redColor,
             borderRadius: BorderRadius.circular(
               8,
             ),
             boxShadow: [
               BoxShadow(
-                color: blackColor.withOpacity(0.1),
+                color: blackColor.withOpacity(
+                  0.1,
+                ),
                 blurRadius: 10,
               ),
             ]),
