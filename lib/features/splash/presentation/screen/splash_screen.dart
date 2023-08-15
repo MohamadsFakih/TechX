@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
           }
         },
         child: const Scaffold(
-          backgroundColor: mainColor,
+          backgroundColor: redColor,
           body: Center(
             child: Text(
               'TechX',
