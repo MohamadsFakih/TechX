@@ -33,8 +33,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Settings Screen
  In this page the user can:-
- - Update their personal info.
- - Check payment history
+ - Update their personal info. (Not implemented yet)
+ - Track your orders (Not implemented yet)
  - Add or remove credit cards
  - Contact the support team
  - View the FAQ
