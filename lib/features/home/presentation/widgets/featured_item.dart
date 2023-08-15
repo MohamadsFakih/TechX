@@ -93,10 +93,6 @@ class FeaturedItem extends StatelessWidget {
                         fontSize: 24,
                       ),
                     ),
-                    const Icon(
-                      Icons.shopping_cart,
-                      color: redTypeColor,
-                    )
                   ],
                 ),
               ],
