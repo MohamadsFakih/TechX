@@ -27,35 +27,41 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(
-          8.0,
+      child: Slidable(
+        key: const ValueKey(
+          0,
         ),
-        child: Slidable(
-          key: const ValueKey(
-            0,
-          ),
-          startActionPane: ActionPane(
-            motion: const ScrollMotion(),
-            children: [
-              SlidableAction(
-                onPressed: (context) {
-                  cartBloc.add(
-                    RemoveCartItem(
-                      userId,
-                      item.id,
-                    ),
-                  );
-                },
-                backgroundColor: const Color(
-                  0xFFFE4A49,
+        startActionPane: ActionPane(
+          motion: const ScrollMotion(),
+          children: [
+            SlidableAction(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(
+                  12,
                 ),
-                foregroundColor: whiteColor,
-                icon: Icons.delete,
-                label: 'Remove',
+                bottomLeft: Radius.circular(
+                  12,
+                ),
               ),
-            ],
-          ),
+              onPressed: (context) {
+                cartBloc.add(
+                  RemoveCartItem(
+                    userId,
+                    item.id,
+                  ),
+                );
+              },
+              backgroundColor: const Color(
+                0xFFFE4A49,
+              ),
+              foregroundColor: whiteColor,
+              icon: Icons.delete,
+              label: 'Remove',
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
               CachedNetworkImage(
