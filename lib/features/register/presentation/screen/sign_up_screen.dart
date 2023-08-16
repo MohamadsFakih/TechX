@@ -132,7 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen>
                             const Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Login to your account",
+                                "Register for an account",
                                 style: TextStyle(
                                   color: textColor,
                                   fontSize: 16,
