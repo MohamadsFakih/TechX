@@ -1,4 +1,4 @@
-# techx
+# TechX
 
 A Tech Ecommerce Personal app project written using the Flutter framework, that implements the following concepts:
 • Clean Code Architecture
